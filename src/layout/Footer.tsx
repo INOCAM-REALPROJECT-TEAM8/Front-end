@@ -9,20 +9,17 @@ function Footer() {
   const navigate = useNavigate();
 
   return (
-    <>
-      <FooterGradation />
-      <FooterContainer>
-        <ButtonContainer>
-          <IconButton src={MessageButtonIcon} alt='MessageButton Icon' />
-        </ButtonContainer>
-        <ButtonContainer onClick={() => navigate('')}>
-          <IconButton src={HomeButtonIcon} alt='HomeButton Icon' />
-        </ButtonContainer>
-        <ButtonContainer>
-          <IconButton src={UserButtonIcon} alt='UserButton Icon' />
-        </ButtonContainer>
-      </FooterContainer>
-    </>
+    <FooterContainer>
+      <ButtonContainer>
+        <IconButton src={MessageButtonIcon} alt='MessageButton Icon' />
+      </ButtonContainer>
+      <ButtonContainer onClick={() => navigate('')}>
+        <IconButton src={HomeButtonIcon} alt='HomeButton Icon' />
+      </ButtonContainer>
+      <ButtonContainer onClick={() => navigate('users/:userId')}>
+        <IconButton src={UserButtonIcon} alt='UserButton Icon' />
+      </ButtonContainer>
+    </FooterContainer>
   );
 }
 
