@@ -19,12 +19,16 @@ function Header() {
 export default Header;
 
 const HeaderContainer = styled.div`
+  position: sticky;
+  top: 0px;
   width: 100%;
   height: 56px;
+  margin-bottom: 10px;
   background-color: #7751e1;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 99;
 `;
 
 const IconContainer = styled.div`

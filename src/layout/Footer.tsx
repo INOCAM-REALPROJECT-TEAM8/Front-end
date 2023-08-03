@@ -26,6 +26,8 @@ function Footer() {
 export default Footer;
 
 const FooterContainer = styled.div`
+  position: sticky;
+  bottom: 0px;
   width: 100%;
   height: 56px;
   background-color: white;
