@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import kakaoimage from '../images/kakao_login_medium_wide.png';
 
 const LoginPage: React.FC = () => {
   return (
@@ -11,7 +12,9 @@ const LoginPage: React.FC = () => {
         <Button>로그인</Button>
         <Button>회원가입</Button>
         <SocialButton>구글 로그인</SocialButton>
-        <SocialButton>카카오 로그인</SocialButton>
+        <a href='http://13.125.205.172:8080/login/oauth2/kakao'>
+          <img src={kakaoimage} alt='카카오 로그인'></img>
+        </a>
       </LoginBox>
     </LoginContainer>
   );
