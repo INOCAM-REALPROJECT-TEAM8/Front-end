@@ -9,23 +9,36 @@ function Footer() {
   const navigate = useNavigate();
 
   return (
-    <FooterContainer>
-      <ButtonContainer>
-        <IconButton src={MessageButtonIcon} alt='MessageButton Icon' />
-      </ButtonContainer>
-      <ButtonContainer onClick={() => navigate('')}>
-        <IconButton src={HomeButtonIcon} alt='HomeButton Icon' />
-      </ButtonContainer>
-      <ButtonContainer>
-        <IconButton src={UserButtonIcon} alt='UserButton Icon' />
-      </ButtonContainer>
-    </FooterContainer>
+    <>
+      <FooterGradation />
+      <FooterContainer>
+        <ButtonContainer>
+          <IconButton src={MessageButtonIcon} alt='MessageButton Icon' />
+        </ButtonContainer>
+        <ButtonContainer onClick={() => navigate('')}>
+          <IconButton src={HomeButtonIcon} alt='HomeButton Icon' />
+        </ButtonContainer>
+        <ButtonContainer>
+          <IconButton src={UserButtonIcon} alt='UserButton Icon' />
+        </ButtonContainer>
+      </FooterContainer>
+    </>
   );
 }
 
 export default Footer;
 
+const FooterGradation = styled.div`
+  position: fixed;
+  bottom: 56px;
+  height: 56px;
+  width: 100%;
+  background: linear-gradient(to top, var(--white), transparent);
+`;
+
 const FooterContainer = styled.div`
+  position: sticky;
+  bottom: 0px;
   width: 100%;
   height: 56px;
   background-color: white;

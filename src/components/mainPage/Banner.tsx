@@ -1,6 +1,7 @@
 import Slider from 'react-slick';
 import { BannerContainer } from './styles/BannerContainer';
 import banner1 from '../../assets/banner1.jpg';
+import { useNavigate } from 'react-router-dom';
 
 function Banner() {
   const settings = {
@@ -17,13 +18,19 @@ function Banner() {
   return (
     <BannerContainer>
       <Slider {...settings}>
-        <img src={banner1} width='100%' />
-        <img src={banner1} width='100%' />
-        <img src={banner1} width='100%' />
-        <img src={banner1} width='100%' />
+        <BannerCard imgSrc={banner1} linkTo='' />
+        <BannerCard imgSrc={banner1} linkTo='' />
+        <BannerCard imgSrc={banner1} linkTo='' />
+        <BannerCard imgSrc={banner1} linkTo='' />
       </Slider>
     </BannerContainer>
   );
+}
+
+function BannerCard({ imgSrc, linkTo }: { imgSrc: string; linkTo: string }) {
+  const navigate = useNavigate();
+
+  return <img src={imgSrc} style={{ cursor: 'pointer' }} width='100%' onClick={() => navigate(linkTo)} />;
 }
 
 export default Banner;
