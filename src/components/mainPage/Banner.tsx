@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 function Banner() {
   const settings = {
     className: 'slider',
-    slidesToShow: 1,
-    slidesToScroll: 1,
+    slidesToShow: 5,
+    slidesToScroll: 5,
     infinite: true,
     arrows: false,
     dots: true,
