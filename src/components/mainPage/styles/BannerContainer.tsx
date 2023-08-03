@@ -15,7 +15,7 @@ export const BannerContainer = styled.div`
         width: 16px;
         height: 16px;
         &::before {
-          font-size: 8px;
+          font-size: 10px;
           width: 16px;
           height: 16px;
           color: var(--white);
