@@ -1,5 +1,11 @@
+import MusicSearch from '../components/mainPage/MusicSearch';
+
 function MainPage() {
-  return <div>MainPage</div>;
+  return (
+    <>
+      <MusicSearch />
+    </>
+  );
 }
 
 export default MainPage;
