@@ -22,14 +22,12 @@ export default PageLayout;
 const PageContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
+  height: 100%;
 `;
 
 const AllPage = styled.div`
-  width: 390px;
-  height: 844px;
+  width: 100vw;
+  max-width: 800px;
   background-color: #7751e1;
   display: flex;
   flex-direction: column;

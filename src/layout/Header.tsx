@@ -1,14 +1,13 @@
-import React from 'react';
 import styled from 'styled-components';
 import SettingButtonIcon from '../icons/SettingButton.png';
-import VectorIcon from '../icons/Vector.png';
+import { ReactComponent as Logo } from '../assets/hideLogo.svg';
 
 function Header() {
   return (
     <HeaderContainer>
-      <IconContainer>
-        <Icon src={VectorIcon} alt='Vector Icon' />
-      </IconContainer>
+      <LogoBox>
+        <Logo />
+      </LogoBox>
       <IconContainer>
         <Icon src={SettingButtonIcon} alt='SettingButton Icon' />
       </IconContainer>
@@ -25,16 +24,21 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 99;
 `;
 
 const IconContainer = styled.div`
-  width: 25px;
-  height: 25px;
+  width: 24px;
+  height: 19.2px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0px 20px 0px 20px;
+  margin: 4px 25px 0px 0px;
   cursor: pointer;
+`;
+
+const LogoBox = styled.div`
+  padding: 6px 0px 0px 24px;
 `;
 
 const Icon = styled.img`
