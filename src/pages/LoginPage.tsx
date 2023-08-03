@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import GoogleLogin from './GoogleLogin';
 
 const LoginPage: React.FC = () => {
   return (
@@ -10,7 +11,10 @@ const LoginPage: React.FC = () => {
         <Input type='password' placeholder='Password' />
         <Button>로그인</Button>
         <Button>회원가입</Button>
-        <SocialButton>구글 로그인</SocialButton>
+        <SocialButton>
+          <GoogleLogin />
+        </SocialButton>
+
         <SocialButton>카카오 로그인</SocialButton>
       </LoginBox>
     </LoginContainer>
@@ -51,15 +55,16 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  width: 300px;
+  width: 250px;
   height: 40px;
   margin-bottom: 10px;
   background-color: #ffffff;
   border: none;
+  border-radius: 10px;
   cursor: pointer;
 `;
 
 const SocialButton = styled(Button)`
-  background-color: #4285f4;
-  color: white;
+  width: 250px;
+  height: 40px;
 `;
