@@ -45,8 +45,9 @@ const UserContainer = styled.div`
   background-color: #7751e1;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+
   align-items: center;
+  border: 1px solid black;
 `;
 
 const UserImageContainer = styled.div`
@@ -58,7 +59,7 @@ const UserImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin: 30px auto;
   border: 3px solid white;
 `;
 

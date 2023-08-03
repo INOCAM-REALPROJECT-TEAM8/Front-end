@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GoogleLogin } from '@react-oauth/google';
-import googleimage from '../images/Google Button.png';
+import GoogleLogin from './GoogleLogin';
 
 const LoginPage: React.FC = () => {
   return (
@@ -12,10 +11,9 @@ const LoginPage: React.FC = () => {
         <Input type='password' placeholder='Password' />
         <Button>로그인</Button>
         <Button>회원가입</Button>
-
-        <a href='http://도메인/login/oauth2/google'>
-          <GoogleLoginImage src={googleimage} alt='구글 로그인'></GoogleLoginImage>
-        </a>
+        <SocialButton>
+          <GoogleLogin />
+        </SocialButton>
 
         <SocialButton>카카오 로그인</SocialButton>
       </LoginBox>
@@ -57,7 +55,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  width: 300px;
+  width: 250px;
   height: 40px;
   margin-bottom: 10px;
   background-color: #ffffff;
@@ -67,14 +65,6 @@ const Button = styled.button`
 `;
 
 const SocialButton = styled(Button)`
-  width: 300px;
+  width: 250px;
   height: 40px;
-`;
-
-const GoogleLoginImage = styled.img`
-  width: 320px;
-  height: 40px;
-  margin-bottom: 5px;
-  object-fit: cover;
-  border-radius: 20px;
 `;

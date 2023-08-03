@@ -28,8 +28,8 @@ const PageContainer = styled.div`
 `;
 
 const AllPage = styled.div`
-  width: 390px;
-  height: 844px;
+  width: 100vw;
+  max-width: 800px;
   background-color: #7751e1;
   display: flex;
   flex-direction: column;

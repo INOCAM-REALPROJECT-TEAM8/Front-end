@@ -1,5 +1,13 @@
+import Banner from '../components/mainPage/Banner';
+import MusicSearch from '../components/mainPage/MusicSearch';
+
 function MainPage() {
-  return <div>MainPage</div>;
+  return (
+    <>
+      <MusicSearch />
+      <Banner />
+    </>
+  );
 }
 
 export default MainPage;
