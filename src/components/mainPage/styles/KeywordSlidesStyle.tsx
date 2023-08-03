@@ -9,6 +9,7 @@ export const PopularKeywordsContainer = styled.div`
 `;
 
 export const PopularKeywordBox = styled.div`
+  cursor: pointer;
   text-align: center;
   vertical-align: middle;
   color: var(--gray);

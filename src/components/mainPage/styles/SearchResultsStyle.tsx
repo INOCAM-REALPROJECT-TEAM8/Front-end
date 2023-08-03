@@ -11,6 +11,7 @@ export const SearchResultsContainer = styled.div`
 `;
 
 export const SearchResultBox = styled.div<{ $colorExist: boolean }>`
+  cursor: pointer;
   background-color: ${({ $colorExist }) => ($colorExist ? 'rgba(119, 81, 225, 0.05)' : 'none')};
   height: 36px;
   width: 100%;
