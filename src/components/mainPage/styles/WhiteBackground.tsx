@@ -6,4 +6,12 @@ const WhiteBackground = styled.div`
   padding-bottom: 40px;
 `;
 
+export const FooterGradation = styled.div`
+  position: fixed;
+  bottom: 56px;
+  height: 56px;
+  width: 100%;
+  background: linear-gradient(to top, var(--white), transparent);
+`;
+
 export default WhiteBackground;
