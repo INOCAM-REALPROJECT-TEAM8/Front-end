@@ -22,7 +22,7 @@ export default PageLayout;
 const PageContainer = styled.div`
   display: flex;
   justify-content: center;
-  height: 100%;
+  min-height: 100vh;
 `;
 
 const AllPage = styled.div`
