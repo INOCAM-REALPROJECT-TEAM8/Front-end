@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import React, { useRef, useState } from 'react';
+import MainContainer from '../components/loginPage/styles/MainContainer';
 
-const UserPage: React.FC = () => {
+function UserPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
+  const [nickname, setNickname] = useState<string>('John Doe'); // 기본 닉네임 설정
 
   const handleImageClick = () => {
     // 유저 이미지 클릭 시 파일 업로드 input 클릭 이벤트 실행
@@ -25,30 +27,27 @@ const UserPage: React.FC = () => {
     }
   };
 
+  const handleNicknameChange = () => {
+    const newNickname = prompt('Enter your new nickname'); // 팝업 창을 통해 새 닉네임을 입력받음
+    if (newNickname) {
+      setNickname(newNickname); // 새 닉네임을 상태로 업데이트
+    }
+  };
+
   return (
-    <UserContainer>
+    <MainContainer>
       <UserImageContainer onClick={handleImageClick}>
         {selectedImage ? <UserImage src={selectedImage} /> : <Placeholder>Upload Image</Placeholder>}
       </UserImageContainer>
       {/* 유저 이름을 그냥 텍스트로 출력 */}
-      <UserName>John Doe</UserName>
+      <UserName onClick={handleNicknameChange}>{nickname}</UserName> {/* 상태에 따라 닉네임 출력 */}
+      {/* <button onClick={handleNicknameChange}>✏️</button> 닉네임 변경 버튼 */}
       <input type='file' ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
-    </UserContainer>
+    </MainContainer>
   );
-};
+}
 
 export default UserPage;
-
-const UserContainer = styled.div`
-  width: 390px;
-  height: 732px;
-  background-color: #7751e1;
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  border: 1px solid black;
-`;
 
 const UserImageContainer = styled.div`
   width: 120px;
@@ -78,4 +77,5 @@ const UserName = styled.div`
   margin-top: 10px;
   font-size: 16px;
   color: white;
+  cursor: pointer;
 `;

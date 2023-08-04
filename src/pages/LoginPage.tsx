@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import KakaoLogin from './KakaoLogin';
-import GoogleLogin from './GoogleLogin';
+import GoogleLogin from '../features/GoogleLogin';
+import MainContainer from '../components/loginPage/styles/MainContainer';
 
-const LoginPage: React.FC = () => {
+
+function LoginPage() {
   return (
-    <LoginContainer>
+    <MainContainer>
       <TextPage>HIDE</TextPage>
       <LoginBox>
         <Input type='text' placeholder='Email' />
@@ -15,28 +17,33 @@ const LoginPage: React.FC = () => {
         <SocialButton>
           <GoogleLogin />
         </SocialButton>
+        <SocialButton>
+          <KakaoLogin />
+        </SocialButton>
         <KakaoLogin />
       </LoginBox>
-    </LoginContainer>
+    </MainContainer>
   );
-};
+}
 
 export default LoginPage;
 
-const LoginContainer = styled.div`
-  width: 390px;
-  height: 732px;
-  background-color: #7751e1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
+// const LoginContainer = styled.div`
+//   width: 390px;
+//   height: 732px;
+//   background-color: #7751e1;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
 const TextPage = styled.div`
   color: white;
   font-size: xx-large;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
 `;
 
 const LoginBox = styled.div`
@@ -55,7 +62,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  width: 250px;
+  width: 300px;
   height: 40px;
   margin-bottom: 10px;
   background-color: #ffffff;
@@ -65,6 +72,6 @@ const Button = styled.button`
 `;
 
 const SocialButton = styled(Button)`
-  width: 250px;
+  width: 300px;
   height: 40px;
 `;
