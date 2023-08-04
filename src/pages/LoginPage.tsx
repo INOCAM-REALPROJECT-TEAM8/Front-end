@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-<<<<<<< HEAD
-import kakaoimage from '../images/kakao_login_medium_wide.png';
-=======
+import KakaoLogin from './KakaoLogin';
 import GoogleLogin from './GoogleLogin';
->>>>>>> origin/feature/music-detail-page
 
 const LoginPage: React.FC = () => {
   return (
@@ -15,18 +12,10 @@ const LoginPage: React.FC = () => {
         <Input type='password' placeholder='Password' />
         <Button>로그인</Button>
         <Button>회원가입</Button>
-<<<<<<< HEAD
-        <SocialButton>구글 로그인</SocialButton>
-        <a href='http://13.125.205.172:8080/login/oauth2/kakao'>
-          <img src={kakaoimage} alt='카카오 로그인'></img>
-        </a>
-=======
         <SocialButton>
           <GoogleLogin />
         </SocialButton>
-
-        <SocialButton>카카오 로그인</SocialButton>
->>>>>>> origin/feature/music-detail-page
+        <KakaoLogin />
       </LoginBox>
     </LoginContainer>
   );
