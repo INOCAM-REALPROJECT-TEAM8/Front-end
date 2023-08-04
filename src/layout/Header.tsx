@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import SettingButtonIcon from '../icons/SettingButton.png';
 import { ReactComponent as Logo } from '../assets/hideLogo.svg';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <HeaderContainer>
       <LogoBox>
-        <Logo />
+        <Logo onClick={() => navigate('/')} style={{ cursor: 'pointer' }} />
       </LogoBox>
       <IconContainer>
         <Icon src={SettingButtonIcon} alt='SettingButton Icon' />
