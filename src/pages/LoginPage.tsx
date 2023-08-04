@@ -1,38 +1,47 @@
 import React from 'react';
 import styled from 'styled-components';
+import kakaoimage from '../images/kakao_login_medium_wide.png';
+import GoogleLogin from '../features/GoogleLogin';
+import MainContainer from '../components/loginPage/styles/MainContainer';
 
-const LoginPage: React.FC = () => {
+function LoginPage() {
   return (
-    <LoginContainer>
+    <MainContainer>
       <TextPage>HIDE</TextPage>
       <LoginBox>
         <Input type='text' placeholder='Email' />
         <Input type='password' placeholder='Password' />
         <Button>로그인</Button>
         <Button>회원가입</Button>
-        <SocialButton>구글 로그인</SocialButton>
-        <SocialButton>카카오 로그인</SocialButton>
+        <SocialButton>
+          <GoogleLogin />
+        </SocialButton>
+        <a href='http://13.125.205.172:8080/login/oauth2/kakao'>
+          <img src={kakaoimage} alt='카카오 로그인'></img>
+        </a>
       </LoginBox>
-    </LoginContainer>
+    </MainContainer>
   );
-};
+}
 
 export default LoginPage;
 
-const LoginContainer = styled.div`
-  width: 390px;
-  height: 732px;
-  background-color: #7751e1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
+// const LoginContainer = styled.div`
+//   width: 390px;
+//   height: 732px;
+//   background-color: #7751e1;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
 const TextPage = styled.div`
   color: white;
   font-size: xx-large;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
 `;
 
 const LoginBox = styled.div`
@@ -56,10 +65,11 @@ const Button = styled.button`
   margin-bottom: 10px;
   background-color: #ffffff;
   border: none;
+  border-radius: 10px;
   cursor: pointer;
 `;
 
 const SocialButton = styled(Button)`
-  background-color: #4285f4;
-  color: white;
+  width: 300px;
+  height: 40px;
 `;
