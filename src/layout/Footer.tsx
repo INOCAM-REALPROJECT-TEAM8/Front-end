@@ -25,14 +25,6 @@ function Footer() {
 
 export default Footer;
 
-const FooterGradation = styled.div`
-  position: fixed;
-  bottom: 56px;
-  height: 56px;
-  width: 100%;
-  background: linear-gradient(to top, var(--white), transparent);
-`;
-
 const FooterContainer = styled.div`
   position: sticky;
   bottom: 0px;

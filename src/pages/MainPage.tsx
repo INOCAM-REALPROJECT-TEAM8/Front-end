@@ -1,7 +1,7 @@
 import Banner from '../components/mainPage/Banner';
 import MusicSearch from '../components/mainPage/MusicSearch';
 import MusicSlide from '../components/mainPage/MusicSlide';
-import WhiteBackground from '../components/mainPage/styles/WhiteBackground';
+import WhiteBackground, { FooterGradation } from '../components/mainPage/styles/WhiteBackground';
 
 const musics = [
   'https://marketplace.canva.com/EAExV2m91mg/1/0/1600w/canva-%ED%8C%8C%EB%9E%80%EC%83%89-%EB%B0%A4%ED%95%98%EB%8A%98-%EA%B7%B8%EB%A6%BC%EC%9D%98-%EC%95%A8%EB%B2%94%EC%BB%A4%EB%B2%84-5tlu9r69vlc.jpg',
@@ -26,6 +26,7 @@ function MainPage() {
       <WhiteBackground>
         <MusicSlide playListName='추천 음악' musics={musics} />
         <MusicSlide playListName='인기 음악' musics={musics} />
+        <FooterGradation />
       </WhiteBackground>
     </>
   );
