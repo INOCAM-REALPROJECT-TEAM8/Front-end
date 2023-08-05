@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import kakaoimage from '../images/kakao_login_medium_wide.png';
+import KakaoLogin from './KakaoLogin';
 import GoogleLogin from '../features/GoogleLogin';
 import MainContainer from '../components/loginPage/styles/MainContainer';
 import useValidateInput from '../hooks/useValidateInput';
 import { useMutation } from '@tanstack/react-query';
 import { login } from '../api/user';
 import { Link, useNavigate } from 'react-router-dom';
+
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -47,9 +48,10 @@ function LoginPage() {
         <SocialButton>
           <GoogleLogin />
         </SocialButton>
-        <a href='http://13.125.205.172:8080/login/oauth2/kakao'>
-          <img src={kakaoimage} alt='카카오 로그인'></img>
-        </a>
+        <SocialButton>
+          <KakaoLogin />
+        </SocialButton>
+        <KakaoLogin />
         <UnderlinedTextBox to='/forgetpw'>비밀번호를 잊으셨나요?</UnderlinedTextBox>
       </LoginBox>
     </MainContainer>
