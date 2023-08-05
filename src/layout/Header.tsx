@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import SettingButtonIcon from '../icons/SettingButton.png';
 import { ReactComponent as Logo } from '../assets/hideLogo.svg';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Sidebar from './Sidebar';
 
@@ -9,11 +10,11 @@ function Header() {
   const toggleSide = () => {
     setIsOpen(true);
   };
-
+  const navigate = useNavigate();
   return (
     <HeaderContainer>
       <LogoBox>
-        <Logo />
+        <Logo onClick={() => navigate('/')} style={{ cursor: 'pointer' }} />
       </LogoBox>
       <IconContainer role='button' onClick={toggleSide}>
         <Icon src={SettingButtonIcon} alt='SettingButton Icon' />
@@ -26,6 +27,8 @@ function Header() {
 export default Header;
 
 const HeaderContainer = styled.div`
+  position: sticky;
+  top: 0px;
   width: 100%;
   height: 56px;
   background-color: #7751e1;
