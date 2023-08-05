@@ -35,11 +35,11 @@ function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) {
 export default Sidebar;
 
 const SideBarWrap = styled.div`
-  z-index: 5;
+  z-index: 10;
   padding: 12px;
   border-radius: 15px 0 0 15px;
   background-color: #7715e1;
-  height: 100%;
+  height: 100vh;
   width: 55%;
   right: -55%;
   top: 0;
@@ -53,5 +53,6 @@ const SideBarWrap = styled.div`
 `;
 
 const Menu = styled.li`
+  position: relative;
   margin: 30px 8px;
 `;
