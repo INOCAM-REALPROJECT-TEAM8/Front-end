@@ -9,7 +9,9 @@ interface UserInfo {
 }
 
 export const login = async ({ email, password }: UserInfo) => {
+  console.log(email, password);
   const { data, headers }: Response & AxiosResponse = await ourAxios.post('/api/users/login', { email, password });
+  console.log(data);
 
   const token = headers.get('Authorization');
   if (token) localStorage.setItem('accessToken', token);
@@ -32,11 +34,22 @@ export const withdraw = async () => {
 };
 
 export const forgetPW = async ({ email }: Pick<UserInfo, 'email'>) => {
-  const { data }: AxiosResponse = await ourAxios.post('/api/users/.....', { email });
+  const { data }: AxiosResponse = await ourAxios.post('/api/users/email/reset-password', { email });
   return data;
 };
 
-export const changePW = async ({ password }: Pick<UserInfo, 'password'>) => {
-  const { data }: AxiosResponse = await ourAxios.post('/api/users/reset-password', { password });
+export const changePW = async ({ password, token }: Pick<UserInfo, 'password'> & { token: string }) => {
+  console.log(token);
+  const { data }: AxiosResponse = await ourAxios.patch(
+    '/api/users/reset-password',
+    { password },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${token}`,
+      },
+      withCredentials: true,
+    },
+  );
   return data;
 };

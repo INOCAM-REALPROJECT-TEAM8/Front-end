@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 // 인자
 // type: "email", "password" 중 하나. 다른 문자열일 시 validate 할 때 빈문자열이 아닌지만 확인
@@ -9,7 +9,7 @@ import { useState } from 'react';
 // inputOnChangeHandler: 인풋 태그의 onChange로 들어갈 함수
 // valid: 해당 인풋 태그가 유효한지 여부
 // validate: 수동 유효성 검사 함수
-const useValidateInput = (type, automatic = true) => {
+const useValidateInput = (type?: 'email' | 'password' | undefined, automatic: boolean | undefined = true) => {
   const pattern =
     type === 'email' ? /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ : type === 'password' ? /^.{8,}$/ : /^.{1,}$/;
 
@@ -17,11 +17,11 @@ const useValidateInput = (type, automatic = true) => {
   const [valid, setValid] = useState(true);
 
   const handleInputOnChange = automatic
-    ? e => {
+    ? (e: React.ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value);
         setValid(pattern.test(e.target.value));
       }
-    : e => {
+    : (e: React.ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value);
       };
 

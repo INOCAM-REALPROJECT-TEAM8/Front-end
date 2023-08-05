@@ -5,7 +5,7 @@ import MainContainer from '../components/loginPage/styles/MainContainer';
 import useValidateInput from '../hooks/useValidateInput';
 import { useMutation } from '@tanstack/react-query';
 import { login } from '../api/user';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -50,6 +50,7 @@ function LoginPage() {
         <a href='http://13.125.205.172:8080/login/oauth2/kakao'>
           <img src={kakaoimage} alt='카카오 로그인'></img>
         </a>
+        <UnderlinedTextBox to='/forgetpw'>비밀번호를 잊으셨나요?</UnderlinedTextBox>
       </LoginBox>
     </MainContainer>
   );
@@ -103,4 +104,9 @@ const Button = styled.button`
 const SocialButton = styled(Button)`
   width: 300px;
   height: 40px;
+`;
+
+const UnderlinedTextBox = styled(Link)`
+  text-decoration: underline;
+  color: black;
 `;
