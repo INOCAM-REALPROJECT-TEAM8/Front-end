@@ -1,16 +1,24 @@
 import styled from 'styled-components';
 import SettingButtonIcon from '../icons/SettingButton.png';
 import { ReactComponent as Logo } from '../assets/hideLogo.svg';
+import { useState } from 'react';
+import Sidebar from './Sidebar';
 
 function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleSide = () => {
+    setIsOpen(true);
+  };
+
   return (
     <HeaderContainer>
       <LogoBox>
         <Logo />
       </LogoBox>
-      <IconContainer>
+      <IconContainer role='button' onClick={toggleSide}>
         <Icon src={SettingButtonIcon} alt='SettingButton Icon' />
       </IconContainer>
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
     </HeaderContainer>
   );
 }
