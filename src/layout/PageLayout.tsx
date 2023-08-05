@@ -26,9 +26,11 @@ const PageContainer = styled.div`
 `;
 
 const AllPage = styled.div`
+  position: relative;
   width: 100vw;
   max-width: 800px;
   background-color: #7751e1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `;
