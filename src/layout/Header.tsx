@@ -12,22 +12,25 @@ function Header() {
   };
   const navigate = useNavigate();
   return (
-    <HeaderContainer>
-      <LogoBox>
-        <Logo onClick={() => navigate('/')} style={{ cursor: 'pointer' }} />
-      </LogoBox>
-      <IconContainer role='button' onClick={toggleSide}>
-        <Icon src={SettingButtonIcon} alt='SettingButton Icon' />
-      </IconContainer>
+    <>
+      <HeaderContainer>
+        <LogoBox>
+          <Logo onClick={() => navigate('/')} style={{ cursor: 'pointer' }} />
+        </LogoBox>
+        <IconContainer role='button' onClick={toggleSide}>
+          <Icon src={SettingButtonIcon} alt='SettingButton Icon' />
+        </IconContainer>
+      </HeaderContainer>
       <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-    </HeaderContainer>
+    </>
   );
 }
 
 export default Header;
 
 const HeaderContainer = styled.div`
-  position: sticky;
+  position: fixed;
+  max-width: 800px;
   top: 0px;
   width: 100%;
   height: 56px;
@@ -35,7 +38,7 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 99;
+  z-index: 4;
 `;
 
 const IconContainer = styled.div`

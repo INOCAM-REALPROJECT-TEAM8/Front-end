@@ -27,6 +27,7 @@ const PageContainer = styled.div`
 
 const AllPage = styled.div`
   position: relative;
+  padding: 56px 0px;
   width: 100vw;
   max-width: 800px;
   background-color: #7751e1;
