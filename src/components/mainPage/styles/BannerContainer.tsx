@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 
 export const BannerContainer = styled.div`
   width: 100%;
+  padding-top: 96px;
 
   .slick-dots {
     position: absolute;
