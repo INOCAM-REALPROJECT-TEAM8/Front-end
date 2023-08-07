@@ -1,30 +1,44 @@
 import styled from 'styled-components';
 import SettingButtonIcon from '../icons/SettingButton.png';
 import { ReactComponent as Logo } from '../assets/hideLogo.svg';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import Sidebar from './Sidebar';
 
 function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleSide = () => {
+    setIsOpen(true);
+  };
+  const navigate = useNavigate();
   return (
-    <HeaderContainer>
-      <LogoBox>
-        <Logo />
-      </LogoBox>
-      <IconContainer>
-        <Icon src={SettingButtonIcon} alt='SettingButton Icon' />
-      </IconContainer>
-    </HeaderContainer>
+    <>
+      <HeaderContainer>
+        <LogoBox>
+          <Logo onClick={() => navigate('/')} style={{ cursor: 'pointer' }} />
+        </LogoBox>
+        <IconContainer role='button' onClick={toggleSide}>
+          <Icon src={SettingButtonIcon} alt='SettingButton Icon' />
+        </IconContainer>
+      </HeaderContainer>
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+    </>
   );
 }
 
 export default Header;
 
 const HeaderContainer = styled.div`
+  position: fixed;
+  max-width: 800px;
+  top: 0px;
   width: 100%;
   height: 56px;
   background-color: #7751e1;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 99;
+  z-index: 4;
 `;
 
 const IconContainer = styled.div`

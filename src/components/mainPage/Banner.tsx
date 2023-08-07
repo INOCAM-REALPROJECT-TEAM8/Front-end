@@ -18,19 +18,19 @@ function Banner() {
   return (
     <BannerContainer>
       <Slider {...settings}>
-        <BannerCard imgSrc={banner1} linkTo='' />
-        <BannerCard imgSrc={banner1} linkTo='' />
-        <BannerCard imgSrc={banner1} linkTo='' />
-        <BannerCard imgSrc={banner1} linkTo='' />
+        <BannerCard imgSrc={banner1} linkTo='' alt='헤비메탈을 좋아하신다면 클릭해주세요' />
+        <BannerCard imgSrc={banner1} linkTo='' alt='헤비메탈을 좋아하신다면 클릭해주세요' />
+        <BannerCard imgSrc={banner1} linkTo='' alt='헤비메탈을 좋아하신다면 클릭해주세요' />
+        <BannerCard imgSrc={banner1} linkTo='' alt='헤비메탈을 좋아하신다면 클릭해주세요' />
       </Slider>
     </BannerContainer>
   );
 }
 
-function BannerCard({ imgSrc, linkTo }: { imgSrc: string; linkTo: string }) {
+function BannerCard({ imgSrc, linkTo, alt }: { imgSrc: string; linkTo: string; alt: string }) {
   const navigate = useNavigate();
 
-  return <img src={imgSrc} style={{ cursor: 'pointer' }} width='100%' onClick={() => navigate(linkTo)} />;
+  return <img src={imgSrc} style={{ cursor: 'pointer' }} width='100%' onClick={() => navigate(linkTo)} alt={alt} />;
 }
 
 export default Banner;
