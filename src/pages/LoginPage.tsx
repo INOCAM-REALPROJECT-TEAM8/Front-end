@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import KakaoLogin from './KakaoLogin';
+import KakaoLogin from '../features/KakaoLogin';
 import GoogleLogin from '../features/GoogleLogin';
 import MainContainer from '../components/loginPage/styles/MainContainer';
-
 
 function LoginPage() {
   return (
@@ -16,9 +15,6 @@ function LoginPage() {
         <Button>회원가입</Button>
         <SocialButton>
           <GoogleLogin />
-        </SocialButton>
-        <SocialButton>
-          <KakaoLogin />
         </SocialButton>
         <KakaoLogin />
       </LoginBox>
