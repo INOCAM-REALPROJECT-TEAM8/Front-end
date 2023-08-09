@@ -6,6 +6,8 @@ import useValidateInput from '../hooks/useValidateInput';
 import { useMutation } from '@tanstack/react-query';
 import { login } from '../api/user';
 import { Link, useNavigate } from 'react-router-dom';
+import { ReactComponent as Logo } from '../assets/hideLogo.svg';
+import { Button, Input, LoginBox, LogoContainer } from '../components/loginPage/styles/Input';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -43,20 +45,24 @@ function LoginPage() {
 
   return (
     <MainContainer>
-      <TextPage>HIDE</TextPage>
+      <LogoContainer>
+        <Logo onClick={() => navigate('/')} style={{ width: '106px', height: '60px', cursor: 'pointer' }} />
+      </LogoContainer>
       <LoginBox>
-        <Input type='text' placeholder='ID' value={email} onChange={handleEmailOnChange} />
-        <Input type='password' placeholder='PW' value={password} onChange={handlePwOnChange} />
-        <Button onClick={handleLoginClick}>로그인</Button>
-        <Button onClick={() => navigate('/signup')}>회원가입</Button>
+        <Input type='text' placeholder='이메일' value={email} onChange={handleEmailOnChange} />
+        <Input type='password' placeholder='비밀번호' value={password} onChange={handlePwOnChange} />
+        <Button onClick={handleLoginClick} $bgColor='white' color='#7751e1'>
+          로그인
+        </Button>
+        <UnderlinedTextBox to='/forgetpw'>비밀번호를 잊으셨나요?</UnderlinedTextBox>
+        <UnderLine />
+        <Button onClick={() => navigate('/signup')} $bgColor='#7751e1' color='white'>
+          회원가입
+        </Button>
         <SocialButton>
           <GoogleLogin />
-        </SocialButton>
-        <SocialButton>
           <KakaoLogin />
         </SocialButton>
-        <KakaoLogin />
-        <UnderlinedTextBox to='/forgetpw'>비밀번호를 잊으셨나요?</UnderlinedTextBox>
       </LoginBox>
     </MainContainer>
   );
@@ -64,50 +70,28 @@ function LoginPage() {
 
 export default LoginPage;
 
-const TextPage = styled.div`
-  color: white;
-  font-size: xx-large;
-  margin-bottom: 180px;
-  display: flex;
-  justify-content: center;
-`;
-
-const LoginBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Input = styled.input`
+const SocialButton = styled.div`
   width: 342px;
-  height: 52px;
-  margin-bottom: 10px;
-  padding: 5px;
-  border-radius: 16px;
-  border: none;
-  font-weight: bolder;
-  background-color: rgba(255, 255, 255, 0.8);
-  &::placeholder {
-    color: #7751e1;
-  }
-`;
-
-const Button = styled.button`
-  width: 342px;
-  height: 52px;
-  margin-bottom: 10px;
-
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-`;
-
-const SocialButton = styled(Button)`
-  width: 300px;
   height: 40px;
+  border: none;
+  border-radius: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
 `;
 
 const UnderlinedTextBox = styled(Link)`
   text-decoration: underline;
-  color: black;
+  color: white;
+  padding: 30px 0 30px 0;
+`;
+
+const UnderLine = styled.div`
+  background-color: white;
+  justify-content: center;
+  height: 2px;
+  width: 100%;
+  margin-bottom: 20px;
 `;
