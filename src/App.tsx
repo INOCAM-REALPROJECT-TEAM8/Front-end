@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import PageLayout from './layout/PageLayout';
+import MainPage from './pages/MainPage';
+import MusicDetailPage from './pages/MusicDetailPage';
+import UserPage from './pages/UserPage';
+import LoginPage from './pages/LoginPage';
+import SignUpPage from './pages/SignUpPage';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import ForgetPwPage from './pages/ForgetPwPage';
+import ChangePwPage from './pages/ChangePwPage';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <Routes>
+        <Route path='/' element={<PageLayout />}>
+          <Route path='' element={<MainPage />} />
+          <Route path='login' element={<LoginPage />} />
+          <Route path='signup' element={<SignUpPage />} />
+          <Route path='forgetpw' element={<ForgetPwPage />} />
+          <Route path='changepw' element={<ChangePwPage />} />
+          <Route path='musics/:musicId' element={<MusicDetailPage />} />
+          <Route path='users/:userId' element={<UserPage />} />
+        </Route>
+      </Routes>
+    </QueryClientProvider>
   );
 }
 
