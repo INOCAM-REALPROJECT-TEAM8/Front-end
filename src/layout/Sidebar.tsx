@@ -1,8 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) {
   const outside = useRef<any>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.addEventListener('mousedown', handlerOutsie);
@@ -24,7 +26,9 @@ function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) {
   return (
     <SideBarWrap id='sidebar' ref={outside} className={isOpen ? 'open' : ''}>
       <ul>
-        <Menu>메뉴1</Menu>
+        <Menu onClick={() => navigate('/login')} style={{ cursor: 'pointer' }}>
+          로그인하기
+        </Menu>
         <Menu>메뉴2</Menu>
         <Menu>메뉴3</Menu>
       </ul>
@@ -38,13 +42,14 @@ const SideBarWrap = styled.div`
   z-index: 10;
   padding: 12px;
   border-radius: 15px 0 0 15px;
-  background-color: #7715e1;
-  height: 100vh;
+  background-color: rgba(42, 18, 111, 0.8);
+  height: 100%;
   width: 55%;
   right: -55%;
   top: 0;
   position: absolute;
   transition: 0.5s ease;
+
   &.open {
     position: absolute;
     right: 0;
@@ -55,4 +60,5 @@ const SideBarWrap = styled.div`
 const Menu = styled.li`
   position: relative;
   margin: 30px 8px;
+  color: white;
 `;
