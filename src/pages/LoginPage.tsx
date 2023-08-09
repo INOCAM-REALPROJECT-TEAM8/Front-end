@@ -7,7 +7,6 @@ import { useMutation } from '@tanstack/react-query';
 import { login } from '../api/user';
 import { Link, useNavigate } from 'react-router-dom';
 
-
 function LoginPage() {
   const navigate = useNavigate();
 
@@ -41,8 +40,8 @@ function LoginPage() {
     <MainContainer>
       <TextPage>HIDE</TextPage>
       <LoginBox>
-        <Input type='text' placeholder='Email' value={email} onChange={handleEmailOnChange} />
-        <Input type='password' placeholder='Password' value={password} onChange={handlePwOnChange} />
+        <Input type='text' placeholder='ID' value={email} onChange={handleEmailOnChange} />
+        <Input type='password' placeholder='PW' value={password} onChange={handlePwOnChange} />
         <Button onClick={handleLoginClick}>로그인</Button>
         <Button onClick={() => navigate('/signup')}>회원가입</Button>
         <SocialButton>
@@ -60,20 +59,10 @@ function LoginPage() {
 
 export default LoginPage;
 
-// const LoginContainer = styled.div`
-//   width: 390px;
-//   height: 732px;
-//   background-color: #7751e1;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-// `;
-
 const TextPage = styled.div`
   color: white;
   font-size: xx-large;
-  margin-bottom: 20px;
+  margin-bottom: 180px;
   display: flex;
   justify-content: center;
 `;
@@ -85,21 +74,26 @@ const LoginBox = styled.div`
 `;
 
 const Input = styled.input`
-  width: 300px;
-  height: 40px;
+  width: 342px;
+  height: 52px;
   margin-bottom: 10px;
   padding: 5px;
-  border-radius: 20px;
+  border-radius: 16px;
   border: none;
+  font-weight: bolder;
+  background-color: rgba(255, 255, 255, 0.8);
+  &::placeholder {
+    color: #7751e1;
+  }
 `;
 
 const Button = styled.button`
-  width: 300px;
-  height: 40px;
+  width: 342px;
+  height: 52px;
   margin-bottom: 10px;
-  background-color: #ffffff;
+
   border: none;
-  border-radius: 10px;
+  border-radius: 16px;
   cursor: pointer;
 `;
 
