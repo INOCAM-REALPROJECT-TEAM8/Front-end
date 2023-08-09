@@ -10,6 +10,11 @@ import { Link, useNavigate } from 'react-router-dom';
 function LoginPage() {
   const navigate = useNavigate();
 
+  if (localStorage.getItem('accessToken')) {
+    //@ToDo: users 뒤에 유저 id 얻어와서 붙여줘야 함.
+    navigate('/users/');
+  }
+
   const { input: email, handleInputOnChange: handleEmailOnChange, valid: emailValid } = useValidateInput('email');
   const { input: password, handleInputOnChange: handlePwOnChange, valid: pwValid } = useValidateInput();
 
