@@ -7,10 +7,15 @@ import { useMutation } from '@tanstack/react-query';
 import { login } from '../api/user';
 import { Link, useNavigate } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/hideLogo.svg';
-import { Button, Input, LoginBox } from '../components/loginPage/styles/Input';
+import { Button, Input, LoginBox, LogoContainer } from '../components/loginPage/styles/Input';
 
 function LoginPage() {
   const navigate = useNavigate();
+
+  if (localStorage.getItem('accessToken')) {
+    //@ToDo: users 뒤에 유저 id 얻어와서 붙여줘야 함.
+    navigate('/users/');
+  }
 
   const { input: email, handleInputOnChange: handleEmailOnChange, valid: emailValid } = useValidateInput('email');
   const { input: password, handleInputOnChange: handlePwOnChange, valid: pwValid } = useValidateInput();
@@ -64,12 +69,6 @@ function LoginPage() {
 }
 
 export default LoginPage;
-
-const LogoContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 180px;
-`;
 
 const SocialButton = styled.div`
   width: 342px;
