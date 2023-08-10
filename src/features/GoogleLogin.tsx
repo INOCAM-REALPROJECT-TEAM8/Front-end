@@ -1,21 +1,38 @@
 import React from 'react';
-import googlebtn from '../images/Google Button.png';
+import Googlebutton from '../icons/GoogleButton.png';
 import { styled } from 'styled-components';
 
-const GoogleLogin: React.FC = () => {
-  const GOOGLE_AUTH_URL: string = `https://accounts.google.com/o/oauth2/v2/auth?client_id=784974037742-dt9jfof0s92eecrodmpg2q6ikjtdovs9.apps.googleusercontent.com&redirect_uri=http://ec2-13-125-205-172.ap-northeast-2.compute.amazonaws.com:8080/api/users/oauth2/google&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&access_type=offline `;
-  //   const API_URL = process.env.REACT_APP_API_URL;
-  //   const GOOGLE_AUTH_URL: string = `${API_URL}/users/oauth2/google `;
+function GoogleLogin() {
   return (
-    <a href={GOOGLE_AUTH_URL}>
-      <GoogleImg src={googlebtn} alt='구글 로그인' />
-    </a>
+    <A href='https://hide-music.shop:8443/login/oauth2/google'>
+      <GoogleButton>
+        <img src={Googlebutton} alt='구글 로그인' />
+        <GoogleText>구글 로그인</GoogleText>
+      </GoogleButton>
+    </A>
   );
-};
+}
 
 export default GoogleLogin;
 
-const GoogleImg = styled.img`
-  height: 100%;
-  width: 100%;
+const GoogleButton = styled.div`
+  display: flex;
+  align-items: center;
+  width: 166px;
+  height: 52px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  cursor: pointer;
+  border: none;
+  justify-content: center;
+  margin-right: 10px;
+`;
+
+const GoogleText = styled.div`
+  margin-left: 8px;
+  color: black;
+  font-weight: bolder;
+`;
+const A = styled.a`
+  text-decoration: none;
 `;

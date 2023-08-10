@@ -4,6 +4,9 @@ import MainContainer from '../components/loginPage/styles/MainContainer';
 import PlusButton from '../icons/PlusButton.png';
 import CheckButton from '../icons/CheckButton.png';
 import WhiteMessageButton from '../icons/WhiteMessageButton.png';
+import UserMusicSlide from '../components/userpage/UserMusicSlide';
+import MusicBox from '../components/userpage/MusicBox';
+import UnderBar from '../icons/underbarbutton.png';
 
 function UserPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -13,6 +16,21 @@ function UserPage() {
   const [followingCount, setFollowingCount] = useState<number>(100); // 예시로 팔로워 수를 100으로 설정
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [buttonType, setButtonType] = useState<'plus' | 'check'>('plus');
+
+  const musics = [
+    'https://marketplace.canva.com/EAExV2m91mg/1/0/1600w/canva-%ED%8C%8C%EB%9E%80%EC%83%89-%EB%B0%A4%ED%95%98%EB%8A%98-%EA%B7%B8%EB%A6%BC%EC%9D%98-%EC%95%A8%EB%B2%94%EC%BB%A4%EB%B2%84-5tlu9r69vlc.jpg',
+    'https://newsimg.hankookilbo.com/cms/articlerelease/2021/01/17/fb3de445-6b62-49df-9dab-0fa8efa9cc8c.jpg',
+    'https://i.pinimg.com/1200x/1b/82/96/1b8296c37422e8d37798742dccf29718.jpg',
+    'https://cdn.imweb.me/upload/S20221018154123b27d57d/ec57e66d0f563.jpg',
+    'https://spnimage.edaily.co.kr/images/Photo/files/NP/S/2017/03/PS17032000112.jpg',
+    'https://www.m-i.kr/news/photo/202203/902632_669160_77.jpg',
+    'https://img.hankyung.com/photo/202101/01.25017855.1-1200x.jpg',
+    'https://i.namu.wiki/i/lEVyubOJdqsx8D7sw6pCCTl7ZTPQxeVruGq0-8ddcr_JJszLwQzW6-UcXycCePZvJw34cKklJSpyTLKlZ-sgBw.webp',
+    'https://i.namu.wiki/i/9zDYDWuDB_EKu14_q1EbaetDXhMpnndcrAfmHRE-h6vYI8MF4XhNLMQ5pJiqvI_I-shYpAv5jyLZB5N1CR-_aA.webp',
+    'https://blog.kakaocdn.net/dn/biKtlt/btroQkaZItd/KX4p6Pz9PnJXCJT0m9Jkok/img.jpg',
+  ].map((albumImgURL, index) => {
+    return { title: `제목${index}`, artist: `가수${index}`, id: index, albumImgURL };
+  });
 
   const handleImageClick = () => {
     // 유저 이미지 클릭 시 파일 업로드 input 클릭 이벤트 실행
@@ -38,8 +56,6 @@ function UserPage() {
     const userId = 'user-id'; // 여기에 사용자 아이디를 가져오는 로직 추가
 
     // 팔로우/언팔로우를 처리하는 API 호출
-    // 이 부분은 서버와의 통신으로 실제 구현해야 합니다.
-    // 예시로 서버와 통신하는 방법을 가정하고 코드를 작성합니다.
     if (isFollowing) {
       // 언팔로우를 처리하는 API 호출
       fetch(`/api/follow/users/${userId}`, { method: 'POST' })
@@ -89,7 +105,21 @@ function UserPage() {
       </FollowStatsContainer>
       <PlayList>
         <PlaylistText>내 플레이 리스트</PlaylistText>
-        <PlaylistContainer>안녕 난 플레이리스트얌</PlaylistContainer>
+        <PlaylistContainer>
+          <PlayListHeader />
+          <MusicBox musics={musics} />
+          <ListLine />
+          <MusicBox musics={musics} />
+          <ListLine />
+          <MusicBox musics={musics} />
+          <ListLine />
+          <UnderBarIcon>
+            <img src={UnderBar} />
+          </UnderBarIcon>
+        </PlaylistContainer>
+      </PlayList>
+      <PlayList>
+        <UserMusicSlide playListName='최근 들은 곡' musics={musics} />
       </PlayList>
     </MainContainer>
   );
@@ -130,7 +160,7 @@ const UserName = styled.div`
 
 const StatsNumber = styled.div`
   font-size: 16px;
-  color: white;
+  color: #cabcf2;
   margin-top: 10px;
 `;
 
@@ -191,4 +221,23 @@ const PlaylistContainer = styled.div`
 const PlayList = styled.div`
   padding: 20px 40px;
   width: 100%;
+`;
+
+const PlayListHeader = styled.div`
+  height: 20px;
+  width: 100%;
+  background-color: rgba(119, 21, 225, 0.2);
+`;
+
+const ListLine = styled.div`
+  height: 4px;
+  width: 100%;
+  background-color: rgba(119, 21, 225, 0.2);
+`;
+
+const UnderBarIcon = styled.div`
+  padding-top: 8px;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
 `;
