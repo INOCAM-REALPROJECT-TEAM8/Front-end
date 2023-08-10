@@ -6,13 +6,16 @@ import useValidateInput from '../hooks/useValidateInput';
 import { useMutation } from '@tanstack/react-query';
 import { login } from '../api/user';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { SelectState } from '../redux/config/configStore';
 import { ReactComponent as Logo } from '../assets/hideLogo.svg';
 import { Button, Input, LoginBox, LogoContainer } from '../components/loginPage/styles/Input';
 
 function LoginPage() {
   const navigate = useNavigate();
+  const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
 
-  if (localStorage.getItem('accessToken')) {
+  if (isLoggedIn) {
     //@ToDo: users 뒤에 유저 id 얻어와서 붙여줘야 함.
     navigate('/users/');
   }
