@@ -24,19 +24,36 @@ function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) {
   };
 
   return (
-    <SideBarWrap id='sidebar' ref={outside} className={isOpen ? 'open' : ''}>
-      <ul>
-        <Menu onClick={() => navigate('/login')} style={{ cursor: 'pointer' }}>
-          로그인하기
-        </Menu>
-        <Menu>메뉴2</Menu>
-        <Menu>메뉴3</Menu>
-      </ul>
-    </SideBarWrap>
+    <SideBarContainer className={isOpen ? 'open' : ''}>
+      <SideBarWrap id='sidebar' ref={outside} className={isOpen ? 'open' : ''}>
+        <ul>
+          <Menu onClick={() => navigate('/login')} style={{ cursor: 'pointer' }}>
+            로그인하기
+          </Menu>
+          <Menu>메뉴2</Menu>
+          <Menu>메뉴3</Menu>
+        </ul>
+      </SideBarWrap>
+    </SideBarContainer>
   );
 }
 
 export default Sidebar;
+
+const SideBarContainer = styled.div`
+  position: fixed;
+  padding: 0px auto;
+  max-width: 800px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  overflow: hidden;
+  z-index: -1;
+
+  &.open {
+    z-index: 10;
+  }
+`;
 
 const SideBarWrap = styled.div`
   z-index: 10;
