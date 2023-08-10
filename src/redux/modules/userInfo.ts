@@ -4,12 +4,14 @@ export interface UserState {
   isLoggedIn: boolean;
   nickname: string;
   email: string;
+  userId: number;
 }
 
 const initialState: UserState = {
   isLoggedIn: localStorage.getItem('accessToken') ? true : false,
   nickname: '',
   email: '',
+  userId: 0,
 };
 
 const userSlice = createSlice({
