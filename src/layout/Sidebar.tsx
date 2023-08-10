@@ -1,10 +1,14 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../api/user';
+import { useSelector } from 'react-redux';
+import { SelectState } from '../redux/config/configStore';
 
 function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) {
   const outside = useRef<any>();
   const navigate = useNavigate();
+  const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
 
   useEffect(() => {
     document.addEventListener('mousedown', handlerOutsie);
@@ -27,9 +31,15 @@ function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) {
     <SideBarContainer className={isOpen ? 'open' : ''}>
       <SideBarWrap id='sidebar' ref={outside} className={isOpen ? 'open' : ''}>
         <ul>
-          <Menu onClick={() => navigate('/login')} style={{ cursor: 'pointer' }}>
-            로그인하기
-          </Menu>
+          {isLoggedIn ? (
+            <Menu onClick={logout} style={{ cursor: 'pointer' }}>
+              로그아웃
+            </Menu>
+          ) : (
+            <Menu onClick={() => navigate('/login')} style={{ cursor: 'pointer' }}>
+              로그인하기
+            </Menu>
+          )}
           <Menu>메뉴2</Menu>
           <Menu>메뉴3</Menu>
         </ul>

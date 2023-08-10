@@ -6,7 +6,7 @@ export const postWithToken = async <T>(path: string, data: T) => {
   const response = await ourAxios.post(path, data, {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${accessToken}`,
+      Authorization: `Bearer ${accessToken}`,
     },
     withCredentials: true,
   });
@@ -18,7 +18,7 @@ export const getWithToken = async (path: string) => {
   const response = await ourAxios.get(path, {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${accessToken}`,
+      Authorization: `Bearer ${accessToken}`,
     },
     withCredentials: true,
   });
@@ -31,7 +31,7 @@ export const deleteWithToken = async (path: string): Promise<AxiosResponse> => {
   const response = await ourAxios.delete(path, {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${accessToken}`,
+      Authorization: `Bearer ${accessToken}`,
     },
     withCredentials: true,
   });
@@ -44,7 +44,7 @@ export const putWithToken = async <T>(path: string, data: T) => {
   const response = await ourAxios.put(path, data, {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${accessToken}`,
+      Authorization: `Bearer ${accessToken}`,
     },
     withCredentials: true,
   });
