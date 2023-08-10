@@ -1,10 +1,13 @@
 import { useMutation } from '@tanstack/react-query';
 import useValidateInput from '../hooks/useValidateInput';
 import { forgetPW } from '../api/user';
+import { useNavigate } from 'react-router-dom';
+import { ReactComponent as Logo } from '../assets/hideLogo.svg';
+import { Button, Input, LoginBox, LogoContainer } from '../components/loginPage/styles/Input';
 
 function ForgetPwPage() {
   const { input: email, handleInputOnChange: handleEmailOnChange, valid: emailValid } = useValidateInput('email');
-
+  const navigate = useNavigate();
   const mutation = useMutation(forgetPW, {
     onSuccess: data => {
       if (true) {
@@ -26,10 +29,15 @@ function ForgetPwPage() {
   };
 
   return (
-    <div>
-      <input placeholder='가입하신 email을 입력해주세요' value={email} onChange={handleEmailOnChange} />
-      <button onClick={handleButtonClick}>링크발송</button>
-    </div>
+    <LoginBox>
+      <LogoContainer>
+        <Logo onClick={() => navigate('/')} style={{ width: '106px', height: '60px', cursor: 'pointer' }} />
+      </LogoContainer>
+      <Input placeholder='이메일' value={email} onChange={handleEmailOnChange} />
+      <Button $bgColor='white' color='#7751e1' onClick={handleButtonClick}>
+        전송하기
+      </Button>
+    </LoginBox>
   );
 }
 

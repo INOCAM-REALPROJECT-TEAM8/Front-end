@@ -6,6 +6,7 @@ import CheckButton from '../icons/CheckButton.png';
 import WhiteMessageButton from '../icons/WhiteMessageButton.png';
 import UserMusicSlide from '../components/userpage/UserMusicSlide';
 import MusicBox from '../components/userpage/MusicBox';
+import UnderBar from '../icons/underbarbutton.png';
 
 function UserPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -108,6 +109,13 @@ function UserPage() {
           <PlayListHeader />
           <MusicBox musics={musics} />
           <ListLine />
+          <MusicBox musics={musics} />
+          <ListLine />
+          <MusicBox musics={musics} />
+          <ListLine />
+          <UnderBarIcon>
+            <img src={UnderBar} />
+          </UnderBarIcon>
         </PlaylistContainer>
       </PlayList>
       <PlayList>
@@ -225,4 +233,11 @@ const ListLine = styled.div`
   height: 4px;
   width: 100%;
   background-color: rgba(119, 21, 225, 0.2);
+`;
+
+const UnderBarIcon = styled.div`
+  padding-top: 8px;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
 `;

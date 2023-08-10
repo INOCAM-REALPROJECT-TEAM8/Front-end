@@ -16,11 +16,11 @@ export const MusicSlideContainer = styled.div`
 
 export const MusicCardContainer = styled.div`
   cursor: pointer;
-  margin-right: 11px;
+  margin-right: 12px;
   & > img {
     border-radius: 8px;
-    width: 107px;
-    height: 107px;
+    width: 106px;
+    height: 106px;
   }
   /* 
   & > h2 {
