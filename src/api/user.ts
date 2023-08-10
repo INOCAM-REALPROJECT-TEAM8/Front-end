@@ -14,6 +14,7 @@ interface UserInfo {
 interface TokenPayload {
   auth: string;
   nickname: string;
+  userId: number;
   exp: number;
   iat: number;
 }
@@ -28,7 +29,8 @@ export const login = async ({ email, password }: UserInfo) => {
 
     const decoded = jwtDecode<TokenPayload>(token);
     const nickname = decoded.nickname;
-    store.dispatch(userLogin({ email, nickname }));
+    const userId = decoded.userId;
+    store.dispatch(userLogin({ email, nickname, userId }));
   }
 
   return data;
