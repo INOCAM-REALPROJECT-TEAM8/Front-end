@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { styled } from 'styled-components';
+import recode from '../../assets/Recode.png';
 
 const music = {
-  image: 'https://www.m-i.kr/news/photo/202203/902632_669160_77.jpg',
+  image:
+    'https://i.namu.wiki/i/3o5_9cQW9UVQzA-M0OyEwdMgtCtv1HUwc5RTMZl_E0knAjndE56r42fCllbD2JHrhZP_ugBhQ3Gi9WXkv8NPGg.webp',
   title: 'Lemon',
-  artist: '요네즈 켄시',
+  artist: '米津玄師 (요네즈 켄시)',
 };
 
 interface MusicModalProps {
@@ -12,19 +14,25 @@ interface MusicModalProps {
   setModalState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const MusicModal = ({ modalState, setModalState }: MusicModalProps) => {
-  const onClickCloseButton = () => {
-    setModalState(!modalState);
+const MusicModal: React.FC<MusicModalProps> = ({ modalState, setModalState }: MusicModalProps) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  const onClickOutsideModal = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (modalRef.current === e.target) {
+      setModalState(false);
+    }
   };
 
   return (
-    <ModalTopContainer>
+    <ModalTopContainer ref={modalRef} onClick={onClickOutsideModal}>
       <ModalContainer>
         <ModalContent>
-          <button onClick={onClickCloseButton}>닫기</button>
-          <img src={music.image} alt='' />
-          <h2>{music.title}</h2>
-          <div>{music.artist}</div>
+          <AlbumCover>
+            <AlbumImage src={music.image} alt='' />
+            <RecodeImage src={recode} alt='' />
+          </AlbumCover>
+          <MusicArtist>{music.artist}</MusicArtist>
+          <MusicTitle>{music.title}</MusicTitle>
         </ModalContent>
       </ModalContainer>
     </ModalTopContainer>
@@ -34,7 +42,7 @@ const MusicModal = ({ modalState, setModalState }: MusicModalProps) => {
 export default MusicModal;
 
 const ModalTopContainer = styled.div`
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(255, 255, 255, 0.5);
   position: fixed;
   top: 0;
   right: 0;
@@ -47,20 +55,55 @@ const ModalTopContainer = styled.div`
 
 const ModalContainer = styled.div`
   position: relative;
-  border-radius: 15px;
-  background-color: #7751e1;
-  margin: 0 auto;
-  width: 700px;
-  height: 900px;
+  border-radius: 16px;
+  background-color: rgba(119, 81, 225, 0.95);
+  width: 348px;
+  height: 352px;
 `;
 
 const ModalContent = styled.div`
-  padding: 30px;
+  width: 100%;
+  height: 100%;
+  padding: 24px 21px 24px 24px;
+`;
 
-  .img {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+const AlbumCover = styled.div`
+  width: 235.35px;
+  height: 233.34px;
+  position: relative;
+`;
+
+const AlbumImage = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  position: absolute;
+  z-index: 2;
+`;
+
+const RecodeImage = styled.img`
+  width: 235.35px;
+  height: 233.34px;
+  position: absolute;
+  z-index: 1;
+  left: 75px;
+
+  transition: transform 0.5s;
+
+  ${AlbumCover}:hover & {
+    transform: translateX(35px);
   }
+`;
+
+const MusicArtist = styled.div`
+  padding-top: 20px;
+  font-size: 16px;
+  color: #fff;
+`;
+
+const MusicTitle = styled.div`
+  padding-top: 8px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
 `;
