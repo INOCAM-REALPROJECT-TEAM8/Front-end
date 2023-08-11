@@ -8,12 +8,24 @@ import SignUpPage from './pages/SignUpPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ForgetPwPage from './pages/ForgetPwPage';
 import ChangePwPage from './pages/ChangePwPage';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { userLogout } from './redux/modules/userInfo';
+import { SelectState } from './redux/config/configStore';
+import ChatAlarm from './layout/ChatAlarm';
 
 const queryClient = new QueryClient();
 
 function App() {
+  const [token] = useState(localStorage.getItem('accessToken'));
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!token) dispatch(userLogout());
+  }, []);
+  const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
   return (
     <QueryClientProvider client={queryClient}>
+      {isLoggedIn && <ChatAlarm />}
       <Routes>
         <Route path='/' element={<PageLayout />}>
           <Route path='' element={<MainPage />} />

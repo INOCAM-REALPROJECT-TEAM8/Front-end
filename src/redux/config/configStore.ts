@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
 import userInfo, { UserState } from '../modules/userInfo';
+import chatList, { ChatListState, ChatState } from '../modules/chatList';
 
 const persistConfig = {
   key: 'root',
@@ -11,6 +12,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   userInfo,
+  chatList,
 });
 
 const store = configureStore({
@@ -20,6 +22,7 @@ const store = configureStore({
 
 export interface SelectState {
   userInfo: UserState;
+  chatList: ChatListState;
 }
 
 export default store;
