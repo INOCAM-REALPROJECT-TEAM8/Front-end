@@ -8,6 +8,7 @@ import SignUpPage from './pages/SignUpPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ForgetPwPage from './pages/ForgetPwPage';
 import ChangePwPage from './pages/ChangePwPage';
+import FollowingPage from './pages/FollowingPage';
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ function App() {
           <Route path='changepw' element={<ChangePwPage />} />
           <Route path='musics/:musicId' element={<MusicDetailPage />} />
           <Route path='users/:userId' element={<UserPage />} />
+          <Route path='following' element={<FollowingPage />} />
         </Route>
       </Routes>
     </QueryClientProvider>
