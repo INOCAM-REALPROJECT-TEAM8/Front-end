@@ -33,6 +33,7 @@ const GoogleText = styled.div`
   color: black;
   font-weight: bolder;
 `;
+
 const A = styled.a`
   text-decoration: none;
 `;

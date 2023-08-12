@@ -37,6 +37,7 @@ function MusicCard({ music }: { music: musicInfo }) {
   const handleMusicClick = () => {
     // 음악 모달창 띄우기
   };
+
   return (
     <ListMusicCard onClick={handleMusicClick}>
       <img src={music.albumImgURL} alt={`Album cover for ${music.title}`} />
