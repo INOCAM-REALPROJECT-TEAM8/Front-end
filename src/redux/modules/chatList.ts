@@ -5,8 +5,7 @@ export interface ChatState {
   nickname: string;
   senderId: string | number;
   message: string;
-  sendDate: string; //예시: 2017-02-11
-  sendTime: string; //예시: 13:05
+  createdAt: string; //예시: 2023-08-11T06:33:44.938306
 }
 
 export interface ChatListState {
@@ -19,6 +18,15 @@ export const getRoomId = (chat: ChatState) => {
   const senderId = chat.senderId;
 
   return myId < +senderId ? `${myId}-${senderId}` : `${senderId}-${myId}`;
+};
+
+export const parseRoomId = (roomId: string | undefined) => {
+  if (!roomId) return { myId: 0, opId: 0 };
+  const [user1, user2] = roomId.split('-');
+  const myId = store.getState().userInfo.userId;
+  const opId = +user1 === myId ? user2 : user1;
+
+  return { myId, opId };
 };
 
 let timer: string | number | NodeJS.Timeout | undefined;

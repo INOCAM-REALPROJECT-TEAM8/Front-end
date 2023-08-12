@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 import { userLogout } from './redux/modules/userInfo';
 import { SelectState } from './redux/config/configStore';
 import ChatAlarm from './layout/ChatAlarm';
+import ChatRoomPage from './pages/ChatRoomPage';
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ function App() {
           <Route path='musics/:musicId' element={<MusicDetailPage />} />
           <Route path='users/:userId' element={<UserPage />} />
         </Route>
+        <Route path='/chat-room/:roomId' element={<ChatRoomPage />} />
       </Routes>
     </QueryClientProvider>
   );
