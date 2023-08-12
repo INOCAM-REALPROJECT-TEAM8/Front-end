@@ -1,7 +1,7 @@
-import { useMutation } from 'react-query';
 import useValidateInput from '../hooks/useValidateInput';
 import { login, signup } from '../api/user';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 
 function SignUpPage() {
   const navigate = useNavigate();
