@@ -5,6 +5,7 @@ export interface UserState {
   nickname: string;
   email: string;
   userId: number;
+  prevUserId: number;
 }
 
 const initialState: UserState = {
@@ -12,17 +13,18 @@ const initialState: UserState = {
   nickname: '',
   email: '',
   userId: 0,
+  prevUserId: 0,
 };
 
 const userSlice = createSlice({
   name: 'userInfo',
   initialState,
   reducers: {
-    userLogin: (state, action: PayloadAction<Omit<UserState, 'isLoggedIn'>>) => {
-      return { isLoggedIn: true, ...action.payload };
+    userLogin: (state, { payload }: PayloadAction<Omit<UserState, 'isLoggedIn' | 'prevUserId'>>) => {
+      return { ...payload, isLoggedIn: true, prevUserId: payload.userId };
     },
     userLogout: (state, action: Action<string>) => {
-      return initialState;
+      return { ...initialState, isLoggedIn: false, prevUserId: state.userId };
     },
   },
 });
