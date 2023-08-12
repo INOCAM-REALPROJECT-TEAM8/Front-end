@@ -1,23 +1,22 @@
 import { styled } from 'styled-components';
-import { useStomp } from 'usestomp-hook/lib/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { SelectState } from '../redux/config/configStore';
 import { ChatState, addExtraChat, addRoomChat, getRoomId } from '../redux/modules/chatList';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { connectSocket, disconnectSocket } from '../redux/modules/socket';
+import useStomp from '../hooks/useStomp';
 
 function ChatAlarm() {
-  const [isConnected, setConnected] = useState<boolean>(false);
-  const { subscribe, unsubscribe, subscriptions, send } = useStomp(
+  const dispatch = useDispatch();
+  const { subscribe, unsubscribe, subscriptions, disconnect, isConnected } = useStomp(
     { brokerURL: process.env.REACT_APP_BROKER_URL },
     () => {
       console.log('연결되었음.');
-      setConnected(true);
     },
   );
 
   const { userId, prevUserId } = useSelector((state: SelectState) => state.userInfo);
-  const dispatch = useDispatch();
   const { extraChatList } = useSelector(({ chatList }: SelectState) => chatList);
   const lastExtraChat = extraChatList ? extraChatList[extraChatList.length - 1] : null;
   const navigate = useNavigate();
@@ -25,7 +24,8 @@ function ChatAlarm() {
   const currentPath = useLocation().pathname;
   const chatRoomId = currentPath.startsWith('/chat-room/') && currentPath.replace('/chat-room/', '');
 
-  console.log(lastExtraChat);
+  console.log(userId);
+  console.log(isConnected);
 
   useEffect(() => {
     if (isConnected) {
@@ -43,6 +43,8 @@ function ChatAlarm() {
       if (subscriptions[`/sub/user/${prevUserId}`]) {
         unsubscribe(`/sub/user/${prevUserId}`);
         console.log('구독 해제');
+        disconnect();
+        console.log('연결 해제');
       }
     };
   }, [isConnected]);
