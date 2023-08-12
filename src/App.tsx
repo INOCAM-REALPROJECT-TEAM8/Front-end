@@ -8,12 +8,26 @@ import SignUpPage from './pages/SignUpPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ForgetPwPage from './pages/ForgetPwPage';
 import ChangePwPage from './pages/ChangePwPage';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { userLogout } from './redux/modules/userInfo';
+import { SelectState } from './redux/config/configStore';
+import ChatAlarm from './layout/ChatAlarm';
+import ChatRoomPage from './pages/ChatRoomPage';
+import FollowingPage from './pages/FollowingPage';
 
 const queryClient = new QueryClient();
 
 function App() {
+  const [token] = useState(localStorage.getItem('accessToken'));
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!token) dispatch(userLogout());
+  }, []);
+  const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
   return (
     <QueryClientProvider client={queryClient}>
+      {isLoggedIn && <ChatAlarm />}
       <Routes>
         <Route path='/' element={<PageLayout />}>
           <Route path='' element={<MainPage />} />
@@ -23,7 +37,9 @@ function App() {
           <Route path='changepw' element={<ChangePwPage />} />
           <Route path='musics/:musicId' element={<MusicDetailPage />} />
           <Route path='users/:userId' element={<UserPage />} />
+          <Route path='following' element={<FollowingPage />} />
         </Route>
+        <Route path='/chat-room/:roomId' element={<ChatRoomPage />} />
       </Routes>
     </QueryClientProvider>
   );

@@ -18,8 +18,8 @@ function KeywordSlides({ keywords }: KeywordSlidesProps) {
   return (
     <PopularKeywordsContainer>
       <Slider {...settings}>
-        {keywords.map(({ title, artist }) => (
-          <PopularKeywordBox>{`${title} - ${artist}`}</PopularKeywordBox>
+        {keywords.map(({ title, artist }, index) => (
+          <PopularKeywordBox key='index'>{`${title} - ${artist}`}</PopularKeywordBox>
         ))}
       </Slider>
     </PopularKeywordsContainer>
