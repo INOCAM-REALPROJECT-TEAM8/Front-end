@@ -7,6 +7,7 @@ import WhiteMessageButton from '../icons/WhiteMessageButton.png';
 import UserMusicSlide from '../components/userpage/UserMusicSlide';
 import MusicBox from '../components/userpage/MusicBox';
 import UnderBar from '../icons/underbarbutton.png';
+import { useNavigate } from 'react-router-dom';
 
 function UserPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -39,6 +40,7 @@ function UserPage() {
     }
   };
 
+  const navigate = useNavigate();
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // 파일 선택 시 처리하는 로직
     const selectedFile = event.target.files?.[0];
@@ -50,6 +52,10 @@ function UserPage() {
       };
       reader.readAsDataURL(selectedFile);
     }
+  };
+
+  const handleFollowingLabelClick = () => {
+    navigate('following');
   };
 
   const handleFollowButtonClick = () => {
@@ -95,7 +101,7 @@ function UserPage() {
       <SeparatorLine />
       <FollowStatsContainer>
         <FollowStats>
-          <StatsLabel>팔로잉</StatsLabel>
+          <StatsLabel onClick={handleFollowingLabelClick}>팔로잉</StatsLabel>
           <StatsNumber>{followingCount}</StatsNumber>
         </FollowStats>
         <FollowStats>
