@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { styled } from 'styled-components';
 import recode from '../../assets/Recode.png';
+import { MusicPlayer } from './MusicPlayer';
 
 const music = {
   image:
@@ -26,6 +27,7 @@ const MusicModal: React.FC<MusicModalProps> = ({ modalState, setModalState }: Mu
   return (
     <ModalTopContainer ref={modalRef} onClick={onClickOutsideModal}>
       <ModalContainer>
+        <MusicPlayer />
         <ModalContent>
           <AlbumCover>
             <AlbumImage src={music.image} alt='' />
