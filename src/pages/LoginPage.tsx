@@ -25,7 +25,7 @@ function LoginPage() {
 
   const mutation = useMutation(login, {
     onSuccess: data => {
-      if (true) {
+      if (data.success) {
         //로그인 성공
         alert(data.msg);
         navigate('/');

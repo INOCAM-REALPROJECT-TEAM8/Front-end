@@ -16,8 +16,6 @@ import ChatAlarm from './layout/ChatAlarm';
 import ChatRoomPage from './pages/ChatRoomPage';
 import FollowingPage from './pages/FollowingPage';
 
-const queryClient = new QueryClient();
-
 function App() {
   const [token] = useState(localStorage.getItem('accessToken'));
   const dispatch = useDispatch();
@@ -26,7 +24,7 @@ function App() {
   }, []);
   const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       {isLoggedIn && <ChatAlarm />}
       <Routes>
         <Route path='/' element={<PageLayout />}>
@@ -41,7 +39,7 @@ function App() {
         </Route>
         <Route path='/chat-room/:roomId' element={<ChatRoomPage />} />
       </Routes>
-    </QueryClientProvider>
+    </>
   );
 }
 
