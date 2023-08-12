@@ -8398,6 +8398,7 @@ react-is@^18.0.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
+
 react-player@^2.12.0:
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/react-player/-/react-player-2.12.0.tgz#2fc05dbfec234c829292fbca563b544064bd14f0"
@@ -9924,11 +9925,6 @@ use-sync-external-store@^1.0.0, use-sync-external-store@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
   integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
-
-usestomp-hook@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/usestomp-hook/-/usestomp-hook-1.2.1.tgz#9ac2a75dda70a0520e5204c103ec2d498e3820fd"
-  integrity sha512-TeCxwhkAwVH8REweQlqVyhcXRS6DRH8YZ731w4/szq/8nXfG1ixQxHqtH9Towt3hRfFV5pH3slEAw/AEKJDYJA==
 
 utf-8-validate@^5.0.2:
   version "5.0.10"
