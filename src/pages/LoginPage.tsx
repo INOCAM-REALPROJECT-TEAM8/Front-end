@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import KakaoLogin from './KakaoLogin';
+import KakaoLogin from '../features/KakaoLogin';
 import GoogleLogin from '../features/GoogleLogin';
 import MainContainer from '../components/loginPage/styles/MainContainer';
 import useValidateInput from '../hooks/useValidateInput';

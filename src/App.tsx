@@ -14,6 +14,7 @@ import { userLogout } from './redux/modules/userInfo';
 import { SelectState } from './redux/config/configStore';
 import ChatAlarm from './layout/ChatAlarm';
 import ChatRoomPage from './pages/ChatRoomPage';
+import FollowingPage from './pages/FollowingPage';
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ function App() {
           <Route path='changepw' element={<ChangePwPage />} />
           <Route path='musics/:musicId' element={<MusicDetailPage />} />
           <Route path='users/:userId' element={<UserPage />} />
+          <Route path='following' element={<FollowingPage />} />
         </Route>
         <Route path='/chat-room/:roomId' element={<ChatRoomPage />} />
       </Routes>
