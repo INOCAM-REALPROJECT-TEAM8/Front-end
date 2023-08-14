@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 
 function GoogleLogin() {
   return (
-    <A href='https://hide-music.shop:8443/login/oauth2/google'>
+    <A href={`${process.env.REACT_APP_SERVER_URL}/login/oauth2/google`}>
       <GoogleButton>
         <img src={Googlebutton} alt='구글 로그인' />
         <GoogleText>구글 로그인</GoogleText>
