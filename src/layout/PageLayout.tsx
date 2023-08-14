@@ -3,14 +3,20 @@ import Header from './Header';
 import Footer from './Footer';
 import styled from 'styled-components';
 
-function PageLayout() {
+function PageLayout({ headerFooterExist }: { headerFooterExist: boolean }) {
   return (
     <>
       <PageContainer>
         <AllPage>
-          <Header />
-          <Outlet />
-          <Footer />
+          {headerFooterExist ? (
+            <>
+              <Header />
+              <Outlet />
+              <Footer />
+            </>
+          ) : (
+            <Outlet />
+          )}
         </AllPage>
       </PageContainer>
     </>

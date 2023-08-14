@@ -10,7 +10,7 @@ function Footer() {
 
   return (
     <FooterContainer>
-      <ButtonContainer>
+      <ButtonContainer onClick={() => navigate('/chats')}>
         <IconButton src={MessageButtonIcon} alt='MessageButton Icon' />
       </ButtonContainer>
       <ButtonContainer onClick={() => navigate('')}>

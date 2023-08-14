@@ -15,6 +15,7 @@ import { SelectState } from './redux/config/configStore';
 import ChatAlarm from './layout/ChatAlarm';
 import ChatRoomPage from './pages/ChatRoomPage';
 import FollowingPage from './pages/FollowingPage';
+import ChatRoomListPage from './pages/ChatRoomListPage';
 
 function App() {
   const [token] = useState(localStorage.getItem('accessToken'));
@@ -27,17 +28,20 @@ function App() {
     <>
       {isLoggedIn && <ChatAlarm />}
       <Routes>
-        <Route path='/' element={<PageLayout />}>
+        <Route path='/' element={<PageLayout headerFooterExist={true} />}>
           <Route path='' element={<MainPage />} />
+          <Route path='musics/:musicId' element={<MusicDetailPage />} />
+          <Route path='users/:userId' element={<UserPage />} />
+          <Route path='following' element={<FollowingPage />} />
+          <Route path='chats' element={<ChatRoomListPage />} />
+        </Route>
+        <Route path='/' element={<PageLayout headerFooterExist={false} />}>
           <Route path='login' element={<LoginPage />} />
           <Route path='signup' element={<SignUpPage />} />
           <Route path='forgetpw' element={<ForgetPwPage />} />
           <Route path='changepw' element={<ChangePwPage />} />
-          <Route path='musics/:musicId' element={<MusicDetailPage />} />
-          <Route path='users/:userId' element={<UserPage />} />
-          <Route path='following' element={<FollowingPage />} />
+          <Route path='chat-room/:roomId' element={<ChatRoomPage />} />
         </Route>
-        <Route path='/chat-room/:roomId' element={<ChatRoomPage />} />
       </Routes>
     </>
   );

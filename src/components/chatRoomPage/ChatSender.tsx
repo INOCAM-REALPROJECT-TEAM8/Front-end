@@ -18,6 +18,7 @@ function ChatSender({ chats, setChats, opId }: ChatSenderProps) {
 
   const { send } = useStomp({ brokerURL: process.env.REACT_APP_BROKER_URL });
   const { userId, nickname } = useSelector((state: SelectState) => state.userInfo);
+
   const handleSendClick = () => {
     const myChat: ChatState = {
       nickname,
@@ -27,6 +28,7 @@ function ChatSender({ chats, setChats, opId }: ChatSenderProps) {
     };
     setChats([...chats, myChat]);
     send(`/pub/user/${opId}`, myChat, {});
+    setMsg('');
   };
   return (
     <div>
