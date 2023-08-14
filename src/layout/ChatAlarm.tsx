@@ -41,8 +41,6 @@ function ChatAlarm() {
       if (subscriptions[`/sub/user/${prevUserId}`]) {
         unsubscribe(`/sub/user/${prevUserId}`);
         console.log('구독 해제');
-        disconnect();
-        console.log('연결 해제');
       }
     };
   }, [isConnected, chatRoomId]);
