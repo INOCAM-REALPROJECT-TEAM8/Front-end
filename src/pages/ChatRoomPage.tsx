@@ -1,13 +1,14 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChatState, parseRoomId, removeRoomChats } from '../redux/modules/chatList';
 import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getRoomChatsP } from '../api/chat';
 import { useDispatch, useSelector } from 'react-redux';
 import { SelectState } from '../redux/config/configStore';
 import ChatSender from '../components/chatRoomPage/ChatSender';
 
 function ChatRoomPage() {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { roomId } = useParams();
@@ -20,29 +21,28 @@ function ChatRoomPage() {
   const [chats, setChats] = useState<ChatState[]>([]);
 
   const { data, isSuccess } = useQuery([`chats/${roomId}`], getRoomChatsP(roomId || ''));
-  const [first, setFirst] = useState(true);
   const newChat = useSelector((state: SelectState) => state.chatList.roomChat);
 
-  console.log(newChat);
+  useEffect(() => {
+    queryClient.invalidateQueries([`chats/${roomId}`]);
+  }, []);
 
   useEffect(() => {
-    if (isSuccess && first) {
-      if (newChat) setChats([...(data.messages ?? []), newChat]);
-      else setChats(data.messages ?? []);
+    if (newChat) setChats([...chats, newChat]);
+  }, [newChat]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setChats(data.messages ?? []);
       setOpNickname(data.nickname || '');
-      setFirst(false);
     }
-  }, [isSuccess, first]);
-
-  useEffect(() => {
-    if (!first && newChat) setChats([...chats, newChat]);
-  }, [first, newChat]);
+  }, [isSuccess, data]);
 
   return (
     <div>
       <div>{opNickname}</div>
-      {chats.map(chat => (
-        <div>{`${chat.nickname} ${chat.message} ${chat.senderId} ${chat.createdAt}`}</div>
+      {chats.map((chat, index) => (
+        <div key={index}>{`${chat.nickname} ${chat.message} ${chat.senderId} ${chat.createdAt}`}</div>
       ))}
       <ChatSender {...{ chats, setChats, opId }} />
     </div>

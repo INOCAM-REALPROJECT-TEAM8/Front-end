@@ -2,12 +2,17 @@ import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import styled from 'styled-components';
+import ChatAlarm from './ChatAlarm';
+import { SelectState } from '../redux/config/configStore';
+import { useSelector } from 'react-redux';
 
 function PageLayout({ headerFooterExist }: { headerFooterExist: boolean }) {
+  const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
   return (
     <>
       <PageContainer>
         <AllPage>
+          {isLoggedIn && <ChatAlarm />}
           {headerFooterExist ? (
             <>
               <Header />

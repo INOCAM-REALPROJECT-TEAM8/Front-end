@@ -24,12 +24,10 @@ function ChatAlarm() {
   const currentPath = useLocation().pathname;
   const chatRoomId = currentPath.startsWith('/chat-room/') && currentPath.replace('/chat-room/', '');
 
-  console.log(userId);
-  console.log(isConnected);
-
   useEffect(() => {
     if (isConnected) {
       subscribe<ChatState>(`/sub/user/${userId}`, chat => {
+        console.log(chatRoomId, getRoomId(chat));
         if (chatRoomId === getRoomId(chat)) {
           dispatch(addRoomChat(chat));
         } else {
@@ -47,7 +45,7 @@ function ChatAlarm() {
         console.log('연결 해제');
       }
     };
-  }, [isConnected]);
+  }, [isConnected, chatRoomId]);
 
   return (
     lastExtraChat && (
@@ -60,12 +58,12 @@ function ChatAlarm() {
 }
 
 const ChatAlarmContainer = styled.div`
-  position: absolute;
+  position: fixed;
   border-radius: 10px;
   height: 56px;
   background-color: var(--main-color);
-  width: 400px;
-  margin: 0 auto;
+  width: 100vw;
+  max-width: 800px;
   z-index: 20;
   padding: 10px;
 

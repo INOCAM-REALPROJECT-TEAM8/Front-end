@@ -8,7 +8,7 @@ interface ObjectType {
   [key: string]: any;
 }
 
-let stompClient: StompJs.Client;
+let stompClient: StompJs.Client | null;
 let subscriptions: {
   [key: string]: StompJs.StompSubscription;
 } = {};
@@ -28,6 +28,7 @@ const useStomp = (config: StompJs.StompConfig, callback?: () => void) => {
   }, []);
   const send = useCallback(
     (path: string, body: ObjectType, headers: ObjectType) => {
+      if (!stompClient) return;
       stompClient.publish({
         destination: path,
         headers: headers,
@@ -50,8 +51,10 @@ const useStomp = (config: StompJs.StompConfig, callback?: () => void) => {
     subscriptions[path].unsubscribe();
     delete subscriptions[path];
   }, []);
-  var disconnect = useCallback(() => {
+  const disconnect = useCallback(() => {
+    if (!stompClient) return;
     stompClient.deactivate();
+    stompClient = null;
     dispatch(disconnectSocket());
   }, [stompClient]);
 
