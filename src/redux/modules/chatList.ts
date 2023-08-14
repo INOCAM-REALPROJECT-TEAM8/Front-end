@@ -9,7 +9,7 @@ export interface ChatState {
 }
 
 export interface ChatListState {
-  roomChatList: ChatState[];
+  roomChat: ChatState | null;
   extraChatList: ChatState[];
 }
 
@@ -21,10 +21,10 @@ export const getRoomId = (chat: ChatState) => {
 };
 
 export const parseRoomId = (roomId: string | undefined) => {
-  if (!roomId) return { myId: 0, opId: 0 };
+  if (!roomId) return { myId: -1, opId: -1 };
   const [user1, user2] = roomId.split('-');
   const myId = store.getState().userInfo.userId;
-  const opId = +user1 === myId ? user2 : user1;
+  const opId = +user1 === myId ? +user2 : +user2 === myId ? +user1 : -1;
 
   return { myId, opId };
 };
@@ -38,7 +38,7 @@ const setRemoveTimer = (time: number) => {
 };
 
 const initialState: ChatListState = {
-  roomChatList: [],
+  roomChat: null,
   extraChatList: [],
 };
 
@@ -46,19 +46,19 @@ const chatListSlice = createSlice({
   name: 'chatList',
   initialState,
   reducers: {
-    addExtraChat: ({ roomChatList, extraChatList }, action: PayloadAction<ChatState>) => {
+    addExtraChat: ({ roomChat, extraChatList }, action: PayloadAction<ChatState>) => {
       setRemoveTimer(2000);
-      return { roomChatList, extraChatList: [...extraChatList, action.payload] };
+      return { roomChat, extraChatList: [...extraChatList, action.payload] };
     },
-    removeExtraChats: ({ roomChatList }, action: Action<string>) => {
-      return { roomChatList, extraChatList: [] };
+    removeExtraChats: ({ roomChat }, action: Action<string>) => {
+      return { roomChat, extraChatList: [] };
     },
-    addRoomChat: ({ roomChatList, extraChatList }, action: PayloadAction<ChatState>) => {
+    addRoomChat: ({ roomChat, extraChatList }, action: PayloadAction<ChatState>) => {
       setRemoveTimer(2000);
-      return { roomChatList: [...roomChatList, action.payload], extraChatList };
+      return { roomChat: action.payload, extraChatList };
     },
     removeRoomChats: ({ extraChatList }, action: Action<string>) => {
-      return { roomChatList: [], extraChatList };
+      return { roomChat: null, extraChatList };
     },
   },
 });

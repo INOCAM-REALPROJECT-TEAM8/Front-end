@@ -1,23 +1,22 @@
 import { styled } from 'styled-components';
-import { useStomp } from 'usestomp-hook/lib/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { SelectState } from '../redux/config/configStore';
 import { ChatState, addExtraChat, addRoomChat, getRoomId } from '../redux/modules/chatList';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { connectSocket, disconnectSocket } from '../redux/modules/socket';
+import useStomp from '../hooks/useStomp';
 
 function ChatAlarm() {
-  const [isConnected, setConnected] = useState<boolean>(false);
-  const { subscribe, unsubscribe, subscriptions, send } = useStomp(
+  const dispatch = useDispatch();
+  const { subscribe, unsubscribe, subscriptions, disconnect, isConnected } = useStomp(
     { brokerURL: process.env.REACT_APP_BROKER_URL },
     () => {
       console.log('연결되었음.');
-      setConnected(true);
     },
   );
 
   const { userId, prevUserId } = useSelector((state: SelectState) => state.userInfo);
-  const dispatch = useDispatch();
   const { extraChatList } = useSelector(({ chatList }: SelectState) => chatList);
   const lastExtraChat = extraChatList ? extraChatList[extraChatList.length - 1] : null;
   const navigate = useNavigate();
@@ -25,11 +24,10 @@ function ChatAlarm() {
   const currentPath = useLocation().pathname;
   const chatRoomId = currentPath.startsWith('/chat-room/') && currentPath.replace('/chat-room/', '');
 
-  console.log(lastExtraChat);
-
   useEffect(() => {
     if (isConnected) {
       subscribe<ChatState>(`/sub/user/${userId}`, chat => {
+        console.log(chatRoomId, getRoomId(chat));
         if (chatRoomId === getRoomId(chat)) {
           dispatch(addRoomChat(chat));
         } else {
@@ -43,9 +41,11 @@ function ChatAlarm() {
       if (subscriptions[`/sub/user/${prevUserId}`]) {
         unsubscribe(`/sub/user/${prevUserId}`);
         console.log('구독 해제');
+        disconnect();
+        console.log('연결 해제');
       }
     };
-  }, [isConnected]);
+  }, [isConnected, chatRoomId]);
 
   return (
     lastExtraChat && (
@@ -58,12 +58,12 @@ function ChatAlarm() {
 }
 
 const ChatAlarmContainer = styled.div`
-  position: absolute;
+  position: fixed;
   border-radius: 10px;
   height: 56px;
   background-color: var(--main-color);
-  width: 400px;
-  margin: 0 auto;
+  width: 100vw;
+  max-width: 800px;
   z-index: 20;
   padding: 10px;
 
