@@ -10,7 +10,7 @@ function Footer() {
 
   return (
     <FooterContainer>
-      <ButtonContainer>
+      <ButtonContainer onClick={() => navigate('/chats')}>
         <IconButton src={MessageButtonIcon} alt='MessageButton Icon' />
       </ButtonContainer>
       <ButtonContainer onClick={() => navigate('')}>
@@ -26,9 +26,10 @@ function Footer() {
 export default Footer;
 
 const FooterContainer = styled.div`
-  position: sticky;
+  position: fixed;
   bottom: 0px;
   width: 100%;
+  max-width: 800px;
   height: 56px;
   background-color: white;
   box-shadow: 0px -5px 10px 0px rgba(119, 81, 225, 0.75);

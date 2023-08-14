@@ -10,6 +10,7 @@ function SearchResults({ results }: { results: music[] }) {
     title: '',
     artist: '',
   };
+
   return (
     <SearchResultsContainer>
       {[emptyItem, ...results].map(({ artist, title }, index) => {

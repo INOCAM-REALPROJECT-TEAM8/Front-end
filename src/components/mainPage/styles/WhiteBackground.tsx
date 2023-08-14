@@ -4,6 +4,7 @@ const WhiteBackground = styled.div`
   width: 100%;
   background-color: var(--white);
   padding-bottom: 40px;
+  height: 100%;
 `;
 
 export const FooterGradation = styled.div`

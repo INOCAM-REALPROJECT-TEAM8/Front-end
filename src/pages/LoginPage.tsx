@@ -1,24 +1,71 @@
-import React from 'react';
 import styled from 'styled-components';
-import kakaoimage from '../images/kakao_login_medium_wide.png';
+import KakaoLogin from '../features/KakaoLogin';
 import GoogleLogin from '../features/GoogleLogin';
 import MainContainer from '../components/loginPage/styles/MainContainer';
+import useValidateInput from '../hooks/useValidateInput';
+import { useMutation } from '@tanstack/react-query';
+import { login } from '../api/user';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { SelectState } from '../redux/config/configStore';
+import { ReactComponent as Logo } from '../assets/hideLogo.svg';
+import { Button, Input, LoginBox, LogoContainer } from '../components/loginPage/styles/Input';
 
 function LoginPage() {
+  const navigate = useNavigate();
+  const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
+
+  if (isLoggedIn) {
+    //@ToDo: users 뒤에 유저 id 얻어와서 붙여줘야 함.
+    navigate('/users/');
+  }
+
+  const { input: email, handleInputOnChange: handleEmailOnChange, valid: emailValid } = useValidateInput('email');
+  const { input: password, handleInputOnChange: handlePwOnChange, valid: pwValid } = useValidateInput();
+
+  const mutation = useMutation(login, {
+    onSuccess: data => {
+      if (data.success) {
+        //로그인 성공
+        alert(data.msg);
+        navigate('/');
+      } else {
+        //로그인 실패
+        alert(data.msg);
+      }
+    },
+  });
+
+  const handleLoginClick = () => {
+    if (!emailValid) {
+      alert('올바른 형식의 이메일을 입력해주세요');
+    } else if (!pwValid) {
+      alert('패스워드를 입력해주세요');
+    } else {
+      mutation.mutate({ email, password });
+    }
+  };
+
   return (
     <MainContainer>
-      <TextPage>HIDE</TextPage>
+      <LogoContainer>
+        <Logo onClick={() => navigate('/')} style={{ width: '106px', height: '60px', cursor: 'pointer' }} />
+      </LogoContainer>
       <LoginBox>
-        <Input type='text' placeholder='Email' />
-        <Input type='password' placeholder='Password' />
-        <Button>로그인</Button>
-        <Button>회원가입</Button>
+        <Input type='text' placeholder='이메일' value={email} onChange={handleEmailOnChange} />
+        <Input type='password' placeholder='비밀번호' value={password} onChange={handlePwOnChange} />
+        <Button onClick={handleLoginClick} $bgColor='white' color='#7751e1'>
+          로그인
+        </Button>
+        <UnderlinedTextBox to='/forgetpw'>비밀번호를 잊으셨나요?</UnderlinedTextBox>
+        <UnderLine />
+        <Button onClick={() => navigate('/signup')} $bgColor='#7751e1' color='white'>
+          회원가입
+        </Button>
         <SocialButton>
           <GoogleLogin />
+          <KakaoLogin />
         </SocialButton>
-        <a href='http://13.125.205.172:8080/login/oauth2/kakao'>
-          <img src={kakaoimage} alt='카카오 로그인'></img>
-        </a>
       </LoginBox>
     </MainContainer>
   );
@@ -26,50 +73,28 @@ function LoginPage() {
 
 export default LoginPage;
 
-// const LoginContainer = styled.div`
-//   width: 390px;
-//   height: 732px;
-//   background-color: #7751e1;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-// `;
-
-const TextPage = styled.div`
-  color: white;
-  font-size: xx-large;
-  margin-bottom: 20px;
+const SocialButton = styled.div`
+  width: 342px;
+  height: 40px;
+  border: none;
+  border-radius: 16px;
+  font-weight: bold;
   display: flex;
-  justify-content: center;
-`;
-
-const LoginBox = styled.div`
-  display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding-top: 10px;
 `;
 
-const Input = styled.input`
-  width: 300px;
-  height: 40px;
-  margin-bottom: 10px;
-  padding: 5px;
-  border-radius: 20px;
-  border: none;
+const UnderlinedTextBox = styled(Link)`
+  text-decoration: underline;
+  color: white;
+  padding: 30px 0 30px 0;
 `;
 
-const Button = styled.button`
-  width: 300px;
-  height: 40px;
-  margin-bottom: 10px;
-  background-color: #ffffff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-`;
-
-const SocialButton = styled(Button)`
-  width: 300px;
-  height: 40px;
+const UnderLine = styled.div`
+  background-color: white;
+  justify-content: center;
+  height: 2px;
+  width: 100%;
+  margin-bottom: 20px;
 `;
