@@ -1,19 +1,30 @@
 import React, { useRef } from 'react';
 import { styled } from 'styled-components';
 import recode from '../../assets/Recode.png';
-import { MusicPlayer } from './MusicPlayer';
+import MusicPlayer from './MusicPlayer';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-const music = {
-  image:
-    'https://i.namu.wiki/i/3o5_9cQW9UVQzA-M0OyEwdMgtCtv1HUwc5RTMZl_E0knAjndE56r42fCllbD2JHrhZP_ugBhQ3Gi9WXkv8NPGg.webp',
-  title: 'Lemon',
-  artist: '米津玄師 (요네즈 켄시)',
-};
+interface MusicInfo {
+  image: string;
+  album: string;
+  artist: string;
+  title: string;
+  yUrl: string;
+}
 
 interface MusicModalProps {
   modalState: boolean;
   setModalState: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+const music: MusicInfo = {
+  image:
+    'https://i.namu.wiki/i/3o5_9cQW9UVQzA-M0OyEwdMgtCtv1HUwc5RTMZl_E0knAjndE56r42fCllbD2JHrhZP_ugBhQ3Gi9WXkv8NPGg.webp',
+  title: 'Lemon',
+  artist: '米津玄師 (요네즈 켄시)',
+  album: 'Album 1',
+  yUrl: 'https://www.youtube.com/watch?v=pxBPyKQTOKM',
+};
 
 const MusicModal: React.FC<MusicModalProps> = ({ modalState, setModalState }: MusicModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -24,10 +35,46 @@ const MusicModal: React.FC<MusicModalProps> = ({ modalState, setModalState }: Mu
     }
   };
 
+  // const playMusic = (music: MusicInfo) => {
+  //   Play music logic
+  // };
+
+  // const { data, error, isLoading } = useQuery<MusicInfo[]>('data', async () => {
+  //   const response = await axios.get<MusicInfo[]>('https://hide-music.shop:8443/api/musics/modal');
+  //   return response.data;
+  // });
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
+
+  // if (error) {
+  //   return <div>Error...</div>;
+  // }
+
+  // return (
+  //   <section>
+  //     <h2>React Player</h2>
+  //     {isWindow && data && (
+  //       <div>
+  //         {data.map((music: MusicInfo) => (
+  //           <div key={music.title}>
+  //             <h3>{music.title}</h3>
+  //             <p>{music.artist}</p>
+  //             <p>{music.album}</p>
+  //             <button onClick={() => playMusic(music)}>Play</button>
+  //           </div>
+  //         ))}
+  //       </div>
+  //     )}
+  //   </section>
+
   return (
     <ModalTopContainer ref={modalRef} onClick={onClickOutsideModal}>
       <ModalContainer>
-        <MusicPlayer />
+        <QueryClientProvider client={new QueryClient()}>
+          <MusicPlayer />
+        </QueryClientProvider>
         <ModalContent>
           <AlbumCover>
             <AlbumImage src={music.image} alt='' />
@@ -40,8 +87,6 @@ const MusicModal: React.FC<MusicModalProps> = ({ modalState, setModalState }: Mu
     </ModalTopContainer>
   );
 };
-
-export default MusicModal;
 
 const ModalTopContainer = styled.div`
   background-color: rgba(255, 255, 255, 0.5);
@@ -109,3 +154,5 @@ const MusicTitle = styled.div`
   font-weight: bold;
   color: #fff;
 `;
+
+export default MusicModal;
