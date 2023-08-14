@@ -35,7 +35,7 @@ function App() {
           <Route path='changepw' element={<ChangePwPage />} />
           <Route path='musics/:musicId' element={<MusicDetailPage />} />
           <Route path='users/:userId' element={<UserPage />} />
-          <Route path='following' element={<FollowingPage />} />
+          <Route path='users/:userId/following' element={<FollowingPage />} />
         </Route>
         <Route path='/chat-room/:roomId' element={<ChatRoomPage />} />
       </Routes>
