@@ -9,7 +9,7 @@ export interface UserState {
 }
 
 const initialState: UserState = {
-  isLoggedIn: localStorage.getItem('accessToken') ? true : false,
+  isLoggedIn: localStorage.getItem('refreshToken') ? true : false,
   nickname: '',
   email: '',
   userId: 0,
