@@ -15,7 +15,7 @@ import FollowingPage from './pages/FollowingPage';
 import ChatRoomListPage from './pages/ChatRoomListPage';
 
 function App() {
-  const [token] = useState(localStorage.getItem('accessToken'));
+  const [token] = useState(localStorage.getItem('refreshToken'));
   const dispatch = useDispatch();
   useEffect(() => {
     if (!token) dispatch(userLogout());
