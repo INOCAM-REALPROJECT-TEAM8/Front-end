@@ -4,7 +4,7 @@ import KakaoButton from '../icons/KakaoButton.png';
 
 function KakaoLogin() {
   return (
-    <A href='https://hide-music.shop:8443/login/oauth2/kakao'>
+    <A href={`${process.env.REACT_APP_SERVER_URL}/login/oauth2/kakao`}>
       <KakaoButtonContainer>
         <img src={KakaoButton} alt='카카오 로그인' />
         <KakaoText>카카오 로그인</KakaoText>

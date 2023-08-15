@@ -21,6 +21,10 @@ const rootReducer = combineReducers({
 const store = configureStore({
   reducer: persistReducer(persistConfig, rootReducer),
   devTools: true,
+  middleware: defaultMiddleware =>
+    defaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export interface SelectState {
