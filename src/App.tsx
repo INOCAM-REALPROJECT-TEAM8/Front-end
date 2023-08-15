@@ -13,6 +13,7 @@ import { userLogout } from './redux/modules/userInfo';
 import ChatRoomPage from './pages/ChatRoomPage';
 import FollowingPage from './pages/FollowingPage';
 import ChatRoomListPage from './pages/ChatRoomListPage';
+import MyPage from './pages/MyPage';
 
 function App() {
   const [token] = useState(localStorage.getItem('refreshToken'));
@@ -27,6 +28,7 @@ function App() {
           <Route path='' element={<MainPage />} />
           <Route path='musics/:musicId' element={<MusicDetailPage />} />
           <Route path='users/:userId' element={<UserPage />} />
+          <Route path='user/:userId' element={<MyPage />} />
           <Route path='users/:userId/following' element={<FollowingPage />} />
           <Route path='chats' element={<ChatRoomListPage />} />
         </Route>
