@@ -2,15 +2,9 @@ import React, { useState } from 'react';
 import { MusicCardContainer, MusicSlideContainer } from './styles/MusicSlideStyle';
 import Slider from 'react-slick';
 import MusicModal from '../musicDetailPage/MusicModal';
+import { MusicInfo } from '../../api/music';
 
-type musicInfo = {
-  id: number;
-  title: string;
-  artist: string;
-  albumImgURL: string;
-};
-
-function MusicSlide({ playListName, musics }: { playListName: string; musics: musicInfo[] }) {
+function MusicSlide({ playListName, musics }: { playListName: string; musics: MusicInfo[] }) {
   const settings = {
     className: 'slider',
     variableWidth: true,
@@ -39,11 +33,11 @@ function MusicSlide({ playListName, musics }: { playListName: string; musics: mu
   );
 }
 
-function MusicCard({ music, onClick }: { music: musicInfo; onClick: () => void }) {
+function MusicCard({ music, onClick }: { music: MusicInfo; onClick: () => void }) {
   return (
     <>
       <MusicCardContainer onClick={onClick}>
-        <img src={music.albumImgURL} alt='' />
+        <img src={music.image} alt='' />
         <h2>{music.title}</h2>
         <div>{music.artist}</div>
       </MusicCardContainer>
