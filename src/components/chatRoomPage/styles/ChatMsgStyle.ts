@@ -2,7 +2,7 @@ import { css, styled } from 'styled-components';
 
 export const ChatMsgDivider = styled.div<{ $isSameUserAsPrev: boolean; $isMine: boolean }>`
   padding: ${({ $isSameUserAsPrev, $isMine }) =>
-    `${$isSameUserAsPrev ? '10px' : '20px'}${$isMine ? '24px 0px 92px' : '92px 0px 24px'}`};
+    `${$isSameUserAsPrev ? '10px' : '20px'}${$isMine ? ' 24px 0px 92px' : ' 92px 0px 24px'}`};
   width: 100%;
 
   display: flex;

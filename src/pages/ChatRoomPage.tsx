@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChatState, parseRoomId, removeRoomChats } from '../redux/modules/chatList';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getRoomChatsP } from '../api/chat';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,8 +30,15 @@ function ChatRoomPage() {
     queryClient.invalidateQueries([`chats/${roomId}`]);
   }, []);
 
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    if (newChat) setChats([...chats, newChat]);
+    chatContainerRef.current?.scrollIntoView({ behavior: 'instant', block: 'end' });
+  }, [chats]);
+  useEffect(() => {
+    if (newChat) {
+      setChats([...chats, newChat]);
+    }
   }, [newChat]);
 
   useEffect(() => {
@@ -44,18 +51,17 @@ function ChatRoomPage() {
   return (
     <div>
       <Header chatNickname={opNickname} />
-      <ChatContainer>
+      <ChatContainer ref={chatContainerRef}>
         {chats.map((chat, index) => (
           <ChatMsg
             key={index}
             curChat={chat}
-            prevChat={index !== 0 ? chats[index] : null}
+            prevChat={index !== 0 ? chats[index - 1] : null}
             nextChat={chats[index + 1] ?? null}
             myId={myId}
           />
         ))}
       </ChatContainer>
-
       <ChatSender {...{ chats, setChats, opId }} />
     </div>
   );

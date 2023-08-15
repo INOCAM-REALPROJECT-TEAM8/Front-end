@@ -30,7 +30,7 @@ export const getNewToken = async () => {
       const decryptedBytes = AES.decrypt(encryptedToken, secretKey);
       const refreshToken = decryptedBytes.toString(enc.Utf8);
 
-      const { headers }: Response & AxiosResponse = await ourAxios.post(
+      const { headers, data }: Response & AxiosResponse = await ourAxios.post(
         '/api/token/refresh',
         {},
         {
@@ -41,6 +41,11 @@ export const getNewToken = async () => {
           withCredentials: true,
         },
       );
+
+      if (data.expired) {
+        logout();
+        return;
+      }
 
       const authorization = headers.get('Authorization');
       if (authorization) {
