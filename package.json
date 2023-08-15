@@ -12,6 +12,7 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "@types/axios": "^0.14.0",
+    "@types/crypto-js": "^4.1.1",
     "@types/jest": "^27.0.1",
     "@types/node": "^20.4.5",
     "@types/react": "^18.2.18",
@@ -21,6 +22,7 @@
     "@types/styled-components": "^5.1.26",
     "aria-query": "^5.3.0",
     "axios": "^1.4.0",
+    "crypto-js": "^4.1.1",
     "json-server": "^0.17.3",
     "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
@@ -38,8 +40,7 @@
     "styled-reset": "^4.5.1",
     "typescript": "^5.1.6",
     "web-vitals": "^2.1.0",
-    "websocket": "^1.0.34",
-    "youtube-music-api": "^1.0.6"
+    "websocket": "^1.0.34"
   },
   "scripts": {
     "start": "react-scripts start",
