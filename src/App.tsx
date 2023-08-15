@@ -15,7 +15,7 @@ import FollowingPage from './pages/FollowingPage';
 import ChatRoomListPage from './pages/ChatRoomListPage';
 
 function App() {
-  const [token] = useState(localStorage.getItem('accessToken'));
+  const [token] = useState(localStorage.getItem('refreshToken'));
   const dispatch = useDispatch();
   useEffect(() => {
     if (!token) dispatch(userLogout());
@@ -27,7 +27,7 @@ function App() {
           <Route path='' element={<MainPage />} />
           <Route path='musics/:musicId' element={<MusicDetailPage />} />
           <Route path='users/:userId' element={<UserPage />} />
-          <Route path='following' element={<FollowingPage />} />
+          <Route path='users/:userId/following' element={<FollowingPage />} />
           <Route path='chats' element={<ChatRoomListPage />} />
         </Route>
         <Route path='/' element={<PageLayout headerFooterExist={false} />}>
