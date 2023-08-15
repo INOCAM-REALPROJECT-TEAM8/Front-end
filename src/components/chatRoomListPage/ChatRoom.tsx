@@ -4,7 +4,7 @@ import { ChatRoomInfoContainer } from './styles/chatRoomInfoStyle';
 
 export interface ChatRoomInfo {
   roomName: string;
-  nickName: string;
+  oppositeNickname: string;
   lastChatMessage: ChatState;
 }
 
@@ -17,8 +17,8 @@ function ChatRoom({ chatRoom }: { chatRoom: ChatRoomInfo }) {
 
   return (
     <ChatRoomInfoContainer onClick={handleRoomClick}>
-      <div>{chatRoom.nickName}</div>
-      <div>{chatRoom.lastChatMessage.message}</div>
+      <div>닉네임:{chatRoom.oppositeNickname}</div>
+      <div>마지막 내용:{chatRoom.lastChatMessage.message}</div>
     </ChatRoomInfoContainer>
   );
 }
