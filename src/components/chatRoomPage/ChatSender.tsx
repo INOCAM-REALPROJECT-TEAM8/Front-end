@@ -3,6 +3,8 @@ import { ChatState } from '../../redux/modules/chatList';
 import { useSelector } from 'react-redux';
 import { SelectState } from '../../redux/config/configStore';
 import useStomp from '../../hooks/useStomp';
+import { ChatSenderInput, ChatSenderLable } from './styles/ChatSenderStyle';
+import { ReactComponent as SendButton } from '../../assets/sendButton.svg';
 
 interface ChatSenderProps {
   chats: ChatState[];
@@ -20,6 +22,8 @@ function ChatSender({ chats, setChats, opId }: ChatSenderProps) {
   const { userId, nickname } = useSelector((state: SelectState) => state.userInfo);
 
   const handleSendClick = () => {
+    if (!msg) return;
+
     const myChat: ChatState = {
       nickname,
       senderId: userId,
@@ -31,10 +35,10 @@ function ChatSender({ chats, setChats, opId }: ChatSenderProps) {
     setMsg('');
   };
   return (
-    <div>
-      <input value={msg} onChange={handleMsgChange} />
-      <button onClick={handleSendClick}>보내기</button>
-    </div>
+    <ChatSenderLable>
+      <ChatSenderInput value={msg} onChange={handleMsgChange} placeholder='| 메세지 쓰기' />
+      <SendButton onClick={handleSendClick}>보내기</SendButton>
+    </ChatSenderLable>
   );
 }
 
