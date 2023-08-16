@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Sidebar from './Sidebar';
 
-function Header() {
+function Header({ chatNickname }: { chatNickname?: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggleSide = () => {
     setIsOpen(true);
@@ -14,9 +14,13 @@ function Header() {
   return (
     <>
       <HeaderContainer>
-        <LogoBox>
-          <Logo onClick={() => navigate('/')} style={{ cursor: 'pointer' }} />
-        </LogoBox>
+        {chatNickname ? (
+          <ChatNicknameBox>{chatNickname}</ChatNicknameBox>
+        ) : (
+          <LogoBox>
+            <Logo onClick={() => navigate('/')} style={{ cursor: 'pointer' }} />
+          </LogoBox>
+        )}
         <IconContainer role='button' onClick={toggleSide}>
           <Icon src={SettingButtonIcon} alt='SettingButton Icon' />
         </IconContainer>
@@ -59,4 +63,12 @@ const Icon = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
+`;
+
+const ChatNicknameBox = styled.div`
+  padding: 0px 24px 0px;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--white);
+  opacity: 0.8;
 `;
