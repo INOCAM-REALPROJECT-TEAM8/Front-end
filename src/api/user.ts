@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import ourAxios from './ourAxios';
 import { deleteWithToken } from './withToken';
 import jwtDecode from 'jwt-decode';
@@ -30,31 +30,38 @@ export const getNewToken = async () => {
       const decryptedBytes = AES.decrypt(encryptedToken, secretKey);
       const refreshToken = decryptedBytes.toString(enc.Utf8);
 
-      const { headers, data }: Response & AxiosResponse = await ourAxios.post(
-        '/api/token/refresh',
-        {},
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Refresh-Token': `${refreshToken}`,
+      let response: Response & AxiosResponse;
+
+      try {
+        response = await ourAxios.post(
+          '/api/token/refresh',
+          {},
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Refresh-Token': `${refreshToken}`,
+            },
+            withCredentials: true,
           },
-          withCredentials: true,
-        },
-      );
+        );
+        const authorization = response?.headers.get('Authorization');
+        if (authorization) {
+          const token = authorization.replace('Bearer ', '');
+          accessToken = token;
 
-      if (data.expired) {
-        logout();
-        return;
-      }
-
-      const authorization = headers.get('Authorization');
-      if (authorization) {
-        const token = authorization.replace('Bearer ', '');
-        accessToken = token;
-
-        const decoded = jwtDecode<TokenPayload>(token);
-        const nickname = decoded.nickname;
-        const userId = decoded.userId;
+          const decoded = jwtDecode<TokenPayload>(token);
+          const nickname = decoded.nickname;
+          const userId = decoded.userId;
+        }
+      } catch (error) {
+        console.log(error);
+        if (error instanceof AxiosError) {
+          if (error.response && !error.response.data.success) {
+            logout();
+            alert('로그아웃 되었습니다.');
+            return;
+          }
+        }
       }
     }
   } else {

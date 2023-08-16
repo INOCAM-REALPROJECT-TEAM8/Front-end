@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { SearchContainer, SearchIcon, SearchInput, SearchInputContainer, VerticalLine } from './styles/SearchBoxStyle';
 import SearchResults from './SearchResults';
+import { MusicInfo, searchMusics } from '../../api/music';
 
 const sampleMusicList: { title: string; artist: string }[] = Array(10)
   .fill(0)
@@ -20,10 +21,9 @@ function SearchBox() {
   });
 
   const getNewResultMusics = (searchKeyword: string) => () => {
-    const newResultMusics = sampleMusicList.map(music => {
-      return { title: music.title, artist: `(${searchKeyword} 검색 결과 예시) ${music.artist}` };
-    });
-    setResultMusics(newResultMusics);
+    searchMusics(searchKeyword)
+      .then(newResultMusics => setResultMusics(newResultMusics))
+      .catch(() => setResultMusics([]));
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +43,7 @@ function SearchBox() {
         <VerticalLine />
         <SearchInput placeholder='검색어를 입력하세요' type='text' value={input} onChange={handleInputChange} />
       </SearchInputContainer>
-      {input && resultMusics.length && <SearchResults results={resultMusics} />}
+      {input && resultMusics.length ? <SearchResults results={resultMusics} /> : <></>}
     </SearchContainer>
   );
 }

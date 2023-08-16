@@ -10,6 +10,16 @@ export interface MusicInfo {
   image: string;
 }
 
+export const searchMusics = async (keyword: string) => {
+  const { data }: AxiosResponse<MusicInfo[]> = await ourAxios.get(`/api/tracks/search?keyword=${keyword}`);
+  return data;
+};
+
+export const getRecommendSearches = async () => {
+  const { data }: AxiosResponse<MusicInfo[]> = await ourAxios.get(`/api/search/recommendKeyword`);
+  return data;
+};
+
 export const getRecommendMusics = async () => {
   const { data }: AxiosResponse<MusicInfo[]> = await getWithToken('/api/tracks/recommend');
   return data;
