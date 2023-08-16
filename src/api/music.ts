@@ -40,12 +40,14 @@ export const addToPlaylist = async ({ musicId }: { musicId: string }) => {
   //@ToDo: 요청 body 어떻게 보낼지 명확히 정하기
   const { userId } = store.getState().userInfo;
   const { data }: AxiosResponse = await postWithToken(`/api/user/${userId}/playlist`, { musicId });
+  return data;
 };
 
 export const deleteFromPlaylist = async ({ musicId }: { musicId: string }) => {
   //@ToDo: 요청 body 어떻게 보낼지 명확히 정하기. url에 보낼지 정하기
   const { userId } = store.getState().userInfo;
   const { data }: AxiosResponse = await deleteWithToken(`/api/user/${userId}/playlist${musicId}`);
+  return data;
 };
 
 export const getRecentHeards = async () => {
