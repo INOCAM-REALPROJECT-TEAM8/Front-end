@@ -70,3 +70,9 @@ export const addToRecentHeards = async ({ musicId }: { musicId: string }) => {
   const { data }: AxiosResponse = await postWithToken(`/api/users/${userId}/recent`, { musicId });
   return data;
 };
+
+//곡 상세조회 api
+export const getMusicDetailP = (musicId: string) => async () => {
+  const { data }: AxiosResponse<MusicInfo> = await ourAxios.get(`/api/tracks/${musicId}/modal`);
+  return data;
+};
