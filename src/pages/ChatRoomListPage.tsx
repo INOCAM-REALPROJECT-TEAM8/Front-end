@@ -2,6 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getChatRoomList } from '../api/chat';
 import { useEffect, useState } from 'react';
 import ChatRoom, { ChatRoomInfo } from '../components/chatRoomListPage/ChatRoom';
+import { ChatRoomsContainer } from '../components/chatRoomListPage/styles/chatRoomListPageStyle';
 
 function ChatRoomListPage() {
   const queryClient = useQueryClient();
@@ -18,11 +19,11 @@ function ChatRoomListPage() {
   }, [isSuccess, data]);
 
   return (
-    <div>
+    <ChatRoomsContainer>
       {chatRooms.map((chatRoom, index) => (
         <ChatRoom chatRoom={chatRoom} key={index} />
       ))}
-    </div>
+    </ChatRoomsContainer>
   );
 }
 
