@@ -5,11 +5,16 @@ import store from '../redux/config/configStore';
 
 export interface MusicInfo {
   id: string;
+  album: string;
   title: string;
   artist: string;
   image: string;
+  genres?: string[];
+  rate?: number;
+  yUrl?: string;
 }
 
+//search 관련 api
 export const searchMusics = async (keyword: string) => {
   const { data }: AxiosResponse<MusicInfo[]> = await ourAxios.get(`/api/tracks/search?keyword=${keyword}`);
   return data;
@@ -20,6 +25,7 @@ export const getRecommendSearches = async () => {
   return data;
 };
 
+//추천, 인기음악 목록 관련 api
 export const getRecommendMusics = async () => {
   const { data }: AxiosResponse<MusicInfo[]> = await getWithToken('/api/tracks/recommend');
   return data;
@@ -30,6 +36,7 @@ export const getPopularMusics = async () => {
   return data;
 };
 
+//playlist 관련 api
 export const getPlaylist = async () => {
   const { userId } = store.getState().userInfo;
   const { data }: AxiosResponse<MusicInfo[]> = await getWithToken(`/api/user/${userId}/playlist`);
@@ -50,6 +57,7 @@ export const deleteFromPlaylist = async ({ musicId }: { musicId: string }) => {
   return data;
 };
 
+//최근 들은 음악 관련 api
 export const getRecentHeards = async () => {
   const { userId } = store.getState().userInfo;
   const { data }: AxiosResponse<MusicInfo[]> = await getWithToken(`/api/users/${userId}/recent`);
