@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
 import { MusicInfo } from '../../api/music';
 import recode from '../../assets/recode.svg';
-import { styled } from 'styled-components';
 
 interface MusicPlayerProps {
   musicData: MusicInfo;
