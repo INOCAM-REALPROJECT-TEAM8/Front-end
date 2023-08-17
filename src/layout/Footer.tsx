@@ -16,7 +16,7 @@ function Footer() {
       <ButtonContainer onClick={() => navigate('')}>
         <IconButton src={HomeButtonIcon} alt='HomeButton Icon' />
       </ButtonContainer>
-      <ButtonContainer onClick={() => navigate('users/:userId')}>
+      <ButtonContainer onClick={() => navigate('user/:userId')}>
         <IconButton src={UserButtonIcon} alt='UserButton Icon' />
       </ButtonContainer>
     </FooterContainer>
