@@ -15,11 +15,6 @@ function MusicDetailInfo({ music }: { music: MusicInfo }) {
   return (
     <MusicInfoContainer>
       <RecordCover music={music} />
-      <GenresContainer>
-        {music.genres?.map(genre => (
-          <GenreBox>{genre}</GenreBox>
-        ))}
-      </GenresContainer>
       <AlbumBox>{music.album}</AlbumBox>
       <ArtistBox>{music.artist}</ArtistBox>
       <TitleBox>{music.title}</TitleBox>
