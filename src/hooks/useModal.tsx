@@ -1,22 +1,13 @@
 import { ReactComponentElement, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 
-const ViewportCover = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #0000008f;
+interface ModalConfig {
+  coverExist: boolean;
+  exitByOuterClick: boolean;
+}
 
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const useModal = (coverExist = true, exitByOuterClick = true) => {
-  const openerRef = useRef<HTMLElement>(null);
+function useModal<OpenerElementType>({ coverExist, exitByOuterClick }: ModalConfig) {
+  const openerRef = useRef<OpenerElementType>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -27,12 +18,19 @@ const useModal = (coverExist = true, exitByOuterClick = true) => {
     setIsOpen(false);
   }, []);
 
+  useEffect(() => {
+    (openerRef as unknown as React.RefObject<HTMLElement>).current?.addEventListener('click', openModal);
+  }, [openerRef.current]);
+
   const ModalTemplate = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
       const outerOnClick = (event: MouseEvent) => {
         if (!event.target) return;
 
-        if (!modalRef.current?.contains(event.target as Node) && !openerRef.current?.contains(event.target as Node))
+        if (
+          !modalRef.current?.contains(event.target as Node) &&
+          !(openerRef as unknown as React.RefObject<HTMLElement>).current?.contains(event.target as Node)
+        )
           closeModal();
         return;
       };
@@ -57,7 +55,27 @@ const useModal = (coverExist = true, exitByOuterClick = true) => {
     );
   };
 
-  return [isOpen ? ModalTemplate : () => <></>, openModal, closeModal, openerRef, isOpen];
-};
+  return {
+    Modal: isOpen ? ModalTemplate : () => <></>,
+    openerRef,
+    isOpen,
+    openModal,
+    closeModal,
+  };
+}
+
+const ViewportCover = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0000008f;
+
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export default useModal;
