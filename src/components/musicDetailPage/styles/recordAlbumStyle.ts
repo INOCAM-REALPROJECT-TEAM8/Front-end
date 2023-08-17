@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import recode from '../../../assets/Recode.png';
+import recode from '../../../assets/recode.svg';
 
 export const AlbumCoverContainer = styled.div`
   position: relative;
