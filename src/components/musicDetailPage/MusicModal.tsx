@@ -65,18 +65,6 @@ const ModalContainer = styled.div`
   height: 352px;
 `;
 
-// const ModalContent = styled.div`
-//   width: 100%;
-//   height: 100%;
-//   padding: 24px 21px 24px 24px;
-// `;
-
-// const AlbumCover = styled.div`
-//   width: 235.35px;
-//   height: 233.34px;
-//   position: relative;
-// `;
-
 // const AlbumImage = styled.img`
 //   width: 100%;
 //   height: 100%;
