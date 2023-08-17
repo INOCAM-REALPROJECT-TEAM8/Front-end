@@ -23,7 +23,7 @@ export const GenreBox = styled.div`
 `;
 
 export const AlbumBox = styled.div`
-  padding-bottom: 15px;
+  padding-bottom: 19px;
   font-weight: 300;
   font-size: 14px;
   color: var(--gray);
@@ -37,7 +37,7 @@ export const ArtistBox = styled.div`
 `;
 
 export const TitleBox = styled.div`
-  padding-bottom: 11px;
+  padding-bottom: 24px;
   font-weight: 600;
   font-size: 20px;
   color: var(--main-color);
@@ -45,7 +45,7 @@ export const TitleBox = styled.div`
 
 export const RateContainer = styled.div`
   display: flex;
-  gap: 3px;
+  gap: 5px;
   align-items: center;
 
   & > div {

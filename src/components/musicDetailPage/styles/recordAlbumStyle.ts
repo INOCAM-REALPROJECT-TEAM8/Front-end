@@ -3,7 +3,7 @@ import recode from '../../../assets/Recode.png';
 
 export const AlbumCoverContainer = styled.div`
   position: relative;
-  padding: 0px 0px 13px;
+  padding: 0px 0px 11px;
 `;
 
 export const VinylRecord = styled.div`

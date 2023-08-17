@@ -14,7 +14,7 @@ export const ChatMsgBox = styled.div<{ $isMine: boolean }>`
   width: 275px;
   font-size: 17px;
   font-weight: 500;
-  color: #1b0658;
+  color: #220f57;
   ${({ $isMine }) =>
     $isMine
       ? css`
