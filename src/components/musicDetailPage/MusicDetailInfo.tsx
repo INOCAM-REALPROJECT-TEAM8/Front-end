@@ -10,6 +10,7 @@ import {
   TitleBox,
 } from './styles/musicDetailInfoStyle';
 import { ReactComponent as Star } from '../../assets/star.svg';
+import LeaveStars from './LeaveStars';
 
 function MusicDetailInfo({ music }: { music: MusicInfo }) {
   return (
@@ -22,6 +23,7 @@ function MusicDetailInfo({ music }: { music: MusicInfo }) {
         <Star />
         <div>{music.rate}</div>
       </RateContainer>
+      <LeaveStars musicId={music.id} />
     </MusicInfoContainer>
   );
 }
