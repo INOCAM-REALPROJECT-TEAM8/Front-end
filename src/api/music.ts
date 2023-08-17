@@ -8,6 +8,9 @@ export interface MusicInfo {
   title: string;
   artist: string;
   image: string;
+  genre?: string[];
+  rate?: number;
+  yUrl?: string;
 }
 
 export const searchMusics = async (keyword: string) => {

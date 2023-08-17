@@ -29,7 +29,7 @@ function App() {
           <Route path='musics/:musicId' element={<MusicDetailPage />} />
           <Route path='users/:userId' element={<UserPage />} />
           <Route path='user/:userId' element={<MyPage />} />
-          <Route path='users/:userId/following' element={<FollowingPage />} />
+          <Route path='user/:userId/following' element={<FollowingPage />} />
           <Route path='chats' element={<ChatRoomListPage />} />
         </Route>
         <Route path='/' element={<PageLayout headerFooterExist={false} />}>
