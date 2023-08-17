@@ -15,9 +15,11 @@ function MusicSlide({ playListName, musics }: { playListName: string; musics: Mu
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [clickedMusicId, setClickedMusicId] = useState('');
 
-  const handleMusicClick = () => {
+  const handleMusicClick = (musicId: string) => {
     setIsModalOpen(true);
+    setClickedMusicId(musicId);
   };
 
   return (
@@ -25,10 +27,10 @@ function MusicSlide({ playListName, musics }: { playListName: string; musics: Mu
       <h1>{playListName}</h1>
       <Slider {...settings}>
         {musics.map(music => (
-          <MusicCard music={music} key={music.id} onClick={handleMusicClick} />
+          <MusicCard music={music} key={music.id} onClick={() => handleMusicClick(music.id)} />
         ))}
       </Slider>
-      {isModalOpen && <MusicModal modalState={isModalOpen} setModalState={setIsModalOpen} />}
+      {isModalOpen && <MusicModal modalState={isModalOpen} setModalState={setIsModalOpen} musicId={clickedMusicId} />}
     </MusicSlideContainer>
   );
 }
