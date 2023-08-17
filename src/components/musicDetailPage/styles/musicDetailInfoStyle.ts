@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const MusicInfoContainer = styled.div`
-  padding: 0px 31px 23px;
+  padding: 0px 31px 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
