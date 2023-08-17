@@ -10,16 +10,12 @@ import {
   TitleBox,
 } from './styles/musicDetailInfoStyle';
 import { ReactComponent as Star } from '../../assets/star.svg';
+import LeaveStars from './LeaveStars';
 
 function MusicDetailInfo({ music }: { music: MusicInfo }) {
   return (
     <MusicInfoContainer>
       <RecordCover music={music} />
-      <GenresContainer>
-        {music.genres?.map(genre => (
-          <GenreBox>{genre}</GenreBox>
-        ))}
-      </GenresContainer>
       <AlbumBox>{music.album}</AlbumBox>
       <ArtistBox>{music.artist}</ArtistBox>
       <TitleBox>{music.title}</TitleBox>
@@ -27,6 +23,7 @@ function MusicDetailInfo({ music }: { music: MusicInfo }) {
         <Star />
         <div>{music.rate}</div>
       </RateContainer>
+      <LeaveStars musicId={music.id} />
     </MusicInfoContainer>
   );
 }

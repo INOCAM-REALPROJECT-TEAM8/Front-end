@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const MusicInfoContainer = styled.div`
-  padding: 0px 31px 23px;
+  padding: 0px 31px 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,34 +23,34 @@ export const GenreBox = styled.div`
 `;
 
 export const AlbumBox = styled.div`
-  padding-bottom: 15px;
+  padding-bottom: 20px;
   font-weight: 300;
   font-size: 14px;
   color: var(--gray);
 `;
 
 export const ArtistBox = styled.div`
-  padding-bottom: 7px;
+  padding-bottom: 10px;
   font-weight: 300;
-  font-size: 17px;
+  font-size: 20px;
   color: var(--gray);
 `;
 
 export const TitleBox = styled.div`
-  padding-bottom: 11px;
+  padding-bottom: 24px;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 24px;
   color: var(--main-color);
 `;
 
 export const RateContainer = styled.div`
   display: flex;
-  gap: 3px;
+  gap: 10px;
   align-items: center;
 
   & > div {
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
     color: var(--main-color);
   }
 `;

@@ -5,6 +5,7 @@ export const ChatSenderLable = styled.label`
   bottom: 0px;
 
   width: 100%;
+  max-width: 800px;
   height: 52px;
   background-color: white;
   padding: 16px 24px 17px;
