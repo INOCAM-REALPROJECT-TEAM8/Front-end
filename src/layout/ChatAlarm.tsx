@@ -59,11 +59,13 @@ const ChatAlarmContainer = styled.div`
   position: fixed;
   border-radius: 10px;
   height: 56px;
-  background-color: var(--main-color);
+  background-color: #1b0658;
+  opacity: 0.8;
   width: 100vw;
   max-width: 800px;
   z-index: 20;
   padding: 10px;
+  color: var(--white);
 
   .nickname {
     font-size: 20px;

@@ -1,10 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { ChatState } from '../../redux/modules/chatList';
-import { ChatRoomInfoContainer } from './styles/chatRoomInfoStyle';
+import {
+  ChatInfoContainer,
+  ChatRoomInfoContainer,
+  LastChatBox,
+  OpNicknameBox,
+  ProfileImageBox,
+} from './styles/chatRoomInfoStyle';
 
 export interface ChatRoomInfo {
   roomName: string;
-  nickName: string;
+  oppositeNickname: string;
   lastChatMessage: ChatState;
 }
 
@@ -14,11 +20,14 @@ function ChatRoom({ chatRoom }: { chatRoom: ChatRoomInfo }) {
   const handleRoomClick = () => {
     navigate(`/chat-room/${chatRoom.roomName}`);
   };
-
+  //@ToDo: chatRoom 정보 받을 때 상대 유저 프로필이미지도 받아오게 하기. ProfileImageBox의 src로 넣어줘야함.
   return (
     <ChatRoomInfoContainer onClick={handleRoomClick}>
-      <div>{chatRoom.nickName}</div>
-      <div>{chatRoom.lastChatMessage.message}</div>
+      <ProfileImageBox />
+      <ChatInfoContainer>
+        <OpNicknameBox>{chatRoom.oppositeNickname}</OpNicknameBox>
+        <LastChatBox>{chatRoom.lastChatMessage.message}</LastChatBox>
+      </ChatInfoContainer>
     </ChatRoomInfoContainer>
   );
 }

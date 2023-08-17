@@ -4,9 +4,10 @@ export const SearchResultsContainer = styled.div`
   position: absolute;
   top: 0px;
   width: 100%;
+  height: 216px;
   border-radius: 18px;
   background-color: var(--white);
-  overflow: hidden;
+  overflow: scroll;
   z-index: 1;
 `;
 
