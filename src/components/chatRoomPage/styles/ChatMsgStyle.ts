@@ -11,7 +11,8 @@ export const ChatMsgDivider = styled.div<{ $isSameUserAsPrev: boolean; $isMine: 
 
 export const ChatMsgBox = styled.div<{ $isMine: boolean }>`
   padding: 10px 13px;
-  width: 275px;
+  max-width: 275px;
+  word-break: break-all;
   font-size: 17px;
   font-weight: 500;
   color: #220f57;
