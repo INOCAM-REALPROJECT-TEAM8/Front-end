@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
 import { MusicInfo } from '../../api/music';
+import recode from '../../assets/recode.svg';
+import { styled } from 'styled-components';
 
 interface MusicPlayerProps {
   musicData: MusicInfo;
@@ -57,6 +59,12 @@ function MusicPlayer({ musicData }: MusicPlayerProps) {
           onEnded={handlePlaybackEnded}
         />
       </div>
+      <div>
+        <img src={musicData.image} alt='albumCover' />
+        <img src={recode} alt='recode' />
+      </div>
+      <span>{musicData.artist}</span>
+      <span>{musicData.title}</span>
       <button onClick={play15SecondsBefore}>15초 전</button>
       <button onClick={musicPlayButtonHandler}>플레이</button>
       <button onClick={play15SecondsAfter}>15초 후</button>
