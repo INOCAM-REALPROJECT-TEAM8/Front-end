@@ -3,7 +3,7 @@ import LeaveStarCard from './LeaveStarCard';
 import { LeaveStarsBox } from './styles/leaveStarsStyle';
 
 function LeaveStars({ musicId }: { musicId: string }) {
-  const { Modal, openModal, closeModal, openerRef } = useModal<HTMLDivElement>({
+  const { Modal, closeModal, openerRef } = useModal<HTMLDivElement>({
     coverExist: true,
     exitByOuterClick: true,
   });

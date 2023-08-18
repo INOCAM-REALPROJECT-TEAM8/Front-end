@@ -27,7 +27,7 @@ function MusicSlide({ playListName, musics }: { playListName: string; musics: Mu
       <h1>{playListName}</h1>
       <Slider {...settings}>
         {musics.map(music => (
-          <MusicCard music={music} key={music.id} onClick={() => handleMusicClick(music.id)} />
+          <MusicCard music={music} key={music.trackId} onClick={() => handleMusicClick(music.trackId)} />
         ))}
       </Slider>
       {isModalOpen && <MusicModal modalState={isModalOpen} setModalState={setIsModalOpen} musicId={clickedMusicId} />}
@@ -41,7 +41,7 @@ function MusicCard({ music, onClick }: { music: MusicInfo; onClick: () => void }
       <MusicCardContainer onClick={onClick}>
         <img src={music.image} alt='' />
         <h2>{music.title}</h2>
-        <div>{music.artist}</div>
+        <div>{music.artistsStringList}</div>
       </MusicCardContainer>
     </>
   );
