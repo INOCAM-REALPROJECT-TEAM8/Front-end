@@ -70,7 +70,7 @@ const ViewportCover = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #0000008f;
+  background-color: #00000000;
 
   z-index: 100;
   display: flex;
