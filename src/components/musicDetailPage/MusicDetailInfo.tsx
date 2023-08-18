@@ -15,7 +15,7 @@ function MusicDetailInfo({ music }: { music: MusicInfo }) {
         <Star />
         <div>{music.rate}</div>
       </RateContainer>
-      <LeaveStars musicId={music.trackId} />
+      <LeaveStars musicId={music.trackId || ''} />
     </MusicInfoContainer>
   );
 }

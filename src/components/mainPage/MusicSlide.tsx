@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
 import { MusicCardContainer, MusicSlideContainer } from './styles/MusicSlideStyle';
 import Slider from 'react-slick';
-import MusicModal from '../musicDetailPage/MusicModal';
 import { MusicInfo } from '../../api/music';
+import usePlayer from '../../hooks/usePlayer';
 
 function MusicSlide({ playListName, musics }: { playListName: string; musics: MusicInfo[] }) {
   const settings = {
@@ -14,24 +13,20 @@ function MusicSlide({ playListName, musics }: { playListName: string; musics: Mu
     arrows: false,
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [clickedMusicId, setClickedMusicId] = useState('');
-
-  const handleMusicClick = (musicId: string) => {
-    setIsModalOpen(true);
-    setClickedMusicId(musicId);
-  };
+  const { Player, AllOpenerContainingRef, openPlayer } = usePlayer<HTMLDivElement>();
 
   return (
-    <MusicSlideContainer>
-      <h1>{playListName}</h1>
-      <Slider {...settings}>
-        {musics.map(music => (
-          <MusicCard music={music} key={music.trackId} onClick={() => handleMusicClick(music.trackId)} />
-        ))}
-      </Slider>
-      {isModalOpen && <MusicModal modalState={isModalOpen} setModalState={setIsModalOpen} musicId={clickedMusicId} />}
-    </MusicSlideContainer>
+    <>
+      <MusicSlideContainer ref={AllOpenerContainingRef}>
+        <h1>{playListName}</h1>
+        <Slider {...settings}>
+          {musics.map(music => (
+            <MusicCard music={music} key={music.trackId} onClick={() => openPlayer(music.trackId)} />
+          ))}
+        </Slider>
+      </MusicSlideContainer>
+      <Player />
+    </>
   );
 }
 
