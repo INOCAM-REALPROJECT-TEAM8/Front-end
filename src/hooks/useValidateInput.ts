@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 // inputOnChangeHandler: 인풋 태그의 onChange로 들어갈 함수
 // valid: 해당 인풋 태그가 유효한지 여부
 // validate: 수동 유효성 검사 함수
-const useValidateInput = (type?: 'email' | 'password' | undefined, automatic: boolean | undefined = true) => {
+const useValidateInput = (type?: 'email' | 'password' | '' | undefined, automatic: boolean | undefined = true) => {
   const pattern =
     type === 'email' ? /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ : type === 'password' ? /^.{8,}$/ : /^.{1,}$/;
 

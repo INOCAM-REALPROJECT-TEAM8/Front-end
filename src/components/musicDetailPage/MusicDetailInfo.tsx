@@ -9,7 +9,7 @@ import {
   RateContainer,
   TitleBox,
 } from './styles/musicDetailInfoStyle';
-import { ReactComponent as Star } from '../../assets/star.svg';
+import { ReactComponent as Star } from '../../assets/emptyStar.svg';
 import LeaveStars from './LeaveStars';
 
 function MusicDetailInfo({ music }: { music: MusicInfo }) {
