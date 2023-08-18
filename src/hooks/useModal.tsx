@@ -1,4 +1,4 @@
-import { ReactComponentElement, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 
 interface ModalConfig {
@@ -17,10 +17,6 @@ function useModal<OpenerElementType>({ coverExist, exitByOuterClick }: ModalConf
   const closeModal = useCallback(() => {
     setIsOpen(false);
   }, []);
-
-  useEffect(() => {
-    (openerRef as unknown as React.RefObject<HTMLElement>).current?.addEventListener('click', openModal);
-  }, [openerRef.current]);
 
   const ModalTemplate = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
@@ -58,9 +54,9 @@ function useModal<OpenerElementType>({ coverExist, exitByOuterClick }: ModalConf
   return {
     Modal: isOpen ? ModalTemplate : () => <></>,
     openerRef,
-    isOpen,
     openModal,
     closeModal,
+    isOpen,
   };
 }
 
@@ -70,7 +66,7 @@ const ViewportCover = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #0000008f;
+  background-color: #00000000;
 
   z-index: 100;
   display: flex;

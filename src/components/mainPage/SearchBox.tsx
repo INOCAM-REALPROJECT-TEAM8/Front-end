@@ -3,16 +3,10 @@ import { SearchContainer, SearchIcon, SearchInput, SearchInputContainer, Vertica
 import SearchResults from './SearchResults';
 import { MusicInfo, searchMusics } from '../../api/music';
 
-const sampleMusicList: { title: string; artist: string }[] = Array(10)
-  .fill(0)
-  .map((item, index) => {
-    return { title: `title${index}`, artist: `artist${index}` };
-  });
-
 function SearchBox() {
   const [input, setInput] = useState<string>('');
   const [timer, setTimer] = useState<NodeJS.Timeout>();
-  const [resultMusics, setResultMusics] = useState<{ title: string; artist: string }[]>(sampleMusicList);
+  const [resultMusics, setResultMusics] = useState<MusicInfo[]>([]);
 
   useEffect(() => {
     return () => {
