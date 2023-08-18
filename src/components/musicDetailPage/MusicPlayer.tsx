@@ -62,7 +62,7 @@ function MusicPlayer({ musicData }: MusicPlayerProps) {
         <img src={musicData.image} alt='albumCover' />
         <img src={recode} alt='recode' />
       </div>
-      <span>{musicData.artist}</span>
+      <span>{musicData.artistsStringList}</span>
       <span>{musicData.title}</span>
       <button onClick={play15SecondsBefore}>15초 전</button>
       <button onClick={musicPlayButtonHandler}>플레이</button>
