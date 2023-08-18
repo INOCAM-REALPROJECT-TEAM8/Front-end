@@ -16,8 +16,8 @@ function KeywordSlides({ musics }: { musics: MusicInfo[] }) {
   return (
     <PopularKeywordsContainer>
       <Slider {...settings}>
-        {musics.map(({ title, artist }, index) => (
-          <PopularKeywordBox key='index'>{`${title}`}</PopularKeywordBox>
+        {musics.map(({ title, artistsStringList }, index) => (
+          <PopularKeywordBox key='index'>{`${title} - ${artistsStringList}`}</PopularKeywordBox>
         ))}
       </Slider>
     </PopularKeywordsContainer>

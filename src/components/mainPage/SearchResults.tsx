@@ -1,20 +1,11 @@
+import { MusicInfo } from '../../api/music';
 import { SearchResultBox, SearchResultsContainer } from './styles/SearchResultsStyle';
 
-type music = {
-  title: string;
-  artist: string;
-};
-
-function SearchResults({ results }: { results: music[] }) {
-  const emptyItem: music = {
-    title: '',
-    artist: '',
-  };
-
+function SearchResults({ results }: { results: MusicInfo[] }) {
   return (
     <SearchResultsContainer>
-      {[emptyItem, ...results].map(({ artist, title }, index) => {
-        return <SearchResultBox $colorExist={!!(index % 2)}>{`${artist} - ${title}`}</SearchResultBox>;
+      {[...results].map(({ artistsStringList, title }, index) => {
+        return <SearchResultBox $colorExist={!!(index % 2)}>{`${title} - ${artistsStringList}`}</SearchResultBox>;
       })}
     </SearchResultsContainer>
   );

@@ -13,7 +13,6 @@ import ChatMsg from '../components/chatRoomPage/ChatMsg';
 function ChatRoomPage() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { roomId } = useParams();
   const { myId, opId } = parseRoomId(roomId);
   if (!roomId || opId === -1) {
@@ -30,11 +29,11 @@ function ChatRoomPage() {
     queryClient.invalidateQueries([`chats/${roomId}`]);
   }, []);
 
-  const chatContainerRef = useRef<HTMLDivElement>(null);
-
+  const chatEndRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    chatContainerRef.current?.scrollIntoView({ behavior: 'instant', block: 'end' });
+    chatEndRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
   }, [chats]);
+
   useEffect(() => {
     if (newChat) {
       setChats([...chats, newChat]);
@@ -51,7 +50,7 @@ function ChatRoomPage() {
   return (
     <div>
       <Header chatNickname={opNickname} />
-      <ChatContainer ref={chatContainerRef}>
+      <ChatContainer>
         {chats.map((chat, index) => (
           <ChatMsg
             key={index}
@@ -62,6 +61,7 @@ function ChatRoomPage() {
           />
         ))}
       </ChatContainer>
+      <div ref={chatEndRef} />
       <ChatSender {...{ chats, setChats, opId }} />
     </div>
   );

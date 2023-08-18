@@ -4,10 +4,10 @@ import ourAxios from './ourAxios';
 import store from '../redux/config/configStore';
 
 export interface MusicInfo {
-  id: string;
+  trackId: string;
   album: string;
   title: string;
-  artist: string;
+  artistsStringList: string;
   image: string;
   genres?: string[];
   rate?: number;
