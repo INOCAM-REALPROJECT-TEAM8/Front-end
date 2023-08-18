@@ -1,6 +1,7 @@
 import Slider from 'react-slick';
 import { PopularKeywordBox, PopularKeywordsContainer } from './styles/KeywordSlidesStyle';
 import { MusicInfo } from '../../api/music';
+import usePlayer from '../../hooks/usePlayer';
 
 const settings = {
   className: 'slider',
@@ -12,15 +13,19 @@ const settings = {
 };
 
 function KeywordSlides({ musics }: { musics: MusicInfo[] }) {
-  //@ToDo: 곡 눌렀을 때 모달 여는 로직 추가해야 함.
+  const { Player, AllOpenerContainingRef, openPlayer } = usePlayer<HTMLDivElement>();
+
   return (
-    <PopularKeywordsContainer>
-      <Slider {...settings}>
-        {musics.map(({ title, artistsStringList }, index) => (
-          <PopularKeywordBox key='index'>{`${title} - ${artistsStringList}`}</PopularKeywordBox>
-        ))}
-      </Slider>
-    </PopularKeywordsContainer>
+    <>
+      <PopularKeywordsContainer ref={AllOpenerContainingRef}>
+        <Slider {...settings}>
+          {musics.map(({ title, trackId }, index) => (
+            <PopularKeywordBox key='index' onClick={() => openPlayer(trackId)}>{`${title}`}</PopularKeywordBox>
+          ))}
+        </Slider>
+      </PopularKeywordsContainer>
+      <Player />
+    </>
   );
 }
 
