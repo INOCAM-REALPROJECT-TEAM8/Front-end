@@ -5,6 +5,7 @@ import UserMusicSlide from '../components/userpage/UserMusicSlide';
 import MusicBox from '../components/userpage/MusicBox';
 import UnderBar from '../icons/underbarbutton.png';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
 function MyPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -31,11 +32,15 @@ function MyPage() {
   });
 
   const handleImageClick = () => {
-    // 유저 이미지 클릭 시 파일 업로드 input 클릭 이벤트 실행
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
   };
+  //  const {
+  //    data: userMusics,
+  //    isSuccess: isSuccessUserMusics,
+  //    isError: isErrorUserMusics,
+  //  } = isLoggedIn ? useQuery([`${userId}/musics`], getUserMusics) : { data: [], isSuccess: false, isError: false };
 
   const navigate = useNavigate();
 
@@ -55,12 +60,17 @@ function MyPage() {
       reader.readAsDataURL(selectedFile);
     }
   };
+  const handleRoundButtonClick = () => {
+    // 버튼 클릭 시 동작할 로직 추가
+  };
 
   return (
     <MainContainer>
       <UserImageContainer onClick={handleImageClick}>
         {selectedImage ? <UserImage src={selectedImage} /> : <Placeholder>Upload Image</Placeholder>}
+        <RoundButton onClick={handleRoundButtonClick}>+</RoundButton>
       </UserImageContainer>
+
       <input type='file' ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
       <UserName>{nickname}</UserName>
       <SeparatorLine />
@@ -98,6 +108,7 @@ function MyPage() {
 export default MyPage;
 
 const UserImageContainer = styled.div`
+  position: relative;
   width: 120px;
   height: 120px;
   background-color: white;
@@ -106,8 +117,8 @@ const UserImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 30px auto;
   border: 3px solid white;
+  margin: 30px auto;
 `;
 
 const UserImage = styled.img`
@@ -115,6 +126,24 @@ const UserImage = styled.img`
   height: 100%;
   border-radius: 60px;
   object-fit: cover;
+`;
+
+const RoundButton = styled.button`
+  position: absolute;
+  bottom: -10px;
+  right: -5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #551a8b;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 `;
 
 const Placeholder = styled.div`
