@@ -11,7 +11,7 @@ export interface MusicInfo {
   image: string;
   genres?: string[];
   rate?: number;
-  yUrl?: string;
+  yurl?: string;
 }
 
 //search 관련 api
