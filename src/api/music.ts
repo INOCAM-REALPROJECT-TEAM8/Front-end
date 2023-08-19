@@ -4,10 +4,10 @@ import ourAxios from './ourAxios';
 import store from '../redux/config/configStore';
 
 export interface MusicInfo {
-  id: string;
+  trackId?: string;
   album: string;
   title: string;
-  artist: string;
+  artistsStringList: string;
   image: string;
   genres?: string[];
   rate?: number;
@@ -21,7 +21,7 @@ export const searchMusics = async (keyword: string) => {
 };
 
 export const getRecommendSearches = async () => {
-  const { data }: AxiosResponse<MusicInfo[]> = await ourAxios.get(`/api/search/recommendKeyword`);
+  const { data }: AxiosResponse<MusicInfo[]> = await ourAxios.get(`/api/tracks/search/recommend-keywords`);
   return data;
 };
 
@@ -73,6 +73,11 @@ export const addToRecentHeards = async ({ musicId }: { musicId: string }) => {
 
 //곡 상세조회 api
 export const getMusicDetailP = (musicId: string) => async () => {
+  const { data }: AxiosResponse<MusicInfo> = await ourAxios.get(`/api/tracks/${musicId}`);
+  return data;
+};
+
+export const getMusicModalInfoP = (musicId: string) => async () => {
   const { data }: AxiosResponse<MusicInfo> = await ourAxios.get(`/api/tracks/${musicId}/modal`);
   return data;
 };
