@@ -5,14 +5,16 @@ import UserMusicSlide from '../components/userpage/UserMusicSlide';
 import MusicBox from '../components/userpage/MusicBox';
 import UnderBar from '../icons/underbarbutton.png';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { SelectState } from '../redux/config/configStore';
+import { getUserInfo } from '../api/user';
 import { useQuery } from '@tanstack/react-query';
+import { userInfo } from 'os';
 
 function MyPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
-  const [nickname, setNickname] = useState<string>('John Doe'); // 기본 닉네임 설정
-  const [followerCount, setFollowerCount] = useState<number>(100); // 예시로 팔로워 수를 100으로 설정
-  const [followingCount, setFollowingCount] = useState<number>(100); // 예시로 팔로워 수를 100으로 설정
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [buttonType, setButtonType] = useState<'plus' | 'check'>('plus');
 
@@ -30,6 +32,12 @@ function MyPage() {
   ].map((albumImgURL, index) => {
     return { title: `제목${index}`, artist: `가수${index}`, id: index, albumImgURL };
   });
+  const { userId, nickname } = useSelector((state: SelectState) => state.userInfo);
+
+  const { data: userInfo, isSuccess } = useQuery([`userInfo`, userId], getUserInfo(userId));
+
+  const followerCount = userInfo?.follower ?? 0;
+  const followingCount = userInfo?.following ?? 0;
 
   const handleImageClick = () => {
     if (fileInputRef.current) {
