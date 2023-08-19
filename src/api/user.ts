@@ -7,9 +7,13 @@ import { userLogin, userLogout } from '../redux/modules/userInfo';
 import { AES, enc } from 'crypto-js';
 
 interface UserInfo {
+  userId?: number;
   email: string;
   password: string;
   nickname?: string;
+  imageUrl?: string; //어느곳에 들어가는지 확실하지 않을 때 ?로 사용(옵션으로 들어가도 되고 안들어가도 되고)
+  following?: number;
+  follower?: number;
 }
 
 interface TokenPayload {
@@ -103,7 +107,7 @@ export const logout = async () => {
   store.dispatch(userLogout());
 };
 
-export const signup = async ({ email, password, nickname }: Required<UserInfo>) => {
+export const signup = async ({ email, password, nickname }: UserInfo) => {
   const { data }: AxiosResponse = await ourAxios.post('/api/users/signup', { email, password, nickname });
   return data;
 };
@@ -115,6 +119,11 @@ export const withdraw = async () => {
 
 export const forgetPW = async ({ email }: Pick<UserInfo, 'email'>) => {
   const { data }: AxiosResponse = await ourAxios.post('/api/users/email/reset-password', { email });
+  return data;
+};
+
+export const getUserInfo = (userId: number) => async (): Promise<UserInfo> => {
+  const { data }: AxiosResponse<UserInfo> = await ourAxios.get(`/api/users/user-info/${userId}`);
   return data;
 };
 
