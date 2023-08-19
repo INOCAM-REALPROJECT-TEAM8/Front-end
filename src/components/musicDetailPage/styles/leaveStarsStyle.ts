@@ -13,7 +13,7 @@ export const LeaveStarCardContainer = styled.div`
   width: 380px;
   height: 380px;
   padding: 20px;
-  background-color: var(--main-color);
+  background-color: #220f57;
 `;
 
 export const CommentInput = styled.input`

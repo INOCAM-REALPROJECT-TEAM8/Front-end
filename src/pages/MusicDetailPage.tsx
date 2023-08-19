@@ -43,15 +43,15 @@ function MusicDetailPage() {
     getMusicDetailP(musicId ?? ''),
   );
 
-  // const { data: comments, isSuccess: isCommentsSuccess } = useQuery(
-  //   [`comments/${musicId}`],
-  //   getCommentsP(musicId ?? ''),
-  // );
+  const { data: comments, isSuccess: isCommentsSuccess } = useQuery(
+    [`comments/${musicId}`],
+    getCommentsP(musicId ?? ''),
+  );
 
   return (
     <MusicDetailPageLayout>
       <MusicDetailInfo music={isMusicSuccess ? music : dummyMusic} />
-      <CommentList comments={dummyComments} />
+      <CommentList comments={isCommentsSuccess ? comments : dummyComments} />
     </MusicDetailPageLayout>
   );
 }
