@@ -95,7 +95,7 @@ function MusicPlayer({ musicId }: MusicPlayerProps) {
         <RecodeImage src={recode} alt='recode' />
       </AlbumCover>
       <LpCartridge src={lpcartridge} alt='lpCartridge' width='100px' height='100px' />
-      <MusicArtists>{musicData.artistsStringList}</MusicArtists>
+      <MusicArtists>{musicData.artist}</MusicArtists>
       <MusicTitle>{musicData.title}</MusicTitle>
       <button onClick={play15SecondsBefore}>15초 전</button>
       <button onClick={musicPlayButtonHandler}>플레이</button>
@@ -139,8 +139,8 @@ const LpCartridge = styled.img`
   position: absolute;
   width: 125px;
   height: 136px;
-  right: 30px;
-  top: 365px;
+  right: 10px;
+  top: 180px;
   z-index: 3;
 `;
 
