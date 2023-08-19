@@ -14,7 +14,7 @@ const dummyMusic: MusicInfo = {
   trackId: 'dddd',
   album: '그레이트 서울 인베이전 Semi Final',
   genres: ['인디음악', '록/메탈'],
-  rate: 3.8,
+  star: 3.8,
 };
 
 const dummyComments: Comment[] = [
