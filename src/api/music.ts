@@ -12,6 +12,7 @@ export interface MusicInfo {
   genres?: string[];
   star?: number;
   yurl?: string;
+  artist?: string;
 }
 
 //search 관련 api
