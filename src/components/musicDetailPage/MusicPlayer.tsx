@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
 import { MusicInfo, addToRecentHeards, getMusicModalInfoP } from '../../api/music';
 import recode from '../../assets/recode.svg';
+import lpcartridge from '../../assets/lpCartridge.svg';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
@@ -12,7 +13,7 @@ const dummyMusic: MusicInfo = {
   title: 'Lemon',
   artistsStringList: '米津玄師 (요네즈 켄시)',
   album: '그레이트 서울 인베이전 Semi Final',
-  yUrl: 'https://www.youtube.com/watch?v=SX_ViT4Ra7k',
+  yurl: 'https://www.youtube.com/watch?v=SX_ViT4Ra7k',
 };
 
 interface MusicPlayerProps {
@@ -79,7 +80,7 @@ function MusicPlayer({ musicId }: MusicPlayerProps) {
       <div className='MusicPlayer'>
         <ReactPlayer
           ref={playerRef}
-          url={`${musicData.yUrl}`}
+          url={`${musicData.yurl}`}
           playing={isPlaying}
           loop={isLooping}
           controls={false}
@@ -89,12 +90,13 @@ function MusicPlayer({ musicId }: MusicPlayerProps) {
           onEnded={handlePlaybackEnded}
         />
       </div>
-      <div onClick={() => navigate(`/musics/${musicId}`)}>
-        <img src={musicData.image} alt='albumCover' width='200px' height='200px' />
-        <img src={recode} alt='recode' width='100px' height='100px' />
-      </div>
-      <span>{musicData.artistsStringList}</span>
-      <span>{musicData.title}</span>
+      <AlbumCover onClick={() => navigate(`/musics/${musicId}`)}>
+        <AlbumImage src={musicData.image} alt='albumCover' />
+        <RecodeImage src={recode} alt='recode' />
+      </AlbumCover>
+      <LpCartridge src={lpcartridge} alt='lpCartridge' width='100px' height='100px' />
+      <MusicArtists>{musicData.artistsStringList}</MusicArtists>
+      <MusicTitle>{musicData.title}</MusicTitle>
       <button onClick={play15SecondsBefore}>15초 전</button>
       <button onClick={musicPlayButtonHandler}>플레이</button>
       <button onClick={play15SecondsAfter}>15초 후</button>
@@ -103,10 +105,56 @@ function MusicPlayer({ musicId }: MusicPlayerProps) {
 }
 
 const ModalContainer = styled.div`
+  position: relative;
   border-radius: 16px;
   background-color: rgba(119, 81, 225, 0.95);
   width: 348px;
-  height: 352px;
+  height: 466px;
+`;
+
+const AlbumCover = styled.div`
+  border-radius: 16px;
+  width: 100%;
+  height: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const AlbumImage = styled.img`
+  position: absolute;
+  border-radius: 100%;
+  width: 120px;
+  height: 120px;
+  z-index: 2;
+`;
+
+const RecodeImage = styled.img`
+  width: 280px;
+  height: 280px;
+  z-index: 1;
+`;
+
+const LpCartridge = styled.img`
+  position: absolute;
+  width: 125px;
+  height: 136px;
+  right: 30px;
+  top: 365px;
+  z-index: 3;
+`;
+
+const MusicArtists = styled.p`
+  color: white;
+  font-size: 16px;
+  padding-left: 20px;
+`;
+
+const MusicTitle = styled.p`
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 20px;
 `;
 
 export default MusicPlayer;
