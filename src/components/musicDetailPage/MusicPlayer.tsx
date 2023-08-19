@@ -12,7 +12,7 @@ const dummyMusic: MusicInfo = {
   title: 'Lemon',
   artistsStringList: '米津玄師 (요네즈 켄시)',
   album: '그레이트 서울 인베이전 Semi Final',
-  yUrl: 'https://www.youtube.com/watch?v=SX_ViT4Ra7k',
+  yurl: 'https://www.youtube.com/watch?v=SX_ViT4Ra7k',
 };
 
 interface MusicPlayerProps {
@@ -79,7 +79,7 @@ function MusicPlayer({ musicId }: MusicPlayerProps) {
       <div className='MusicPlayer'>
         <ReactPlayer
           ref={playerRef}
-          url={`${musicData.yUrl}`}
+          url={`${musicData.yurl}`}
           playing={isPlaying}
           loop={isLooping}
           controls={false}
