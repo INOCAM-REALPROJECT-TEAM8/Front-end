@@ -12,6 +12,10 @@ export const MusicSlideContainer = styled.div`
     width: 100%;
     padding-top: 18px;
   }
+
+  & .slick-track {
+    margin: 0px;
+  }
 `;
 
 export const CoveredCard = styled.div`
