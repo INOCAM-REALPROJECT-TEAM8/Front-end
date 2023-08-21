@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getFollowingList, FollowUser } from '../api/fallow';
+import { getFollowingList, FollowUser } from '../api/follow';
 import { useParams } from 'react-router-dom';
 
 function FollowingPage() {

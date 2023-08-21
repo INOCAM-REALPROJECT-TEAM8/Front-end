@@ -19,7 +19,7 @@ import CheckButton from '../../icons/CheckButton.png';
 import WhiteMessageButton from '../../icons/WhiteMessageButton.png';
 import { getRoomId } from '../../redux/modules/chatList';
 import basicProfileImg from '../../assets/mascot.png';
-import { followUser } from '../../api/fallow';
+import { followUser } from '../../api/follow';
 
 const dummyUserInfo: UserPageInfo = {
   userId: 2,

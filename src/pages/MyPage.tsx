@@ -26,11 +26,11 @@ function MyPage() {
   const followerCount = userInfo?.follower ?? 0;
   const followingCount = userInfo?.following ?? 0;
 
-  const handleImageClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
+  // const handleImageClick = () => {
+  //   if (fileInputRef.current) {
+  //     fileInputRef.current.click();
+  //   }
+  // };
   //  const {
   //    data: userMusics,
   //    isSuccess: isSuccessUserMusics,
@@ -41,6 +41,10 @@ function MyPage() {
 
   const handleFollowingLabelClick = () => {
     navigate('following');
+  };
+
+  const handleFollowerLabelClick = () => {
+    navigate('follower');
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +60,7 @@ function MyPage() {
     }
   };
   const handleRoundButtonClick = () => {
-    // 버튼 클릭 시 동작할 로직 추가
+    navigate('myinfo');
   };
 
   const { data: playlistMusics, isSuccess: playlistSuccess } = useQuery(['playList', userId], getPlaylistP(userId));
@@ -64,7 +68,7 @@ function MyPage() {
 
   return (
     <MainContainer>
-      <UserImageContainer onClick={handleImageClick}>
+      <UserImageContainer>
         {selectedImage ? <UserImage src={selectedImage} /> : <Placeholder>Upload Image</Placeholder>}
         <RoundButton onClick={handleRoundButtonClick}>+</RoundButton>
       </UserImageContainer>
@@ -78,7 +82,7 @@ function MyPage() {
           <StatsNumber>{followingCount}</StatsNumber>
         </FollowStats>
         <FollowStats>
-          <StatsLabel>팔로워</StatsLabel>
+          <StatsLabel onClick={handleFollowerLabelClick}>팔로워</StatsLabel>
           <StatsNumber>{followerCount}</StatsNumber>
         </FollowStats>
       </FollowStatsContainer>
