@@ -19,7 +19,7 @@ function LeaveStarCard({ musicId, closeModal }: { musicId: string; closeModal: (
       alert('코멘트를 작성해주세요');
       return;
     }
-    mutation.mutate({ content, star: 4.5, musicId });
+    mutation.mutate({ content, musicId });
   };
 
   return (

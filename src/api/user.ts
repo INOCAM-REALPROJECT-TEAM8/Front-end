@@ -1,6 +1,6 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import ourAxios from './ourAxios';
-import { deleteWithToken } from './withToken';
+import { deleteWithToken, getWithToken } from './withToken';
 import jwtDecode from 'jwt-decode';
 import store from '../redux/config/configStore';
 import { userLogin, userLogout } from '../redux/modules/userInfo';
@@ -10,10 +10,14 @@ interface UserInfo {
   userId?: number;
   email: string;
   password: string;
-  nickname?: string;
-  imageUrl?: string; //어느곳에 들어가는지 확실하지 않을 때 ?로 사용(옵션으로 들어가도 되고 안들어가도 되고)
-  following?: number;
-  follower?: number;
+  nickname?: string; //어느곳에 들어가는지 확실하지 않을 때 ?로 사용(옵션으로 들어가도 되고 안들어가도 되고)
+}
+
+export interface UserPageInfo extends Omit<UserInfo, 'email' | 'password'> {
+  imageUrl: string | null;
+  following: number;
+  follower: number;
+  isFollowing: boolean;
 }
 
 interface TokenPayload {
@@ -90,7 +94,6 @@ export const login = async ({ email, password }: UserInfo) => {
   const refreshToken = headers.get('refresh-token');
   if (refreshToken) {
     const secretKey = process.env.REACT_APP_CRYPTO_SECRET_KEY;
-    console.log(secretKey);
     if (secretKey) {
       const encryptedToken = AES.encrypt(refreshToken, secretKey).toString();
       console.log(encryptedToken);
@@ -122,8 +125,8 @@ export const forgetPW = async ({ email }: Pick<UserInfo, 'email'>) => {
   return data;
 };
 
-export const getUserInfo = (userId: number) => async (): Promise<UserInfo> => {
-  const { data }: AxiosResponse<UserInfo> = await ourAxios.get(`/api/users/user-info/${userId}`);
+export const getUserInfo = (userId: number) => async (): Promise<UserPageInfo> => {
+  const { data }: AxiosResponse<UserPageInfo> = await getWithToken(`/api/users/user-info/${userId}`);
   return data;
 };
 

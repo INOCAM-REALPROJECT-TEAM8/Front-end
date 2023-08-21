@@ -11,22 +11,22 @@ import {
   StarContainer,
 } from './styles/commentStyle';
 
-function CommentInfo({ userId, nickname, content, star }: Comment) {
+function CommentInfo({ userId, nickname, content }: Comment) {
   const navigate = useNavigate();
-  const starRates = [...Array(Math.floor(star)).fill(1), star - Math.floor(star)];
+  //const starRates = [...Array(Math.floor(star)).fill(1), star - Math.floor(star)];
   return (
     <CommentContainer>
       <ProfileContainer onClick={() => navigate(`/users/${userId}`)}>
         <ProfileImg />
         <NicknameBox>{nickname}</NicknameBox>
       </ProfileContainer>
-      <StarContainer>
+      {/* <StarContainer>
         {starRates.map(fillRate => (
           <StarBox $fillRate={fillRate}>
             <FilledStar />
           </StarBox>
         ))}
-      </StarContainer>
+      </StarContainer> */}
       <ContentBox>{content}</ContentBox>
     </CommentContainer>
   );

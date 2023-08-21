@@ -6,8 +6,11 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { connectSocket, disconnectSocket } from '../redux/modules/socket';
 import useStomp from '../hooks/useStomp';
+import { useQueryClient } from '@tanstack/react-query';
+import { ChatAlarmContainer } from './styles/chatAlarmStyle';
 
 function ChatAlarm() {
+  const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const { subscribe, unsubscribe, subscriptions, disconnect, isConnected } = useStomp(
     { brokerURL: process.env.REACT_APP_BROKER_URL },
@@ -27,8 +30,8 @@ function ChatAlarm() {
   useEffect(() => {
     if (isConnected) {
       subscribe<ChatState>(`/sub/user/${userId}`, chat => {
-        console.log(chatRoomId, getRoomId(chat));
-        if (chatRoomId === getRoomId(chat)) {
+        queryClient.invalidateQueries(['ChatRoomList']);
+        if (chatRoomId === getRoomId(chat.senderId)) {
           dispatch(addRoomChat(chat));
         } else {
           dispatch(addExtraChat(chat));
@@ -47,34 +50,12 @@ function ChatAlarm() {
 
   return (
     lastExtraChat && (
-      <ChatAlarmContainer onClick={() => navigate(`/chat-room/${getRoomId(lastExtraChat)}`)}>
+      <ChatAlarmContainer onClick={() => navigate(`/chat-room/${getRoomId(lastExtraChat.senderId)}`)}>
         <div className='nickname'>{lastExtraChat.nickname}</div>
         <div className='message'>{lastExtraChat.message}</div>
       </ChatAlarmContainer>
     )
   );
 }
-
-const ChatAlarmContainer = styled.div`
-  position: fixed;
-  border-radius: 10px;
-  height: 56px;
-  background-color: #1b0658;
-  opacity: 0.8;
-  width: 100vw;
-  max-width: 800px;
-  z-index: 20;
-  padding: 10px;
-  color: var(--white);
-
-  .nickname {
-    font-size: 20px;
-    font-weight: 600;
-  }
-  .message {
-    font-size: 15px;
-    font-weight: 500;
-  }
-`;
 
 export default ChatAlarm;
