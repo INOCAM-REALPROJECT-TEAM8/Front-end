@@ -11,6 +11,7 @@ import { SelectState } from '../redux/config/configStore';
 import { ReactComponent as Logo } from '../assets/hideLogo.svg';
 import { Button, Input, LoginBox, LogoContainer } from '../components/loginPage/styles/Input';
 import { AxiosError } from 'axios';
+import React from 'react';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -50,14 +51,26 @@ function LoginPage() {
     }
   };
 
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleLoginClick();
+    }
+  };
+
   return (
     <MainContainer>
       <LogoContainer>
         <Logo onClick={() => navigate('/')} style={{ width: '106px', height: '60px', cursor: 'pointer' }} />
       </LogoContainer>
       <LoginBox>
-        <Input type='text' placeholder='이메일' value={email} onChange={handleEmailOnChange} />
-        <Input type='password' placeholder='비밀번호' value={password} onChange={handlePwOnChange} />
+        <Input onKeyDown={handleEnter} type='text' placeholder='이메일' value={email} onChange={handleEmailOnChange} />
+        <Input
+          onKeyDown={handleEnter}
+          type='password'
+          placeholder='비밀번호'
+          value={password}
+          onChange={handlePwOnChange}
+        />
         <Button onClick={handleLoginClick} $bgColor='white' color='#7751e1'>
           로그인
         </Button>
