@@ -38,8 +38,7 @@ export const getPopularMusics = async () => {
 };
 
 //playlist 관련 api
-export const getPlaylist = async () => {
-  const { userId } = store.getState().userInfo;
+export const getPlaylistP = (userId: number) => async () => {
   const { data }: AxiosResponse<MusicInfo[]> = await getWithToken(`/api/user/${userId}/playlist`);
   return data;
 };
@@ -59,16 +58,15 @@ export const deleteFromPlaylist = async ({ musicId }: { musicId: string }) => {
 };
 
 //최근 들은 음악 관련 api
-export const getRecentHeards = async () => {
-  const { userId } = store.getState().userInfo;
-  const { data }: AxiosResponse<MusicInfo[]> = await getWithToken(`/api/users/${userId}/recent`);
+export const getRecentHeardsP = (userId: number) => async () => {
+  //@ToDo 경로 물어보기
+  const { data }: AxiosResponse<MusicInfo[]> = await ourAxios.get(`/api/tracks/users/${userId}/recent`);
   return data;
 };
 
 export const addToRecentHeards = async ({ musicId }: { musicId: string }) => {
-  //@ToDo: 요청 body 어떻게 보낼지 명확히 정하기
-  const { userId } = store.getState().userInfo;
-  const { data }: AxiosResponse = await postWithToken(`/api/users/${userId}/recent`, { musicId });
+  //@ToDo: 경로 물어보기
+  const { data }: AxiosResponse = await postWithToken(`/api/tracks/${musicId}/recent`, {});
   return data;
 };
 

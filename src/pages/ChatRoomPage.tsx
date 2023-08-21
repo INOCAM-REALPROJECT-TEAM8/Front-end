@@ -49,7 +49,7 @@ function ChatRoomPage() {
 
   return (
     <div>
-      <Header chatNickname={opNickname} />
+      <Header chatNickname={opNickname} chatOpId={opId} />
       <ChatContainer>
         {chats.map((chat, index) => (
           <ChatMsg
