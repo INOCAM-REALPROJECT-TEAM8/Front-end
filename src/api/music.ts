@@ -39,21 +39,21 @@ export const getPopularMusics = async () => {
 
 //playlist 관련 api
 export const getPlaylistP = (userId: number) => async () => {
-  const { data }: AxiosResponse<MusicInfo[]> = await getWithToken(`/api/user/${userId}/playlist`);
+  const { data }: AxiosResponse<MusicInfo[]> = await getWithToken(`/api/playlist/${userId}`);
   return data;
 };
 
 export const addToPlaylist = async ({ musicId }: { musicId: string }) => {
   //@ToDo: 요청 body 어떻게 보낼지 명확히 정하기
   const { userId } = store.getState().userInfo;
-  const { data }: AxiosResponse = await postWithToken(`/api/user/${userId}/playlist`, { musicId });
+  const { data }: AxiosResponse = await postWithToken(`/api/${userId}/playlist`, { musicId });
   return data;
 };
 
 export const deleteFromPlaylist = async ({ musicId }: { musicId: string }) => {
   //@ToDo: 요청 body 어떻게 보낼지 명확히 정하기. url에 보낼지 정하기
   const { userId } = store.getState().userInfo;
-  const { data }: AxiosResponse = await deleteWithToken(`/api/user/${userId}/playlist${musicId}`);
+  const { data }: AxiosResponse = await deleteWithToken(`/api/user/${userId}/playlist/${musicId}`);
   return data;
 };
 
