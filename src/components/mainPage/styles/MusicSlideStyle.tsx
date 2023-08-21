@@ -14,6 +14,16 @@ export const MusicSlideContainer = styled.div`
   }
 `;
 
+export const CoveredCard = styled.div`
+  padding-right: 11px;
+  div {
+    border-radius: 8px;
+    height: 107px;
+    width: 107px;
+    background-color: #a5a5a5;
+  }
+`;
+
 export const MusicCardContainer = styled.div`
   cursor: pointer;
   width: 107px;
