@@ -1,15 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { MusicCardContainer, MusicSlideContainer } from './styles/UserMusicSlideStyle';
 import Slider from 'react-slick';
+import { MusicInfo } from '../../api/music';
 
-type musicInfo = {
-  id: number;
-  title: string;
-  artist: string;
-  albumImgURL: string;
-};
-
-function UserMusicSlide({ playListName, musics }: { playListName: string; musics: musicInfo[] }) {
+function UserMusicSlide({ playListName, musics }: { playListName: string; musics: MusicInfo[] }) {
   let sliderRef: Slider | null = null;
 
   const settings = {
@@ -32,20 +26,20 @@ function UserMusicSlide({ playListName, musics }: { playListName: string; musics
       <h1>{playListName}</h1>
       <Slider ref={slider => (sliderRef = slider)} {...settings}>
         {musics.map(music => (
-          <MusicCard music={music} key={music.id} />
+          <MusicCard music={music} key={music.trackId} />
         ))}
       </Slider>
     </MusicSlideContainer>
   );
 }
 
-function MusicCard({ music }: { music: musicInfo }) {
+function MusicCard({ music }: { music: MusicInfo }) {
   const handleMusicClick = () => {
     //음악 모달창 띄우기
   };
   return (
     <MusicCardContainer onClick={handleMusicClick}>
-      <img src={music.albumImgURL} />
+      <img src={music.image} />
     </MusicCardContainer>
   );
 }

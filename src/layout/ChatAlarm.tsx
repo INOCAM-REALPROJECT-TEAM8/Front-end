@@ -6,8 +6,10 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { connectSocket, disconnectSocket } from '../redux/modules/socket';
 import useStomp from '../hooks/useStomp';
+import { useQueryClient } from '@tanstack/react-query';
 
 function ChatAlarm() {
+  const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const { subscribe, unsubscribe, subscriptions, disconnect, isConnected } = useStomp(
     { brokerURL: process.env.REACT_APP_BROKER_URL },
@@ -27,8 +29,8 @@ function ChatAlarm() {
   useEffect(() => {
     if (isConnected) {
       subscribe<ChatState>(`/sub/user/${userId}`, chat => {
-        console.log(chatRoomId, getRoomId(chat));
-        if (chatRoomId === getRoomId(chat)) {
+        queryClient.invalidateQueries(['ChatRoomList']);
+        if (chatRoomId === getRoomId(chat.senderId)) {
           dispatch(addRoomChat(chat));
         } else {
           dispatch(addExtraChat(chat));
@@ -47,7 +49,7 @@ function ChatAlarm() {
 
   return (
     lastExtraChat && (
-      <ChatAlarmContainer onClick={() => navigate(`/chat-room/${getRoomId(lastExtraChat)}`)}>
+      <ChatAlarmContainer onClick={() => navigate(`/chat-room/${getRoomId(lastExtraChat.senderId)}`)}>
         <div className='nickname'>{lastExtraChat.nickname}</div>
         <div className='message'>{lastExtraChat.message}</div>
       </ChatAlarmContainer>
