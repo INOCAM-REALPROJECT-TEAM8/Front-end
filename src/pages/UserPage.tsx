@@ -23,11 +23,11 @@ function UserPage() {
         <PlaylistText>내 플레이 리스트</PlaylistText>
         <PlaylistContainer>
           <PlayListHeader />
-          <MusicBox musics={playlistSuccess ? playlistMusics ?? [] : []} />
+          <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
           <ListLine />
-          <MusicBox musics={playlistSuccess ? playlistMusics ?? [] : []} />
+          <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
           <ListLine />
-          <MusicBox musics={playlistSuccess ? playlistMusics ?? [] : []} />
+          <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
           <ListLine />
           <UnderBarIcon>
             <img src={UnderBar} />
@@ -35,7 +35,7 @@ function UserPage() {
         </PlaylistContainer>
       </PlayList>
       <PlayList>
-        <UserMusicSlide playListName='최근 들은 곡' musics={recentSuccess ? recentMusics ?? [] : []} />
+        <UserMusicSlide playListName='최근 들은 곡' musics={recentSuccess ? recentMusics || [] : []} />
       </PlayList>
     </MainContainer>
   );

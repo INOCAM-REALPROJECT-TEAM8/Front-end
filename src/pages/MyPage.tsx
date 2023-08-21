@@ -66,6 +66,8 @@ function MyPage() {
   const { data: playlistMusics, isSuccess: playlistSuccess } = useQuery(['playList', userId], getPlaylistP(userId));
   const { data: recentMusics, isSuccess: recentSuccess } = useQuery(['recentMusics', userId], getRecentHeardsP(userId));
 
+  console.log(playlistMusics);
+
   return (
     <MainContainer>
       <UserImageContainer>
@@ -90,11 +92,11 @@ function MyPage() {
         <PlaylistText>내 플레이 리스트</PlaylistText>
         <PlaylistContainer>
           <PlayListHeader />
-          <MusicBox musics={playlistSuccess ? playlistMusics : []} />
+          <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
           <ListLine />
-          <MusicBox musics={playlistSuccess ? playlistMusics : []} />
+          <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
           <ListLine />
-          <MusicBox musics={playlistSuccess ? playlistMusics : []} />
+          <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
           <ListLine />
           <UnderBarIcon>
             <img src={UnderBar} />
@@ -102,7 +104,7 @@ function MyPage() {
         </PlaylistContainer>
       </PlayList>
       <PlayList>
-        <UserMusicSlide playListName='최근 들은 곡' musics={recentSuccess ? recentMusics : []} />
+        <UserMusicSlide playListName='최근 들은 곡' musics={recentSuccess ? recentMusics || [] : []} />
       </PlayList>
     </MainContainer>
   );
