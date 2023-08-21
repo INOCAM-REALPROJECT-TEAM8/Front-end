@@ -22,13 +22,11 @@ const dummyComments: Comment[] = [
     userId: 10,
     nickname: 'nickname3333',
     content: '테스트',
-    star: 3.0,
   },
   {
     userId: 10,
     nickname: 'nickname3333',
     content: '테스트',
-    star: 3.5,
   },
 ];
 
