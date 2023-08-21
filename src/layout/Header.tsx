@@ -4,18 +4,25 @@ import { ReactComponent as Logo } from '../assets/hideLogo.svg';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Sidebar from './Sidebar';
+import { ReactComponent as GoBack } from '../assets/goBack.svg';
 
-function Header({ chatNickname }: { chatNickname?: string }) {
+function Header({ chatNickname, chatOpId }: { chatNickname?: string; chatOpId?: number }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggleSide = () => {
     setIsOpen(true);
   };
   const navigate = useNavigate();
+  const handleGoBackClick = () => {
+    navigate(-1);
+  };
   return (
     <>
       <HeaderContainer>
         {chatNickname ? (
-          <ChatNicknameBox>{chatNickname}</ChatNicknameBox>
+          <LeftThingsContainer>
+            <GoBackIcon onClick={handleGoBackClick} />
+            <ChatNicknameBox onClick={() => navigate(`/users/${chatOpId}`)}>{chatNickname}</ChatNicknameBox>
+          </LeftThingsContainer>
         ) : (
           <LogoBox>
             <Logo onClick={() => navigate('/')} style={{ cursor: 'pointer' }} />
@@ -66,9 +73,21 @@ const Icon = styled.img`
 `;
 
 const ChatNicknameBox = styled.div`
-  padding: 0px 24px 0px;
+  cursor: pointer;
   font-size: 24px;
   font-weight: 800;
   color: var(--white);
   opacity: 0.8;
+`;
+
+const LeftThingsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+`;
+const GoBackIcon = styled(GoBack)`
+  cursor: pointer;
+  padding: 10px 14px;
+  width: auto;
+  height: auto;
 `;

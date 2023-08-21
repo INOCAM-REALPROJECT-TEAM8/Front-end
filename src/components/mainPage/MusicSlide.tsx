@@ -1,47 +1,49 @@
-import React, { useState } from 'react';
-import { MusicCardContainer, MusicSlideContainer } from './styles/MusicSlideStyle';
+import { CoveredCard, MusicCardContainer, MusicSlideContainer } from './styles/MusicSlideStyle';
 import Slider from 'react-slick';
-import MusicModal from '../musicDetailPage/MusicModal';
 import { MusicInfo } from '../../api/music';
+import usePlayer from '../../hooks/usePlayer';
 
 function MusicSlide({ playListName, musics }: { playListName: string; musics: MusicInfo[] }) {
   const settings = {
     className: 'slider',
     variableWidth: true,
     swipeToSlide: true,
-    slidesToShow: 1,
+    slidesToShow: 5,
     infinite: false,
     arrows: false,
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleMusicClick = () => {
-    setIsModalOpen(true);
-  };
-
+  const { Player, AllOpenerContainingRef, openPlayer } = usePlayer<HTMLDivElement>();
   return (
-    <MusicSlideContainer>
-      <h1>{playListName}</h1>
-      <Slider {...settings}>
-        {musics.map(music => (
-          <MusicCard music={music} key={music.id} onClick={handleMusicClick} />
-        ))}
-      </Slider>
-      {isModalOpen && <MusicModal modalState={isModalOpen} setModalState={setIsModalOpen} />}
-    </MusicSlideContainer>
+    <>
+      <MusicSlideContainer ref={AllOpenerContainingRef}>
+        <h1>{playListName}</h1>
+        <Slider {...settings}>
+          {musics.length
+            ? musics.map(music => (
+                <MusicCard music={music} key={music.trackId} onClick={() => openPlayer(music.trackId)} />
+              ))
+            : Array(10)
+                .fill(1)
+                .map((_, index) => (
+                  <CoveredCard key={index}>
+                    <div />
+                  </CoveredCard>
+                ))}
+        </Slider>
+      </MusicSlideContainer>
+      <Player />
+    </>
   );
 }
 
 function MusicCard({ music, onClick }: { music: MusicInfo; onClick: () => void }) {
   return (
-    <>
-      <MusicCardContainer onClick={onClick}>
-        <img src={music.image} alt='' />
-        <h2>{music.title}</h2>
-        <div>{music.artist}</div>
-      </MusicCardContainer>
-    </>
+    <MusicCardContainer onClick={onClick}>
+      <img src={music.image} alt='' />
+      <h2>{music.title}</h2>
+      <div>{music.artistsStringList}</div>
+    </MusicCardContainer>
   );
 }
 

@@ -3,15 +3,9 @@ import { MusicSlideContainer } from './styles/UserMusicSlideStyle';
 import Slider from 'react-slick';
 import { ListMusicCard } from './styles/MusicBoxStyle';
 import styled from 'styled-components';
+import { MusicInfo } from '../../api/music';
 
-type musicInfo = {
-  id: number;
-  title: string;
-  artist: string;
-  albumImgURL: string;
-};
-
-function MusicBox({ musics }: { musics: musicInfo[] }) {
+function MusicBox({ musics }: { musics: MusicInfo[] }) {
   const settings = {
     vertical: true,
     swipeToSlide: true,
@@ -25,7 +19,7 @@ function MusicBox({ musics }: { musics: musicInfo[] }) {
       <MusicSlideContainer>
         <Slider {...settings}>
           {musics.map(music => (
-            <MusicCard music={music} key={music.id} />
+            <MusicCard music={music} key={music.trackId} />
           ))}
         </Slider>
       </MusicSlideContainer>
@@ -33,14 +27,14 @@ function MusicBox({ musics }: { musics: musicInfo[] }) {
   );
 }
 
-function MusicCard({ music }: { music: musicInfo }) {
+function MusicCard({ music }: { music: MusicInfo }) {
   const handleMusicClick = () => {
     // 음악 모달창 띄우기
   };
 
   return (
     <ListMusicCard onClick={handleMusicClick}>
-      <img src={music.albumImgURL} alt={`Album cover for ${music.title}`} />
+      <img src={music.image} alt={`Album cover for ${music.title}`} />
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <p style={{ paddingBottom: '5px' }}>{music.artist}</p>
         <h2>{music.title}</h2>

@@ -3,7 +3,7 @@ import store from '../config/configStore';
 
 export interface ChatState {
   nickname: string;
-  senderId: string | number;
+  senderId: number;
   message: string;
   createdAt: string; //예시: 2023-08-11T06:33:44.938306
 }
@@ -13,11 +13,10 @@ export interface ChatListState {
   extraChatList: ChatState[];
 }
 
-export const getRoomId = (chat: ChatState) => {
+export const getRoomId = (opId: number) => {
   const myId = store.getState().userInfo.userId;
-  const senderId = chat.senderId;
 
-  return myId < +senderId ? `${myId}-${senderId}` : `${senderId}-${myId}`;
+  return myId < opId ? `${myId}-${opId}` : `${opId}-${myId}`;
 };
 
 export const parseRoomId = (roomId: string | undefined) => {

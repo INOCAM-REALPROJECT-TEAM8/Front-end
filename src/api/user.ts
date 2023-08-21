@@ -1,15 +1,23 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import ourAxios from './ourAxios';
-import { deleteWithToken } from './withToken';
+import { deleteWithToken, getWithToken } from './withToken';
 import jwtDecode from 'jwt-decode';
 import store from '../redux/config/configStore';
 import { userLogin, userLogout } from '../redux/modules/userInfo';
 import { AES, enc } from 'crypto-js';
 
 interface UserInfo {
+  userId?: number;
   email: string;
   password: string;
-  nickname?: string;
+  nickname?: string; //어느곳에 들어가는지 확실하지 않을 때 ?로 사용(옵션으로 들어가도 되고 안들어가도 되고)
+}
+
+export interface UserPageInfo extends Omit<UserInfo, 'email' | 'password'> {
+  imageUrl: string | null;
+  following: number;
+  follower: number;
+  isFollowing: boolean;
 }
 
 interface TokenPayload {
@@ -103,7 +111,7 @@ export const logout = async () => {
   store.dispatch(userLogout());
 };
 
-export const signup = async ({ email, password, nickname }: Required<UserInfo>) => {
+export const signup = async ({ email, password, nickname }: UserInfo) => {
   const { data }: AxiosResponse = await ourAxios.post('/api/users/signup', { email, password, nickname });
   return data;
 };
@@ -115,6 +123,11 @@ export const withdraw = async () => {
 
 export const forgetPW = async ({ email }: Pick<UserInfo, 'email'>) => {
   const { data }: AxiosResponse = await ourAxios.post('/api/users/email/reset-password', { email });
+  return data;
+};
+
+export const getUserInfo = (userId: number) => async (): Promise<UserPageInfo> => {
+  const { data }: AxiosResponse<UserPageInfo> = await getWithToken(`/api/users/user-info/${userId}`);
   return data;
 };
 

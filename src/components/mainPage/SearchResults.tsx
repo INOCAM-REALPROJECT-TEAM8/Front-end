@@ -1,22 +1,23 @@
+import { MusicInfo } from '../../api/music';
+import usePlayer from '../../hooks/usePlayer';
 import { SearchResultBox, SearchResultsContainer } from './styles/SearchResultsStyle';
 
-type music = {
-  title: string;
-  artist: string;
-};
-
-function SearchResults({ results }: { results: music[] }) {
-  const emptyItem: music = {
-    title: '',
-    artist: '',
-  };
-
+function SearchResults({ results }: { results: MusicInfo[] }) {
+  const { Player, AllOpenerContainingRef, openPlayer } = usePlayer<HTMLDivElement>();
   return (
-    <SearchResultsContainer>
-      {[emptyItem, ...results].map(({ artist, title }, index) => {
-        return <SearchResultBox $colorExist={!!(index % 2)}>{`${artist} - ${title}`}</SearchResultBox>;
-      })}
-    </SearchResultsContainer>
+    <>
+      <SearchResultsContainer ref={AllOpenerContainingRef}>
+        {[...results].map(({ artistsStringList, title, trackId }, index) => {
+          return (
+            <SearchResultBox
+              $colorExist={!!(index % 2)}
+              onClick={() => openPlayer(trackId)}
+            >{`${title} - ${artistsStringList}`}</SearchResultBox>
+          );
+        })}
+      </SearchResultsContainer>
+      <Player />
+    </>
   );
 }
 
