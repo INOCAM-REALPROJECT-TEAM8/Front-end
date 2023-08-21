@@ -94,7 +94,6 @@ export const login = async ({ email, password }: UserInfo) => {
   const refreshToken = headers.get('refresh-token');
   if (refreshToken) {
     const secretKey = process.env.REACT_APP_CRYPTO_SECRET_KEY;
-    console.log(secretKey);
     if (secretKey) {
       const encryptedToken = AES.encrypt(refreshToken, secretKey).toString();
       console.log(encryptedToken);
