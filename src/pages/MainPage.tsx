@@ -3,10 +3,11 @@ import Banner from '../components/mainPage/Banner';
 import MusicSearch from '../components/mainPage/MusicSearch';
 import MusicSlide from '../components/mainPage/MusicSlide';
 import WhiteBackground, { FooterGradation } from '../components/mainPage/styles/WhiteBackground';
-import { MusicInfo, getPopularMusics, getRecommendMusics } from '../api/music';
+import { getPopularMusics, getRecommendMusics } from '../api/music';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import { SelectState } from '../redux/config/configStore';
+import RecommendSlide from '../components/mainPage/RecommendSlide';
 
 // const musics = [
 //   'https://marketplace.canva.com/EAExV2m91mg/1/0/1600w/canva-%ED%8C%8C%EB%9E%80%EC%83%89-%EB%B0%A4%ED%95%98%EB%8A%98-%EA%B7%B8%EB%A6%BC%EC%9D%98-%EC%95%A8%EB%B2%94%EC%BB%A4%EB%B2%84-5tlu9r69vlc.jpg',
@@ -24,20 +25,14 @@ import { SelectState } from '../redux/config/configStore';
 // });
 
 function MainPage() {
-  const { userId } = useSelector((state: SelectState) => state.userInfo);
+  const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
 
-  const {
-    data: recommendMusics,
-    isSuccess: isSuccessRecommend,
-    isError: isErrorRecommend,
-  } = useQuery([`${userId}/reccommends`], getRecommendMusics);
   const {
     data: popularMusics,
     isSuccess: isSuccessPopular,
     isError: isErrorPopular,
   } = useQuery(['popularMusics'], getPopularMusics);
 
-  console.log(recommendMusics, popularMusics);
   return (
     <>
       <MusicSearch />
@@ -47,10 +42,12 @@ function MainPage() {
           playListName='인기 음악'
           musics={isSuccessPopular && !isErrorPopular && popularMusics ? popularMusics : []}
         />
-        <MusicSlide
-          playListName='추천 음악'
-          musics={isSuccessRecommend && !isErrorRecommend && recommendMusics ? recommendMusics : []}
-        />
+        {isLoggedIn ? (
+          <RecommendSlide />
+        ) : (
+          <MusicSlide playListName='추천 음악(로그인 후에 사용할 수 있어요!)' musics={[]} />
+        )}
+
         <FooterGradation />
       </WhiteBackground>
     </>
