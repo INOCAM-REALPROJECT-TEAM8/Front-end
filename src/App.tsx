@@ -14,6 +14,8 @@ import ChatRoomPage from './pages/ChatRoomPage';
 import FollowingPage from './pages/FollowingPage';
 import ChatRoomListPage from './pages/ChatRoomListPage';
 import MyPage from './pages/MyPage';
+import FollowerPage from './pages/FallowerPage';
+import MyInfoPage from './pages/MyInfoPage';
 
 function App() {
   const [token] = useState(localStorage.getItem('refreshToken'));
@@ -29,7 +31,9 @@ function App() {
           <Route path='musics/:musicId' element={<MusicDetailPage />} />
           <Route path='users/:userId' element={<UserPage />} />
           <Route path='user/:userId' element={<MyPage />} />
+          <Route path='user/:userId/myinfo' element={<MyInfoPage />} />
           <Route path='user/:userId/following' element={<FollowingPage />} />
+          <Route path='user/:userId/follower' element={<FollowerPage />} />
           <Route path='chats' element={<ChatRoomListPage />} />
         </Route>
         <Route path='/' element={<PageLayout headerFooterExist={false} />}>
