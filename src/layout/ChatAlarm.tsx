@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { connectSocket, disconnectSocket } from '../redux/modules/socket';
 import useStomp from '../hooks/useStomp';
 import { useQueryClient } from '@tanstack/react-query';
+import { ChatAlarmContainer } from './styles/chatAlarmStyle';
 
 function ChatAlarm() {
   const queryClient = useQueryClient();
@@ -56,27 +57,5 @@ function ChatAlarm() {
     )
   );
 }
-
-const ChatAlarmContainer = styled.div`
-  position: fixed;
-  border-radius: 10px;
-  height: 56px;
-  background-color: #1b0658;
-  opacity: 0.8;
-  width: 100vw;
-  max-width: 800px;
-  z-index: 20;
-  padding: 10px;
-  color: var(--white);
-
-  .nickname {
-    font-size: 20px;
-    font-weight: 600;
-  }
-  .message {
-    font-size: 15px;
-    font-weight: 500;
-  }
-`;
 
 export default ChatAlarm;

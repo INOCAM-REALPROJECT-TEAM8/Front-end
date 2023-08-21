@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { SelectState } from '../redux/config/configStore';
 import { ReactComponent as Logo } from '../assets/hideLogo.svg';
 import { Button, Input, LoginBox, LogoContainer } from '../components/loginPage/styles/Input';
+import { AxiosError } from 'axios';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -33,6 +34,9 @@ function LoginPage() {
         //로그인 실패
         alert(data.msg);
       }
+    },
+    onError: (error: AxiosError<{ msg: string; success: boolean }>) => {
+      alert(error.response?.data.msg);
     },
   });
 

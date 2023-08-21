@@ -6,7 +6,6 @@ export interface Comment {
   userId: number;
   nickname: string;
   content: string;
-  star: number;
 }
 
 export const getCommentsP = (musicId: string) => async () => {
@@ -14,21 +13,13 @@ export const getCommentsP = (musicId: string) => async () => {
   return data;
 };
 
-export const postComment = async ({
-  content,
-  star,
-  musicId,
-}: Pick<Comment, 'content' | 'star'> & { musicId: string }) => {
-  const { data }: AxiosResponse = await postWithToken(`/api/tracks/${musicId}/comments`, { content, star });
+export const postComment = async ({ content, musicId }: Pick<Comment, 'content'> & { musicId: string }) => {
+  const { data }: AxiosResponse = await postWithToken(`/api/tracks/${musicId}/comments`, { content });
   return data;
 };
 
-export const editComment = async ({
-  content,
-  star,
-  commentId,
-}: Pick<Comment, 'content' | 'star'> & { commentId: number }) => {
-  const { data }: AxiosResponse = await putWithToken(`/api/tracks/comments/${commentId}`, { content, star });
+export const editComment = async ({ content, commentId }: Pick<Comment, 'content'> & { commentId: number }) => {
+  const { data }: AxiosResponse = await putWithToken(`/api/tracks/comments/${commentId}`, { content });
   return data;
 };
 

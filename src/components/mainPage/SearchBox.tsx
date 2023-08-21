@@ -35,7 +35,7 @@ function SearchBox() {
       <SearchInputContainer>
         <SearchIcon />
         <VerticalLine />
-        <SearchInput placeholder='검색어를 입력하세요' type='text' value={input} onChange={handleInputChange} />
+        <SearchInput placeholder='노래, 앨범, 아티스트 검색' type='text' value={input} onChange={handleInputChange} />
       </SearchInputContainer>
       {input && resultMusics.length ? <SearchResults results={resultMusics} /> : <></>}
     </SearchContainer>
