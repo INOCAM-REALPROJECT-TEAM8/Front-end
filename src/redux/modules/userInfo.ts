@@ -26,8 +26,11 @@ const userSlice = createSlice({
     userLogout: (state, action: Action<string>) => {
       return { ...initialState, isLoggedIn: false, prevUserId: state.userId };
     },
+    changeUserNickname: (state, { payload }: PayloadAction<Pick<UserState, 'nickname'>>) => {
+      return { ...state, nickname: payload.nickname };
+    },
   },
 });
 
-export const { userLogin, userLogout } = userSlice.actions;
+export const { userLogin, userLogout, changeUserNickname } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { SelectState } from '../redux/config/configStore';
-import { userLogin } from '../redux/modules/userInfo';
+import { changeUserNickname, userLogin } from '../redux/modules/userInfo';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { updateUserInfo, getUserInfo } from '../api/user';
 
@@ -25,7 +25,6 @@ function MyInfoPage() {
   const { mutate: updateProfileImage } = useMutation(updateUserInfo, {
     // 기존의 onSuccess 콜백을 사용할 수 있습니다.
     onSuccess: newUserInfo => {
-      dispatch(userLogin(newUserInfo));
       setSelectedImage(null);
     },
   });
@@ -41,7 +40,7 @@ function MyInfoPage() {
     (newNickname: string) => updateUserInfo({ userId, formData: createNicknameFormData() }), // 객체 형태로 전달하지 않음
     {
       onSuccess: newUserInfo => {
-        dispatch(userLogin(newUserInfo));
+        dispatch(changeUserNickname({ nickname: newNickname }));
         setNewNickname('');
       },
     },

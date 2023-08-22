@@ -9,13 +9,13 @@ import { useSelector } from 'react-redux';
 import { SelectState } from '../redux/config/configStore';
 import { getUserInfo } from '../api/user';
 import { useQuery } from '@tanstack/react-query';
-import { userInfo } from 'os';
+import basicProfileImg from '../assets/mascot.png';
 import { getPlaylistP, getRecentHeardsP } from '../api/music';
 
 function MyPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
-  const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
+  // const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [buttonType, setButtonType] = useState<'plus' | 'check'>('plus');
 
@@ -47,18 +47,18 @@ function MyPage() {
     navigate('follower');
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // 파일 선택 시 처리하는 로직
-    const selectedFile = event.target.files?.[0];
-    if (selectedFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        // 선택된 파일을 상태로 관리하여 컨테이너 안에 바로 보여줌
-        setSelectedImage(reader.result as string);
-      };
-      reader.readAsDataURL(selectedFile);
-    }
-  };
+  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   // 파일 선택 시 처리하는 로직
+  //   const selectedFile = event.target.files?.[0];
+  //   if (selectedFile) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       // 선택된 파일을 상태로 관리하여 컨테이너 안에 바로 보여줌
+  //       setSelectedImage(reader.result as string);
+  //     };
+  //     reader.readAsDataURL(selectedFile);
+  //   }
+  // };
   const handleRoundButtonClick = () => {
     navigate('myinfo');
   };
@@ -66,16 +66,14 @@ function MyPage() {
   const { data: playlistMusics, isSuccess: playlistSuccess } = useQuery(['playList', userId], getPlaylistP(userId));
   const { data: recentMusics, isSuccess: recentSuccess } = useQuery(['recentMusics', userId], getRecentHeardsP(userId));
 
-  console.log(playlistMusics);
-
   return (
     <MainContainer>
       <UserImageContainer>
-        {selectedImage ? <UserImage src={selectedImage} /> : <Placeholder>Upload Image</Placeholder>}
+        <UserImage src={userInfo?.imageUrl || basicProfileImg} />
         <RoundButton onClick={handleRoundButtonClick}>+</RoundButton>
       </UserImageContainer>
 
-      <input type='file' ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
+      {/* <input type='file' ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} /> */}
       <UserName>{nickname}</UserName>
       <SeparatorLine />
       <FollowStatsContainer>

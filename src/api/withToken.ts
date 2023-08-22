@@ -110,3 +110,30 @@ export const putWithToken = async <T>(path: string, data: T): Promise<AxiosRespo
 
   return response!;
 };
+
+export const patchFormDataWithToken = async <T>(path: string, data: T): Promise<AxiosResponse> => {
+  const { isLoggedIn } = store.getState().userInfo;
+  if (!accessToken) await getNewToken();
+
+  let response;
+  try {
+    response = await ourAxios.patch(path, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${accessToken}`,
+      },
+      withCredentials: true,
+    });
+  } catch (error: unknown) {
+    if (error instanceof AxiosError) {
+      if (!isLoggedIn) {
+        response = error.response;
+      } else if (error.response && error.response.data.expired) {
+        await getNewToken();
+        response = await patchFormDataWithToken(path, data);
+      }
+    }
+  }
+
+  return response!;
+};
