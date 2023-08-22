@@ -6,6 +6,7 @@ export interface ChatState {
   senderId: number;
   message: string;
   createdAt: string; //예시: 2023-08-11T06:33:44.938306
+  userImage?: string | null;
 }
 
 export interface ChatListState {

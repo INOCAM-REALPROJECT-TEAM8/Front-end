@@ -7,7 +7,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { connectSocket, disconnectSocket } from '../redux/modules/socket';
 import useStomp from '../hooks/useStomp';
 import { useQueryClient } from '@tanstack/react-query';
-import { ChatAlarmContainer } from './styles/chatAlarmStyle';
+import { ChatAlarmContainer, ChatAlarmLayout } from './styles/chatAlarmStyle';
+import basicProfileImg from '../assets/mascot.png';
+import {
+  ChatInfoContainer,
+  ChatRoomInfoContainer,
+  LastChatBox,
+  OpNicknameBox,
+  ProfileImageBox,
+} from '../components/chatRoomListPage/styles/chatRoomInfoStyle';
 
 function ChatAlarm() {
   const queryClient = useQueryClient();
@@ -50,10 +58,15 @@ function ChatAlarm() {
 
   return (
     lastExtraChat && (
-      <ChatAlarmContainer onClick={() => navigate(`/chat-room/${getRoomId(lastExtraChat.senderId)}`)}>
-        <div className='nickname'>{lastExtraChat.nickname}</div>
-        <div className='message'>{lastExtraChat.message}</div>
-      </ChatAlarmContainer>
+      <ChatAlarmLayout>
+        <ChatAlarmContainer>
+          <ProfileImageBox src={lastExtraChat?.userImage ?? basicProfileImg} />
+          <ChatInfoContainer>
+            <OpNicknameBox>{lastExtraChat.nickname}</OpNicknameBox>
+            <LastChatBox>{lastExtraChat.message}</LastChatBox>
+          </ChatInfoContainer>
+        </ChatAlarmContainer>
+      </ChatAlarmLayout>
     )
   );
 }

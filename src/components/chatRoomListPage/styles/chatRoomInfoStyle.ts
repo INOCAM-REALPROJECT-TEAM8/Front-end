@@ -12,6 +12,7 @@ export const ProfileImageBox = styled.img`
   width: 52;
   height: 52;
   border-radius: 16px;
+  border: 1px solid #e5def9;
 `;
 
 export const ChatInfoContainer = styled.div`
