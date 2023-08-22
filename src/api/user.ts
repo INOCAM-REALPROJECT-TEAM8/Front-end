@@ -1,6 +1,6 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import ourAxios from './ourAxios';
-import { deleteWithToken, getWithToken } from './withToken';
+import { deleteWithToken, getWithToken, patchFormDataWithToken } from './withToken';
 import jwtDecode from 'jwt-decode';
 import store from '../redux/config/configStore';
 import { userLogin, userLogout } from '../redux/modules/userInfo';
@@ -146,7 +146,7 @@ export const changePW = async ({ password, token }: Pick<UserInfo, 'password'> &
 };
 
 export const updateUserInfo = async ({ userId, formData }: { userId: number; formData: FormData }) => {
-  const { data }: AxiosResponse = await ourAxios.patch(`/api/users/${userId}/update-profile`, formData);
+  const { data }: AxiosResponse = await patchFormDataWithToken(`/api/users/update-profile`, formData);
   return data;
 };
 //useMutation쓸 경우에는 인자가 하나만 들어갈 수 있으므로 인자가 2개 이상 들어갈 경우 미리 객체로 묶어서 사용합쉬다.
