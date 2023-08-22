@@ -144,3 +144,9 @@ export const changePW = async ({ password, token }: Pick<UserInfo, 'password'> &
   );
   return data;
 };
+
+export const updateUserInfo = async ({ userId, formData }: { userId: number; formData: FormData }) => {
+  const { data }: AxiosResponse = await ourAxios.patch(`/api/users/${userId}/update-profile`, formData);
+  return data;
+};
+//useMutation쓸 경우에는 인자가 하나만 들어갈 수 있으므로 인자가 2개 이상 들어갈 경우 미리 객체로 묶어서 사용합쉬다.
