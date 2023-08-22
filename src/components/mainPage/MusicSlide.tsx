@@ -8,7 +8,7 @@ function MusicSlide({ playListName, musics }: { playListName: string; musics: Mu
     className: 'slider',
     variableWidth: true,
     swipeToSlide: true,
-    slidesToShow: 5,
+    slidesToShow: 1,
     infinite: false,
     arrows: false,
   };
