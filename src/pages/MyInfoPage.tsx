@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { SelectState } from '../redux/config/configStore';
-import { changeUserNickname, userLogin } from '../redux/modules/userInfo';
+import { changeUserNickname, changeUserProfileImg, userLogin } from '../redux/modules/userInfo';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { updateUserInfo, getUserInfo } from '../api/user';
 
@@ -25,8 +25,9 @@ function MyInfoPage() {
 
   const { mutate: updateProfileImage } = useMutation(updateUserInfo, {
     // 기존의 onSuccess 콜백을 사용할 수 있습니다.
-    onSuccess: newUserInfo => {
+    onSuccess: data => {
       setSelectedImage(null);
+      dispatch(changeUserProfileImg({ profileImageUrl: data.userProfileImage }));
     },
   });
 

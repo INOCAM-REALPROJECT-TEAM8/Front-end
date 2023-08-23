@@ -7,10 +7,12 @@ import {
   OpNicknameBox,
   ProfileImageBox,
 } from './styles/chatRoomInfoStyle';
+import basicProfileImg from '../../assets/mascot.png';
 
 export interface ChatRoomInfo {
   roomName: string;
   oppositeNickname: string;
+  oppositeUserImage: string | null;
   lastChatMessage: ChatState;
 }
 
@@ -23,7 +25,7 @@ function ChatRoom({ chatRoom }: { chatRoom: ChatRoomInfo }) {
   //@ToDo: chatRoom 정보 받을 때 상대 유저 프로필이미지도 받아오게 하기. ProfileImageBox의 src로 넣어줘야함.
   return (
     <ChatRoomInfoContainer onClick={handleRoomClick}>
-      <ProfileImageBox />
+      <ProfileImageBox src={chatRoom.oppositeUserImage ?? basicProfileImg} />
       <ChatInfoContainer>
         <OpNicknameBox>{chatRoom.oppositeNickname}</OpNicknameBox>
         <LastChatBox>{chatRoom.lastChatMessage.message}</LastChatBox>
