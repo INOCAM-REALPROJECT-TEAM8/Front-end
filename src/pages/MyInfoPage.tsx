@@ -5,6 +5,7 @@ import { SelectState } from '../redux/config/configStore';
 import { changeUserNickname, changeUserProfileImg, userLogin } from '../redux/modules/userInfo';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { updateUserInfo, getUserInfo } from '../api/user';
+import { styled } from 'styled-components';
 
 function MyInfoPage() {
   const dispatch = useDispatch();
@@ -64,9 +65,10 @@ function MyInfoPage() {
 
   return (
     <div>
-      <h2>프로필 이미지 수정</h2>
-      <input type='file' onChange={handleImageChange} />
-      <button onClick={handleProfileImageSubmit}>프로필 이미지 업데이트</button>
+      <ImageChange>
+        <input type='file' onChange={handleImageChange} />
+        <button onClick={handleProfileImageSubmit}>프로필 이미지 업데이트</button>
+      </ImageChange>
 
       <h2>닉네임 수정</h2>
       <input
@@ -82,3 +84,9 @@ function MyInfoPage() {
 }
 
 export default MyInfoPage;
+
+const ImageChange = styled.div`
+  width: 390px;
+  height: 346px;
+  background-color: --main-color;
+`;
