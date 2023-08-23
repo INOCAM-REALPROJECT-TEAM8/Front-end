@@ -9,8 +9,8 @@ export const ChatRoomInfoContainer = styled.div`
 `;
 
 export const ProfileImageBox = styled.img`
-  width: 52;
-  height: 52;
+  width: 52px;
+  height: 52px;
   border-radius: 16px;
   border: 1px solid #e5def9;
 `;

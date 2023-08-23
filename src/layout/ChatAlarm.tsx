@@ -60,7 +60,7 @@ function ChatAlarm() {
     lastExtraChat && (
       <ChatAlarmLayout>
         <ChatAlarmContainer>
-          <ProfileImageBox src={lastExtraChat?.userImage ?? basicProfileImg} />
+          <ProfileImageBox src={lastExtraChat.senderImageUrl ?? basicProfileImg} />
           <ChatInfoContainer>
             <OpNicknameBox>{lastExtraChat.nickname}</OpNicknameBox>
             <LastChatBox>{lastExtraChat.message}</LastChatBox>

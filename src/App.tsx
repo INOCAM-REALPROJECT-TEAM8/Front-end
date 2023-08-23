@@ -16,6 +16,8 @@ import ChatRoomListPage from './pages/ChatRoomListPage';
 import MyPage from './pages/MyPage';
 import FollowerPage from './pages/FallowerPage';
 import MyInfoPage from './pages/MyInfoPage';
+import KaKaoCodePage from './pages/KaKaoCodePage';
+import GoogleCodePage from './pages/GoogleCodePage';
 
 function App() {
   const [token] = useState(localStorage.getItem('refreshToken'));
@@ -38,6 +40,8 @@ function App() {
         </Route>
         <Route path='/' element={<PageLayout headerFooterExist={false} />}>
           <Route path='login' element={<LoginPage />} />
+          <Route path='oauth/kakao' element={<KaKaoCodePage />} />
+          <Route path='oauth/google' element={<GoogleCodePage />} />
           <Route path='signup' element={<SignUpPage />} />
           <Route path='forgetpw' element={<ForgetPwPage />} />
           <Route path='changepw' element={<ChangePwPage />} />
