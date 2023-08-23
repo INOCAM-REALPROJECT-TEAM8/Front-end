@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { SelectState } from '../redux/config/configStore';
 import { changeUserNickname, userLogin } from '../redux/modules/userInfo';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -58,6 +59,8 @@ function MyInfoPage() {
     }
   };
 
+  const navigate = useNavigate();
+
   return (
     <div>
       <h2>프로필 이미지 수정</h2>
@@ -72,6 +75,7 @@ function MyInfoPage() {
         onChange={e => setNewNickname(e.target.value)}
       />
       <button onClick={handleNicknameSubmit}>닉네임 업데이트</button>
+      <button onClick={() => navigate('/user/:userId')}>완료 </button>
     </div>
   );
 }
