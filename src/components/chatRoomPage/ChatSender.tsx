@@ -19,7 +19,7 @@ function ChatSender({ chats, setChats, opId }: ChatSenderProps) {
   };
 
   const { send } = useStomp({ brokerURL: process.env.REACT_APP_BROKER_URL });
-  const { userId, nickname } = useSelector((state: SelectState) => state.userInfo);
+  const { userId, nickname, profileImageUrl } = useSelector((state: SelectState) => state.userInfo);
 
   const handleSendClick = () => {
     if (!msg) return;
@@ -29,6 +29,7 @@ function ChatSender({ chats, setChats, opId }: ChatSenderProps) {
       senderId: userId,
       message: msg,
       createdAt: `${new Date().toISOString()}`,
+      senderImageUrl: profileImageUrl,
     };
     setChats([...chats, myChat]);
     send(`/pub/user/${opId}`, myChat, {});
