@@ -18,6 +18,7 @@ import FollowerPage from './pages/FallowerPage';
 import MyInfoPage from './pages/MyInfoPage';
 import KaKaoCodePage from './pages/KaKaoCodePage';
 import GoogleCodePage from './pages/GoogleCodePage';
+import MusicAddPage from './pages/MusicAddPage';
 
 function App() {
   const [token] = useState(localStorage.getItem('refreshToken'));
@@ -46,6 +47,7 @@ function App() {
           <Route path='forgetpw' element={<ForgetPwPage />} />
           <Route path='changepw' element={<ChangePwPage />} />
           <Route path='chat-room/:roomId' element={<ChatRoomPage />} />
+          <Route path='user/:userId/musicadd' element={<MusicAddPage />} />
         </Route>
       </Routes>
     </>
