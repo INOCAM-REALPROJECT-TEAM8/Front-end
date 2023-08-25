@@ -23,7 +23,7 @@ const GoogleButton = styled.div`
   border-radius: 16px;
   background-color: #ffffff;
   cursor: pointer;
-  border: none;
+  border: 2px solid #efefef;
   justify-content: center;
   margin-right: 10px;
 `;
