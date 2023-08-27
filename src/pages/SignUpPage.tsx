@@ -2,6 +2,7 @@ import useValidateInput from '../hooks/useValidateInput';
 import { login, signup } from '../api/user';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
+import WhiteContainer from '../components/loginPage/styles/WhiteContainer';
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -47,13 +48,13 @@ function SignUpPage() {
   };
 
   return (
-    <div>
+    <WhiteContainer>
       <input onChange={handleEmailOnChange} value={email} placeholder='이메일' />
       <input onChange={handlePwOnChange} value={password} placeholder='비밀번호' />
       <input onChange={handlePw2OnChange} value={password2} placeholder='비밀번호 확인' />
       <input onChange={handleNicknameOnChange} value={nickname} placeholder='닉네임' />
       <button onClick={handleSubmit}>회원가입</button>
-    </div>
+    </WhiteContainer>
   );
 }
 
