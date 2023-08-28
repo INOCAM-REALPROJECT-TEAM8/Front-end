@@ -40,8 +40,7 @@ function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) {
               로그인하기
             </Menu>
           )}
-          <Menu>메뉴2</Menu>
-          <Menu>메뉴3</Menu>
+          <Menu>FAQ</Menu>
         </ul>
       </SideBarWrap>
     </SideBarContainer>
