@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 import KakaoLogin from '../features/KakaoLogin';
 import GoogleLogin from '../features/GoogleLogin';
-import MainContainer from '../components/loginPage/styles/MainContainer';
+import WhiteContainer from '../components/loginPage/styles/WhiteContainer';
 import useValidateInput from '../hooks/useValidateInput';
 import { useMutation } from '@tanstack/react-query';
 import { login } from '../api/user';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { SelectState } from '../redux/config/configStore';
-import { ReactComponent as Logo } from '../assets/hideLogo.svg';
+import { ReactComponent as Logo } from '../assets/hideMaincolor.svg';
 import { Button, Input, LoginBox, LogoContainer } from '../components/loginPage/styles/Input';
+import { AxiosError } from 'axios';
+import React from 'react';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -34,6 +36,9 @@ function LoginPage() {
         alert(data.msg);
       }
     },
+    onError: (error: AxiosError<{ msg: string; success: boolean }>) => {
+      alert(error.response?.data.msg);
+    },
   });
 
   const handleLoginClick = () => {
@@ -46,20 +51,32 @@ function LoginPage() {
     }
   };
 
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleLoginClick();
+    }
+  };
+
   return (
-    <MainContainer>
+    <WhiteContainer>
       <LogoContainer>
         <Logo onClick={() => navigate('/')} style={{ width: '106px', height: '60px', cursor: 'pointer' }} />
       </LogoContainer>
       <LoginBox>
-        <Input type='text' placeholder='이메일' value={email} onChange={handleEmailOnChange} />
-        <Input type='password' placeholder='비밀번호' value={password} onChange={handlePwOnChange} />
-        <Button onClick={handleLoginClick} $bgColor='white' color='#7751e1'>
+        <Input onKeyDown={handleEnter} type='text' placeholder='이메일' value={email} onChange={handleEmailOnChange} />
+        <Input
+          onKeyDown={handleEnter}
+          type='password'
+          placeholder='비밀번호'
+          value={password}
+          onChange={handlePwOnChange}
+        />
+        <Button onClick={handleLoginClick} $bgColor='#7751e1' color='white'>
           로그인
         </Button>
         <UnderlinedTextBox to='/forgetpw'>비밀번호를 잊으셨나요?</UnderlinedTextBox>
         <UnderLine />
-        <Button onClick={() => navigate('/signup')} $bgColor='#7751e1' color='white'>
+        <Button onClick={() => navigate('/signup')} $bgColor='#efefef' color='#818181'>
           회원가입
         </Button>
         <SocialButton>
@@ -67,7 +84,7 @@ function LoginPage() {
           <KakaoLogin />
         </SocialButton>
       </LoginBox>
-    </MainContainer>
+    </WhiteContainer>
   );
 }
 
@@ -87,12 +104,12 @@ const SocialButton = styled.div`
 
 const UnderlinedTextBox = styled(Link)`
   text-decoration: underline;
-  color: white;
+  color: gray;
   padding: 30px 0 30px 0;
 `;
 
 const UnderLine = styled.div`
-  background-color: white;
+  background-color: #d9d9d9;
   justify-content: center;
   height: 2px;
   width: 100%;

@@ -14,6 +14,12 @@ import ChatRoomPage from './pages/ChatRoomPage';
 import FollowingPage from './pages/FollowingPage';
 import ChatRoomListPage from './pages/ChatRoomListPage';
 import MyPage from './pages/MyPage';
+import FollowerPage from './pages/FallowerPage';
+import MyInfoPage from './pages/MyInfoPage';
+import KaKaoCodePage from './pages/KaKaoCodePage';
+import GoogleCodePage from './pages/GoogleCodePage';
+import MusicAddPage from './pages/MusicAddPage';
+import ListeningList from './pages/ListeningList';
 
 function App() {
   const [token] = useState(localStorage.getItem('refreshToken'));
@@ -29,15 +35,21 @@ function App() {
           <Route path='musics/:musicId' element={<MusicDetailPage />} />
           <Route path='users/:userId' element={<UserPage />} />
           <Route path='user/:userId' element={<MyPage />} />
+          <Route path='user/:userId/myinfo' element={<MyInfoPage />} />
           <Route path='user/:userId/following' element={<FollowingPage />} />
+          <Route path='user/:userId/follower' element={<FollowerPage />} />
           <Route path='chats' element={<ChatRoomListPage />} />
+          <Route path='user/:userId/listen' element={<ListeningList />} />
         </Route>
         <Route path='/' element={<PageLayout headerFooterExist={false} />}>
           <Route path='login' element={<LoginPage />} />
+          <Route path='oauth/kakao' element={<KaKaoCodePage />} />
+          <Route path='oauth/google' element={<GoogleCodePage />} />
           <Route path='signup' element={<SignUpPage />} />
           <Route path='forgetpw' element={<ForgetPwPage />} />
           <Route path='changepw' element={<ChangePwPage />} />
           <Route path='chat-room/:roomId' element={<ChatRoomPage />} />
+          <Route path='user/:userId/musicadd' element={<MusicAddPage />} />
         </Route>
       </Routes>
     </>

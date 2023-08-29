@@ -6,6 +6,7 @@ export interface UserState {
   email: string;
   userId: number;
   prevUserId: number;
+  profileImageUrl: string | null;
 }
 
 const initialState: UserState = {
@@ -14,6 +15,7 @@ const initialState: UserState = {
   email: '',
   userId: 0,
   prevUserId: 0,
+  profileImageUrl: null,
 };
 
 const userSlice = createSlice({
@@ -21,13 +23,19 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     userLogin: (state, { payload }: PayloadAction<Omit<UserState, 'isLoggedIn' | 'prevUserId'>>) => {
-      return { ...payload, isLoggedIn: true, prevUserId: payload.userId };
+      return { ...payload, isLoggedIn: true, prevUserId: payload.userId, profileImageUrl: payload.profileImageUrl };
     },
     userLogout: (state, action: Action<string>) => {
       return { ...initialState, isLoggedIn: false, prevUserId: state.userId };
     },
+    changeUserNickname: (state, { payload }: PayloadAction<Pick<UserState, 'nickname'>>) => {
+      return { ...state, nickname: payload.nickname };
+    },
+    changeUserProfileImg: (state, { payload }: PayloadAction<Pick<UserState, 'profileImageUrl'>>) => {
+      return { ...state, profileImageUrl: payload.profileImageUrl };
+    },
   },
 });
 
-export const { userLogin, userLogout } = userSlice.actions;
+export const { userLogin, userLogout, changeUserNickname, changeUserProfileImg } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getFollowingList, FollowUser } from '../api/fallow';
+import { getFollowingList, FollowUser } from '../api/follow';
 import { useParams } from 'react-router-dom';
 
 function FollowingPage() {
@@ -7,6 +7,7 @@ function FollowingPage() {
 
   const userIdParam = useParams<{ userId: string }>().userId;
   const userId = Number(userIdParam);
+  console.log(userId); // NaN
 
   useEffect(() => {
     // API 호출 및 데이터 가져오기
@@ -14,6 +15,7 @@ function FollowingPage() {
       try {
         const response = await getFollowingList(userId);
         setFollowingList(response.data);
+        console.log(response);
       } catch (error) {
         console.error('Error fetching following list:', error);
       }

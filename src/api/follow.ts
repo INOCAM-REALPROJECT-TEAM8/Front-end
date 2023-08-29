@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import ourAxios from './ourAxios';
+import { getWithToken, postWithToken } from './withToken';
 
 export interface FollowUser {
   id: number;
@@ -12,19 +13,9 @@ export interface FollowResponse {
   success: boolean;
 }
 
-export const jwt: string | null = localStorage.getItem('accessToken');
-
 export const followUser = async (userId: number): Promise<AxiosResponse<FollowResponse>> => {
   try {
-    const response: AxiosResponse<FollowResponse> = await ourAxios.post(
-      `/api/follow/users/${userId}`,
-      {},
-      {
-        headers: {
-          Authorization: jwt ? `Bearer ${jwt}` : undefined,
-        },
-      },
-    );
+    const response: AxiosResponse<FollowResponse> = await postWithToken(`/api/follow/users/${userId}`, {});
 
     return response;
   } catch (error) {
@@ -34,11 +25,7 @@ export const followUser = async (userId: number): Promise<AxiosResponse<FollowRe
 
 export const unfollowUser = async (userId: number): Promise<AxiosResponse<FollowResponse>> => {
   try {
-    const response: AxiosResponse<FollowResponse> = await ourAxios.delete(`/api/follow/users/${userId}`, {
-      headers: {
-        Authorization: jwt ? `Bearer ${jwt}` : undefined,
-      },
-    });
+    const response: AxiosResponse<FollowResponse> = await postWithToken(`/api/follow/users/${userId}`, {});
 
     return response;
   } catch (error) {
@@ -48,11 +35,7 @@ export const unfollowUser = async (userId: number): Promise<AxiosResponse<Follow
 
 export const getFollowingList = async (userId: number): Promise<AxiosResponse<FollowUser[]>> => {
   try {
-    const response: AxiosResponse<FollowUser[]> = await ourAxios.get(`/api/following/users/${userId}`, {
-      headers: {
-        Authorization: jwt ? `Bearer ${jwt}` : undefined,
-      },
-    });
+    const response: AxiosResponse<FollowUser[]> = await getWithToken(`/api/following/users/${userId}`);
 
     return response;
   } catch (error) {
@@ -62,11 +45,7 @@ export const getFollowingList = async (userId: number): Promise<AxiosResponse<Fo
 
 export const getFollowerList = async (userId: number): Promise<AxiosResponse<FollowUser[]>> => {
   try {
-    const response: AxiosResponse<FollowUser[]> = await ourAxios.get(`/api/follower/users/${userId}`, {
-      headers: {
-        Authorization: jwt ? `Bearer ${jwt}` : undefined,
-      },
-    });
+    const response: AxiosResponse<FollowUser[]> = await getWithToken(`/api/follower/users/${userId}`);
 
     return response;
   } catch (error) {

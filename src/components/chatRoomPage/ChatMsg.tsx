@@ -5,7 +5,7 @@ interface ChatMsgProps {
   curChat: ChatState;
   prevChat: ChatState | null;
   nextChat: ChatState | null;
-  myId: string;
+  myId: number;
 }
 
 function ChatMsg({ curChat, prevChat, nextChat, myId }: ChatMsgProps) {

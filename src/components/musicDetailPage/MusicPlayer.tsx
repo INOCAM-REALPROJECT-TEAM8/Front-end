@@ -102,7 +102,7 @@ function MusicPlayer({ musicId }: MusicPlayerProps) {
         <RecodeImage src={recode} alt='recode' />
       </AlbumCover>
       <LpCartridge src={lpcartridge} alt='lpCartridge' width='100px' height='100px' />
-      <MusicArtists>{musicData.artistsStringList}</MusicArtists>
+      <MusicArtists>{musicData.artist}</MusicArtists>
       <MusicTitle>{musicData.title}</MusicTitle>
       <PlayButton onClick={musicPlayButtonHandler}>
         <img src={isPlaying ? musicstop : musicplay} alt='음악 재생/정지' />

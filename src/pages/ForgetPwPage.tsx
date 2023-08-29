@@ -2,10 +2,11 @@ import { useMutation } from '@tanstack/react-query';
 import useValidateInput from '../hooks/useValidateInput';
 import { forgetPW } from '../api/user';
 import { useNavigate } from 'react-router-dom';
-import { ReactComponent as Logo } from '../assets/hideLogo.svg';
+import { ReactComponent as Logo } from '../assets/hideMaincolor.svg';
 import { Button, Input, LoginBox, LogoContainer } from '../components/loginPage/styles/Input';
 import { styled } from 'styled-components';
 import { useState, ChangeEvent } from 'react';
+import WhiteContainer from '../components/loginPage/styles/WhiteContainer';
 
 function ForgetPwPage() {
   const { input: email, handleInputOnChange: handleEmailOnChange, valid: emailValid } = useValidateInput('email');
@@ -42,7 +43,7 @@ function ForgetPwPage() {
   };
 
   return (
-    <>
+    <WhiteContainer>
       <LogoContainer>
         <Logo onClick={() => navigate('/')} style={{ width: '106px', height: '60px', cursor: 'pointer' }} />
       </LogoContainer>
@@ -53,13 +54,13 @@ function ForgetPwPage() {
         </TextContainer>
         <Input placeholder='이메일' value={email} onChange={handleEmailChange} />
         <ButtonContainer>
-          <Button $bgColor='white' color='#7751e1' onClick={handleButtonClick}>
+          <Button $bgColor='#7751e1' color='white' onClick={handleButtonClick}>
             {isEmailEntered ? '확인' : '전송하기'}
           </Button>
           {isEmailSent && <SentConfirmation onClick={handleButtonClick}>메일이 도착하지 않았나요?</SentConfirmation>}
         </ButtonContainer>
       </LoginBox>
-    </>
+    </WhiteContainer>
   );
 }
 
@@ -72,14 +73,14 @@ const TextContainer = styled.div`
 `;
 
 const PwText = styled.div`
-  color: white;
+  color: #7751e1;
   font-weight: bolder;
   font-size: 24px;
   text-align: left;
 `;
 
 const PwEmailText = styled.div`
-  color: white;
+  color: gray;
   font-weight: bolder;
   font-size: 20px;
   text-align: left;
@@ -92,7 +93,7 @@ const ButtonContainer = styled.div`
 `;
 
 const SentConfirmation = styled.div`
-  color: white;
+  color: gray;
   font-size: 16px;
   text-decoration: underline;
   cursor: pointer;

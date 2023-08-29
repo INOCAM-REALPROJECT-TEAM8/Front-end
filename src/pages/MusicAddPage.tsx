@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
-import { SearchContainer, SearchIcon, SearchInput, SearchInputContainer, VerticalLine } from './styles/SearchBoxStyle';
-import SearchResults from './SearchResults';
-import { MusicInfo, searchMusics } from '../../api/music';
+import {
+  SearchContainer,
+  SearchIcon,
+  SearchInput,
+  SearchInputContainer,
+  VerticalLine,
+} from '../components/mainPage/styles/SearchBoxStyle';
+import SearchResults from '../components/mainPage/SearchResults';
+import { MusicInfo, searchMusics } from '../api/music';
 
-function SearchBox() {
+function MusicAddPage() {
   const [input, setInput] = useState<string>('');
   const [timer, setTimer] = useState<NodeJS.Timeout>();
   const [resultMusics, setResultMusics] = useState<MusicInfo[]>([]);
@@ -42,4 +48,4 @@ function SearchBox() {
   );
 }
 
-export default SearchBox;
+export default MusicAddPage;

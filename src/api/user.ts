@@ -1,15 +1,23 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import ourAxios from './ourAxios';
-import { deleteWithToken } from './withToken';
+import { deleteWithToken, getWithToken, patchFormDataWithToken } from './withToken';
 import jwtDecode from 'jwt-decode';
 import store from '../redux/config/configStore';
 import { userLogin, userLogout } from '../redux/modules/userInfo';
 import { AES, enc } from 'crypto-js';
 
 interface UserInfo {
+  userId?: number;
   email: string;
   password: string;
-  nickname?: string;
+  nickname?: string; //어느곳에 들어가는지 확실하지 않을 때 ?로 사용(옵션으로 들어가도 되고 안들어가도 되고)
+}
+
+export interface UserPageInfo extends Omit<UserInfo, 'email' | 'password'> {
+  imageUrl: string | null;
+  following: number;
+  follower: number;
+  isFollowing: boolean;
 }
 
 interface TokenPayload {
@@ -80,13 +88,13 @@ export const login = async ({ email, password }: UserInfo) => {
     const decoded = jwtDecode<TokenPayload>(token);
     const nickname = decoded.nickname;
     const userId = decoded.userId;
-    store.dispatch(userLogin({ email, nickname, userId }));
+    const profileImageUrl = data.userProfileImage;
+    store.dispatch(userLogin({ email, nickname, userId, profileImageUrl }));
   }
 
   const refreshToken = headers.get('refresh-token');
   if (refreshToken) {
     const secretKey = process.env.REACT_APP_CRYPTO_SECRET_KEY;
-    console.log(secretKey);
     if (secretKey) {
       const encryptedToken = AES.encrypt(refreshToken, secretKey).toString();
       console.log(encryptedToken);
@@ -103,7 +111,7 @@ export const logout = async () => {
   store.dispatch(userLogout());
 };
 
-export const signup = async ({ email, password, nickname }: Required<UserInfo>) => {
+export const signup = async ({ email, password, nickname }: UserInfo) => {
   const { data }: AxiosResponse = await ourAxios.post('/api/users/signup', { email, password, nickname });
   return data;
 };
@@ -115,6 +123,11 @@ export const withdraw = async () => {
 
 export const forgetPW = async ({ email }: Pick<UserInfo, 'email'>) => {
   const { data }: AxiosResponse = await ourAxios.post('/api/users/email/reset-password', { email });
+  return data;
+};
+
+export const getUserInfo = (userId: number) => async (): Promise<UserPageInfo> => {
+  const { data }: AxiosResponse<UserPageInfo> = await getWithToken(`/api/users/user-info/${userId}`);
   return data;
 };
 
@@ -130,5 +143,67 @@ export const changePW = async ({ password, token }: Pick<UserInfo, 'password'> &
       withCredentials: true,
     },
   );
+  return data;
+};
+
+export const updateUserInfo = async ({ userId, formData }: { userId: number; formData: FormData }) => {
+  const { data }: AxiosResponse = await patchFormDataWithToken(`/api/users/update-profile`, formData);
+  return data;
+};
+//useMutation쓸 경우에는 인자가 하나만 들어갈 수 있으므로 인자가 2개 이상 들어갈 경우 미리 객체로 묶어서 사용합쉬다.
+
+export const kakaoLogin = async ({ code }: { code: string }) => {
+  const { data, headers }: Response & AxiosResponse = await ourAxios.post(`/api/users/oauth2/kakao?code=${code}`);
+
+  const authorization = headers.get('Authorization');
+  if (authorization) {
+    const token = authorization.replace('Bearer ', '');
+    accessToken = token;
+
+    const decoded = jwtDecode<TokenPayload>(token);
+    const nickname = decoded.nickname;
+    const userId = decoded.userId;
+    const profileImageUrl = data.userProfileImage;
+    store.dispatch(userLogin({ email: '', nickname, userId, profileImageUrl }));
+  }
+
+  const refreshToken = headers.get('refresh-token');
+  if (refreshToken) {
+    const secretKey = process.env.REACT_APP_CRYPTO_SECRET_KEY;
+    if (secretKey) {
+      const encryptedToken = AES.encrypt(refreshToken, secretKey).toString();
+      console.log(encryptedToken);
+      localStorage.setItem('refreshToken', encryptedToken);
+    }
+  }
+
+  return data;
+};
+
+export const googleLogin = async ({ code }: { code: string }) => {
+  const { data, headers }: Response & AxiosResponse = await ourAxios.post(`/api/users/oauth2/google?code=${code}`);
+
+  const authorization = headers.get('Authorization');
+  if (authorization) {
+    const token = authorization.replace('Bearer ', '');
+    accessToken = token;
+
+    const decoded = jwtDecode<TokenPayload>(token);
+    const nickname = decoded.nickname;
+    const userId = decoded.userId;
+    const profileImageUrl = data.userProfileImage;
+    store.dispatch(userLogin({ email: '', nickname, userId, profileImageUrl }));
+  }
+
+  const refreshToken = headers.get('refresh-token');
+  if (refreshToken) {
+    const secretKey = process.env.REACT_APP_CRYPTO_SECRET_KEY;
+    if (secretKey) {
+      const encryptedToken = AES.encrypt(refreshToken, secretKey).toString();
+      console.log(encryptedToken);
+      localStorage.setItem('refreshToken', encryptedToken);
+    }
+  }
+
   return data;
 };
