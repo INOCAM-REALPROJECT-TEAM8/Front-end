@@ -8,10 +8,12 @@ import { useSelector } from 'react-redux';
 
 function PageLayout({ headerFooterExist }: { headerFooterExist: boolean }) {
   const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
+  const paddingTop = headerFooterExist ? '56px' : '0';
+
   return (
     <>
       <PageContainer>
-        <AllPage>
+        <AllPage paddingTop={paddingTop}>
           {isLoggedIn && <ChatAlarm />}
           {headerFooterExist ? (
             <>
@@ -36,9 +38,13 @@ const PageContainer = styled.div`
   min-height: 100vh;
 `;
 
-const AllPage = styled.div`
+interface AllPageProps {
+  paddingTop: string;
+}
+
+const AllPage = styled.div<AllPageProps>`
   position: relative;
-  padding: 56px 0px;
+  padding: ${({ paddingTop }) => paddingTop} 0px;
   width: 100vw;
   max-width: 800px;
   background-color: #7751e1;

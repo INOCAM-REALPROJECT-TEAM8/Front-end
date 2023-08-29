@@ -91,6 +91,7 @@ function MyPage() {
       </FollowStatsContainer>
       <PlayList>
         <PlaylistText>내 플레이 리스트</PlaylistText>
+
         <PlaylistContainer>
           <PlayListHeader />
           <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
@@ -233,3 +234,13 @@ const UnderBarIcon = styled.div`
   display: flex;
   cursor: pointer;
 `;
+
+// const MoreButton = styled.button`
+//   width: 100%;
+//   background-color: transparent;
+//   border: none;
+//   color: white;
+//   cursor: pointer;
+//   text-align: center;
+//   margin-top: 10px;
+// `;

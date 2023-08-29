@@ -2,10 +2,9 @@ import useValidateInput from '../hooks/useValidateInput';
 import { login, signup } from '../api/user';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { ReactComponent as Logo } from '../assets/hideMaincolor.svg';
+import { ReactComponent as SmallLogo } from '../icons/SmallHIDE.svg';
 import WhiteContainer from '../components/loginPage/styles/WhiteContainer';
 import { styled } from 'styled-components';
-import { sign } from 'crypto';
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -48,22 +47,87 @@ function SignUpPage() {
   };
 
   return (
-    <Main>
-      <Logo />
-      <WhiteContainer>
-        <input onChange={handleEmailOnChange} value={email} placeholder='이메일' />
-        <input onChange={handlePwOnChange} value={password} placeholder='비밀번호' />
-        <input onChange={handlePw2OnChange} value={password2} placeholder='비밀번호 확인' />
-        <button onClick={handleSubmit}>다음</button>
-      </WhiteContainer>
-    </Main>
+    <WhiteContainer>
+      <TopContainer>
+        <SignHead>회원가입</SignHead>
+        <AddSmallLogo />
+      </TopContainer>
+      <TextAdd>로그인 정보 설정</TextAdd>
+      <SmallText>이메일, 비밀번호 등 로그인 정보를 설정해주세요.</SmallText>
+      <SignInput onChange={handleEmailOnChange} value={email} placeholder='이메일' />
+      <SignInput onChange={handlePwOnChange} value={password} placeholder='비밀번호' />
+      <SignInput onChange={handlePw2OnChange} value={password2} placeholder='비밀번호 확인' />
+      <SignButton onClick={handleSubmit}>다음</SignButton>
+    </WhiteContainer>
   );
 }
 
 export default SignUpPage;
 
-const Main = styled.div`
-  background-color: white;
+// const Main = styled.div`
+//   background-color: white;
+//   width: 100%;
+//   height: 100%;
+// `;
+
+const TopContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 174px;
+  position: absolute;
+  top: 0;
+`;
+
+const AddSmallLogo = styled(SmallLogo)`
+  margin: 26px;
+`;
+
+const TextAdd = styled.div`
+  font-size: 22px;
+  font-weight: bold;
+  color: #7751e1;
+  padding: 0px 184px 12px 0px;
+`;
+
+const SmallText = styled.div`
+  font-size: 16px;
+  color: gray;
+  margin-bottom: 80px;
+`;
+
+const SignInput = styled.input`
+  width: 342px;
+  height: 52px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 16px;
+  border: 2px solid #e3e3e3;
+  font-weight: bold;
+  background-color: white;
+  color: gray;
+  padding-left: 15px;
+  &::placeholder {
+    color: gray;
+  }
+`;
+
+const SignButton = styled.button`
+  width: 100%;
+  height: 56px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  background-color: #7751e1;
+  position: absolute;
+  bottom: 0;
+`;
+
+const SignHead = styled.div`
+  width: 100%;
+  height: 56px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  background-color: #7751e1;
+
+  align-items: center;
 `;

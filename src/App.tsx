@@ -19,6 +19,7 @@ import MyInfoPage from './pages/MyInfoPage';
 import KaKaoCodePage from './pages/KaKaoCodePage';
 import GoogleCodePage from './pages/GoogleCodePage';
 import MusicAddPage from './pages/MusicAddPage';
+import ListeningList from './pages/ListeningList';
 
 function App() {
   const [token] = useState(localStorage.getItem('refreshToken'));
@@ -38,6 +39,7 @@ function App() {
           <Route path='user/:userId/following' element={<FollowingPage />} />
           <Route path='user/:userId/follower' element={<FollowerPage />} />
           <Route path='chats' element={<ChatRoomListPage />} />
+          <Route path='user/:userId/listen' element={<ListeningList />} />
         </Route>
         <Route path='/' element={<PageLayout headerFooterExist={false} />}>
           <Route path='login' element={<LoginPage />} />
