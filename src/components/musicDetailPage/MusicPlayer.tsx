@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
 import { useEffect, useState, useRef } from 'react';
-import ReactPlayer from 'react-player';
 import { MusicInfo, addToRecentHeards, getMusicModalInfoP } from '../../api/music';
 import recode from '../../assets/recode.svg';
 import lpcartridge from '../../assets/lpCartridge.svg';
+import musicplay from '../../assets/playMusicButton.svg';
+import musicstop from '../../assets/stopMusicButton.svg';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
@@ -22,7 +24,6 @@ interface MusicPlayerProps {
 
 function MusicPlayer({ musicId }: MusicPlayerProps) {
   const navigate = useNavigate();
-
   const [musicData, setMusicData] = useState<MusicInfo>(dummyMusic);
   const { data, isSuccess } = useQuery([`music/${musicId}`], getMusicModalInfoP(musicId));
 
@@ -40,56 +41,62 @@ function MusicPlayer({ musicId }: MusicPlayerProps) {
     mutation.mutate({ musicId });
   }, [musicId]);
 
+  const iframeRef = useRef(null);
+  const [embedController, setEmbedController] = useState(null); // 상태 변수 추가
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
-  const [isLooping, setIsLooping] = useState<boolean>(true);
-  const playerRef = useRef<ReactPlayer | null>(null);
 
-  const musicPlayButtonHandler = (): void => {
-    setIsPlaying(!isPlaying);
-  };
-
+  // 스포티파이 IFrame API 초기화
   useEffect(() => {
-    setIsLooping(false);
-  }, []);
+    //@ts-ignore
+    window.onSpotifyIframeApiReady = IFrameAPI => {
+      const options = {
+        uri: `spotify:track:${musicId}`,
+      };
+      //@ts-ignore
+      const callback = EmbedController => {
+        setEmbedController(EmbedController);
+        EmbedController.play();
+      };
+      const element = document.getElementById('spotify-iframe');
+      IFrameAPI.createController(element, options, callback);
+    };
 
-  const play15SecondsBefore = () => {
-    if (playerRef.current) {
-      const currentTime = playerRef.current.getCurrentTime();
-      playerRef.current.seekTo(currentTime - 15);
-    }
-  };
+    // 스크립트 로드
+    const script = document.createElement('script');
+    script.src = 'https://sdk.scdn.co/spotify-player.js';
+    script.async = true;
+    document.body.appendChild(script);
 
-  const play15SecondsAfter = () => {
-    if (playerRef.current) {
-      const currentTime = playerRef.current.getCurrentTime();
-      playerRef.current.seekTo(currentTime + 15);
-    }
-  };
+    return () => {
+      // 컴포넌트 언마운트 시 스크립트 제거
+      document.body.removeChild(script);
+    };
+  }, [musicId]);
 
-  const handlePlaybackEnded = () => {
-    setTimeout(() => {
-      setIsLooping(true);
-      if (playerRef.current) {
-        playerRef.current.seekTo(0);
+  const musicPlayButtonHandler = () => {
+    setIsPlaying(prevIsPlaying => {
+      if (embedController) {
+        if (prevIsPlaying) {
+          //@ts-ignore
+          embedController.pause(); // 재생 중이었다면 일시정지
+        } else {
+          //@ts-ignore
+          embedController.play(); // 일시정지 상태였다면 재생
+        }
       }
-    }, 5000);
+      return !prevIsPlaying;
+    });
   };
 
   return (
     <ModalContainer>
-      <div className='MusicPlayer'>
-        <ReactPlayer
-          ref={playerRef}
-          url={`${musicData.yurl}`}
-          playing={isPlaying}
-          loop={isLooping}
-          controls={false}
-          muted={false}
-          width={'0'}
-          height={'0'}
-          onEnded={handlePlaybackEnded}
-        />
-      </div>
+      <iframe
+        id='spotify-iframe'
+        ref={iframeRef}
+        src={`https://open.spotify.com/embed/track/${musicId}`}
+        width='300'
+        height='180'
+      ></iframe>
       <AlbumCover onClick={() => navigate(`/musics/${musicId}`)}>
         <AlbumImage src={musicData.image} alt='albumCover' />
         <RecodeImage src={recode} alt='recode' />
@@ -97,9 +104,9 @@ function MusicPlayer({ musicId }: MusicPlayerProps) {
       <LpCartridge src={lpcartridge} alt='lpCartridge' width='100px' height='100px' />
       <MusicArtists>{musicData.artist}</MusicArtists>
       <MusicTitle>{musicData.title}</MusicTitle>
-      <button onClick={play15SecondsBefore}>15초 전</button>
-      <button onClick={musicPlayButtonHandler}>플레이</button>
-      <button onClick={play15SecondsAfter}>15초 후</button>
+      <PlayButton onClick={musicPlayButtonHandler}>
+        <img src={isPlaying ? musicstop : musicplay} alt='음악 재생/정지' />
+      </PlayButton>
     </ModalContainer>
   );
 }
@@ -147,14 +154,26 @@ const LpCartridge = styled.img`
 const MusicArtists = styled.p`
   color: white;
   font-size: 16px;
-  padding-left: 20px;
+  padding: 4px 0 0 25px;
 `;
 
 const MusicTitle = styled.p`
   color: white;
   font-size: 24px;
   font-weight: bold;
-  padding-left: 20px;
+  padding: 4px 0 0 25px;
+`;
+
+const PlayButton = styled.button`
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+
+  img {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 export default MusicPlayer;
