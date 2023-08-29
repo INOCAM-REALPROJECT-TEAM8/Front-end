@@ -76,9 +76,12 @@ function MyInfoPage() {
   return (
     <WhiteContainer>
       <ImageChange>
-        <input type='file' onChange={handleImageChange} />
         <div className='preview-container'>
-          {imagePreview && <img src={imagePreview} alt='Preview' className='preview-image' />}
+          <label className='plus-button-container'>
+            <PlusButton />
+            <input type='file' onChange={handleImageChange} style={{ display: 'none' }} />
+            {imagePreview && <img src={imagePreview} alt='미리보기' className='preview-image' />}
+          </label>
         </div>
         <button onClick={handleProfileImageSubmit}>프로필 이미지 업데이트</button>
       </ImageChange>
@@ -120,7 +123,7 @@ const ImageChange = styled.div`
   align-items: center;
   justify-content: center;
 
-  .input[type='file'] {
+  /* .input[type='file'] {
     position: relative;
     width: 210px;
     height: 210px;
@@ -134,7 +137,7 @@ const ImageChange = styled.div`
     margin-bottom: 22px;
     opacity: 0; // Make the input element invisible
     z-index: 1; // Place it above other elements
-  }
+  } */
   .preview-container {
     position: relative;
     background-color: white;
@@ -145,7 +148,15 @@ const ImageChange = styled.div`
     border-radius: 105px;
     margin-bottom: 22px;
   }
-
+  .plus-button-container {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    /* display: none; */
+  }
   .preview-image {
     width: 100%;
     height: 100%;
