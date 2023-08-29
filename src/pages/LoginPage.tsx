@@ -106,6 +106,7 @@ const UnderlinedTextBox = styled(Link)`
   text-decoration: underline;
   color: gray;
   padding: 30px 0 30px 0;
+  font-family: 'Pretendard-Regular', sans-serif;
 `;
 
 const UnderLine = styled.div`

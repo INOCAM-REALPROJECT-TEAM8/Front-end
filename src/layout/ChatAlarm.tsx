@@ -47,7 +47,6 @@ function ChatAlarm() {
       });
       console.log('구독');
     }
-
     return () => {
       if (subscriptions[`/sub/user/${prevUserId}`]) {
         unsubscribe(`/sub/user/${prevUserId}`);

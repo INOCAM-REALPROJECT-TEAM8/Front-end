@@ -22,7 +22,7 @@ function ChatRoom({ chatRoom }: { chatRoom: ChatRoomInfo }) {
   const handleRoomClick = () => {
     navigate(`/chat-room/${chatRoom.roomName}`);
   };
-  //@ToDo: chatRoom 정보 받을 때 상대 유저 프로필이미지도 받아오게 하기. ProfileImageBox의 src로 넣어줘야함.
+  //@ToDo: chatRoom 정보 받을 때 상대 유저 프로필 이미지도 받아오게 하기. ProfileImageBox의 src로 넣어줘야 함.
   return (
     <ChatRoomInfoContainer onClick={handleRoomClick}>
       <ProfileImageBox src={chatRoom.oppositeUserImage ?? basicProfileImg} />

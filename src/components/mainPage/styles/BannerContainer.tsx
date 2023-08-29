@@ -12,9 +12,11 @@ export const BannerContainer = styled.div`
       width: 16px;
       height: 16px;
       margin: 0px;
+
       & button {
         width: 16px;
         height: 16px;
+
         &::before {
           font-size: 10px;
           width: 16px;
@@ -24,6 +26,7 @@ export const BannerContainer = styled.div`
       }
     }
   }
+
   rect {
     width: 100%;
   }

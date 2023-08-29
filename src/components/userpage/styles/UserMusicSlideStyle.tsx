@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 
 export const MusicSlideContainer = styled.div`
   width: 100%;
+
   & > h1 {
     font-size: 20px;
     font-weight: bold;
@@ -17,6 +18,7 @@ export const MusicSlideContainer = styled.div`
 export const MusicCardContainer = styled.div`
   cursor: pointer;
   margin-right: 12px;
+
   & > img {
     border-radius: 8px;
     width: 106px;

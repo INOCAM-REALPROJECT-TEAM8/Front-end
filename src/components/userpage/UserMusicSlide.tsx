@@ -21,7 +21,9 @@ function UserMusicSlide({ playListName, musics }: { playListName: string; musics
       }
     },
   };
+
   const navigate = useNavigate();
+
   const handleMoreButtonClick = () => {
     navigate(`user/:userId/listen`);
   };
@@ -45,6 +47,7 @@ function MusicCard({ music }: { music: MusicInfo }) {
   const handleMusicClick = () => {
     //음악 모달창 띄우기
   };
+
   return (
     <MusicCardContainer onClick={handleMusicClick}>
       <img src={music.image} />
@@ -66,6 +69,7 @@ const TitleAndMore = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
+
   h1 {
     margin: 0;
   }

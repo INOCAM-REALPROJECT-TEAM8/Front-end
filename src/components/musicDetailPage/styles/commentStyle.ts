@@ -24,11 +24,13 @@ export const ProfileContainer = styled.div`
   gap: 14px;
   align-items: center;
 `;
+
 export const ProfileImg = styled.img`
   width: 62px;
   height: 62px;
   border-radius: 16px;
 `;
+
 export const NicknameBox = styled.div`
   font-size: 20px;
   font-weight: 700;
@@ -43,10 +45,12 @@ export const StarContainer = styled.div`
   padding: 6px 9px;
   border-radius: 0px 16px 16px 16px;
 `;
+
 export const StarBox = styled.div<{ $fillRate: number }>`
   width: ${({ $fillRate }) => `${$fillRate * 17}px`};
   overflow: hidden;
 `;
+
 export const FilledStar = styled(Star)`
   width: 17px;
   height: 17px;

@@ -13,6 +13,7 @@ export const GenresContainer = styled.div`
   gap: 9px;
   padding-bottom: 10px;
 `;
+
 export const GenreBox = styled.div`
   padding: 3px 7px;
   border-radius: 16px;
@@ -53,4 +54,19 @@ export const RateContainer = styled.div`
     font-size: 18px;
     color: var(--main-color);
   }
+`;
+
+export const PlayButton = styled.button`
+  width: 100px;
+  height: 50px;
+  /* border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+
+  img {
+    width: 32px;
+    height: 32px;
+    background-color: var(--main-color);
+  } */
 `;

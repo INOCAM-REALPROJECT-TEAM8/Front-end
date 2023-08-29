@@ -18,12 +18,14 @@ export const ProfileImageBox = styled.img`
 export const ChatInfoContainer = styled.div`
   padding: 5px 0px;
 `;
+
 export const OpNicknameBox = styled.div`
   font-size: 18px;
   font-weight: 700;
   padding-bottom: 6px;
   color: #1b0658;
 `;
+
 export const LastChatBox = styled.div`
   font-size: 17px;
   font-weight: 500;

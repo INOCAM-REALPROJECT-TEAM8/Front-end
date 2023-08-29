@@ -5,6 +5,7 @@ function RecordCover({ music }: { music: MusicInfo }) {
   const handleCoverClick = () => {
     //@ToDo : 재생 모달 열기
   };
+
   return (
     <AlbumCoverContainer>
       <VinylRecord />

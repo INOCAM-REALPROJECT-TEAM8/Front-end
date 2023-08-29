@@ -60,17 +60,6 @@ function MusicPlayer({ musicId }: MusicPlayerProps) {
       const element = document.getElementById('spotify-iframe');
       IFrameAPI.createController(element, options, callback);
     };
-
-    // 스크립트 로드
-    const script = document.createElement('script');
-    script.src = 'https://sdk.scdn.co/spotify-player.js';
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // 컴포넌트 언마운트 시 스크립트 제거
-      document.body.removeChild(script);
-    };
   }, [musicId]);
 
   const musicPlayButtonHandler = () => {
@@ -97,7 +86,7 @@ function MusicPlayer({ musicId }: MusicPlayerProps) {
         width='300'
         height='180'
       ></iframe>
-      <AlbumCover onClick={() => navigate(`/musics/${musicId}`)}>
+      <AlbumCover>
         <AlbumImage src={musicData.image} alt='albumCover' />
         <RecodeImage src={recode} alt='recode' />
       </AlbumCover>

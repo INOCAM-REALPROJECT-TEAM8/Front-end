@@ -36,7 +36,6 @@ function UserInformation() {
 
   const userId = Number(useParams().userId);
   const { data, isSuccess } = useQuery(['userInfo', userId], getUserInfo(userId));
-
   const [userInfo, setUserInfo] = useState<UserPageInfo>(dummyUserInfo);
 
   useEffect(() => {
@@ -50,6 +49,7 @@ function UserInformation() {
       queryClient.invalidateQueries(['userInfo', userId]);
     },
   });
+
   const handleFollowButtonClick = () => {
     followMutation.mutate(userId);
   };

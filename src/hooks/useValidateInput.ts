@@ -29,7 +29,6 @@ const useValidateInput = (type?: 'email' | 'password' | '' | undefined, automati
     setValid(pattern.test(input));
     return pattern.test(input);
   };
-
   return { input, handleInputOnChange, valid, validate };
 };
 

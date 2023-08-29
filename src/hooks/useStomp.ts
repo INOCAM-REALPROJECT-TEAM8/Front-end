@@ -26,6 +26,7 @@ const useStomp = (config: StompJs.StompConfig, callback?: () => void) => {
       callback && callback();
     };
   }, []);
+
   const send = useCallback(
     (path: string, body: ObjectType, headers: ObjectType) => {
       if (!stompClient) return;
@@ -37,6 +38,7 @@ const useStomp = (config: StompJs.StompConfig, callback?: () => void) => {
     },
     [stompClient],
   );
+
   const subscribe = useCallback(<T>(path: string, callback: (msg: T) => void) => {
     if (!stompClient) return;
     if (subscriptions[path]) return;
@@ -47,10 +49,12 @@ const useStomp = (config: StompJs.StompConfig, callback?: () => void) => {
     });
     subscriptions[path] = subscription;
   }, []);
+
   const unsubscribe = useCallback((path: string) => {
     subscriptions[path].unsubscribe();
     delete subscriptions[path];
   }, []);
+
   const disconnect = useCallback(() => {
     if (!stompClient) return;
     stompClient.deactivate();

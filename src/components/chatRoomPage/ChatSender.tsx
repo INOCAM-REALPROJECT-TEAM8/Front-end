@@ -31,10 +31,12 @@ function ChatSender({ chats, setChats, opId }: ChatSenderProps) {
       createdAt: `${new Date().toISOString()}`,
       senderImageUrl: profileImageUrl,
     };
+
     setChats([...chats, myChat]);
     send(`/pub/user/${opId}`, myChat, {});
     setMsg('');
   };
+
   return (
     <ChatSenderLable>
       <ChatSenderInput value={msg} onChange={handleMsgChange} placeholder='| 메세지 쓰기' />

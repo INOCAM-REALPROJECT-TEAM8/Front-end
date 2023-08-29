@@ -58,6 +58,7 @@ const SideBarContainer = styled.div`
   top: 0;
   overflow: hidden;
   z-index: -1;
+  font-family: 'Pretendard-Regular', sans-serif;
 
   &.open {
     z-index: 10;

@@ -14,6 +14,7 @@ import {
 function CommentInfo({ userId, nickname, content }: Comment) {
   const navigate = useNavigate();
   //const starRates = [...Array(Math.floor(star)).fill(1), star - Math.floor(star)];
+
   return (
     <CommentContainer>
       <ProfileContainer onClick={() => navigate(`/users/${userId}`)}>
