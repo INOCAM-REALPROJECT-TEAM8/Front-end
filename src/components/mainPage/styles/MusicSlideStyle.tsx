@@ -3,6 +3,8 @@ import { styled } from 'styled-components';
 export const MusicSlideContainer = styled.div`
   width: 100%;
   padding: 28px 0px 5px 24px;
+  font-family: 'Pretendard-Regular', sans-serif;
+
   & > h1 {
     font-size: 20px;
     font-weight: bold;
@@ -20,6 +22,7 @@ export const MusicSlideContainer = styled.div`
 
 export const CoveredCard = styled.div`
   padding-right: 11px;
+
   div {
     border-radius: 8px;
     height: 107px;
@@ -32,6 +35,7 @@ export const MusicCardContainer = styled.div`
   cursor: pointer;
   width: 107px;
   margin-right: 11px;
+
   & > img {
     border-radius: 8px;
     width: 107px;

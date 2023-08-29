@@ -9,4 +9,5 @@ export const MusicSearchContainer = styled.div`
   padding: 10px 24px 11px;
   background-color: var(--main-color);
   z-index: 3;
+  font-family: 'Pretendard-Regular', sans-serif;
 `;

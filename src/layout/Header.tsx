@@ -12,9 +12,11 @@ function Header({ chatNickname, chatOpId }: { chatNickname?: string; chatOpId?: 
     setIsOpen(true);
   };
   const navigate = useNavigate();
+
   const handleGoBackClick = () => {
     navigate(-1);
   };
+
   return (
     <>
       <HeaderContainer>
@@ -85,6 +87,7 @@ const LeftThingsContainer = styled.div`
   align-items: center;
   padding-left: 10px;
 `;
+
 const GoBackIcon = styled(GoBack)`
   cursor: pointer;
   padding: 10px 14px;

@@ -11,9 +11,11 @@ function useModal<OpenerElementType>({ coverExist, exitByOuterClick }: ModalConf
   const modalRef = useRef<HTMLDivElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
+
   const openModal = useCallback(() => {
     setIsOpen(true);
   }, []);
+
   const closeModal = useCallback(() => {
     setIsOpen(false);
   }, []);
@@ -34,7 +36,6 @@ function useModal<OpenerElementType>({ coverExist, exitByOuterClick }: ModalConf
       if (exitByOuterClick) {
         document.addEventListener('click', outerOnClick);
       }
-
       return () => {
         if (exitByOuterClick) document.removeEventListener('click', outerOnClick);
       };
@@ -67,7 +68,6 @@ const ViewportCover = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-
   z-index: 100;
   display: flex;
   align-items: center;

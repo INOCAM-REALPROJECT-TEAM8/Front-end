@@ -1,22 +1,22 @@
 import { MusicInfo } from '../../api/music';
-import usePlayer from '../../hooks/usePlayer';
 import { SearchResultBox, SearchResultsContainer } from './styles/SearchResultsStyle';
+import { useNavigate } from 'react-router-dom';
 
 function SearchResults({ results }: { results: MusicInfo[] }) {
-  const { Player, AllOpenerContainingRef, openPlayer } = usePlayer<HTMLDivElement>();
+  const navigate = useNavigate();
+
   return (
     <>
-      <SearchResultsContainer ref={AllOpenerContainingRef}>
+      <SearchResultsContainer>
         {[...results].map(({ artistsStringList, title, trackId }, index) => {
           return (
             <SearchResultBox
               $colorExist={!!(index % 2)}
-              onClick={() => openPlayer(trackId)}
+              onClick={() => navigate(`/musics/${trackId}`)}
             >{`${title} - ${artistsStringList}`}</SearchResultBox>
           );
         })}
       </SearchResultsContainer>
-      <Player />
     </>
   );
 }

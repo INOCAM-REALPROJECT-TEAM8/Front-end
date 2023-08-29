@@ -36,4 +36,5 @@ const GoogleText = styled.div`
 
 const A = styled.a`
   text-decoration: none;
+  font-family: 'Pretendard-Regular', sans-serif;
 `;

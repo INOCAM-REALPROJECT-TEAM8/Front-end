@@ -16,7 +16,6 @@ export interface FollowResponse {
 export const followUser = async (userId: number): Promise<AxiosResponse<FollowResponse>> => {
   try {
     const response: AxiosResponse<FollowResponse> = await postWithToken(`/api/follow/users/${userId}`, {});
-
     return response;
   } catch (error) {
     throw error;
@@ -26,7 +25,6 @@ export const followUser = async (userId: number): Promise<AxiosResponse<FollowRe
 export const unfollowUser = async (userId: number): Promise<AxiosResponse<FollowResponse>> => {
   try {
     const response: AxiosResponse<FollowResponse> = await postWithToken(`/api/follow/users/${userId}`, {});
-
     return response;
   } catch (error) {
     throw error;
@@ -36,7 +34,6 @@ export const unfollowUser = async (userId: number): Promise<AxiosResponse<Follow
 export const getFollowingList = async (userId: number): Promise<AxiosResponse<FollowUser[]>> => {
   try {
     const response: AxiosResponse<FollowUser[]> = await getWithToken(`/api/following/users/${userId}`);
-
     return response;
   } catch (error) {
     throw error;
@@ -46,7 +43,6 @@ export const getFollowingList = async (userId: number): Promise<AxiosResponse<Fo
 export const getFollowerList = async (userId: number): Promise<AxiosResponse<FollowUser[]>> => {
   try {
     const response: AxiosResponse<FollowUser[]> = await getWithToken(`/api/follower/users/${userId}`);
-
     return response;
   } catch (error) {
     throw error;

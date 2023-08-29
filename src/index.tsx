@@ -16,9 +16,9 @@ const persistor = persistStore(store);
 const queryClient = new QueryClient();
 root.render(
   <BrowserRouter>
+    <GlobalStyles />
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <GlobalStyles />
         <QueryClientProvider client={queryClient}>
           <App />
         </QueryClientProvider>

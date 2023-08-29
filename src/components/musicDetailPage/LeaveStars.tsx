@@ -12,6 +12,7 @@ function LeaveStars({ musicId }: { musicId: string }) {
   });
   const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
+
   const handleStarButtonClick = () => {
     if (isLoggedIn) {
       openModal();
@@ -21,6 +22,7 @@ function LeaveStars({ musicId }: { musicId: string }) {
       }
     }
   };
+
   return (
     <>
       <LeaveStarsBox ref={openerRef} onClick={handleStarButtonClick}>

@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react';
 import useModal from './useModal';
 import MusicPlayer from '../components/musicDetailPage/MusicPlayer';
-import { styled } from 'styled-components';
 
 function usePlayer<refElementType>() {
   const {

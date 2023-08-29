@@ -26,7 +26,6 @@ export const postWithToken = async <T>(path: string, data: T): Promise<AxiosResp
       }
     }
   }
-
   return response!;
 };
 
@@ -53,7 +52,6 @@ export const getWithToken = async (path: string): Promise<AxiosResponse> => {
       }
     }
   }
-
   return response!;
 };
 
@@ -80,7 +78,6 @@ export const deleteWithToken = async (path: string): Promise<AxiosResponse> => {
       }
     }
   }
-
   return response!;
 };
 
@@ -107,7 +104,6 @@ export const putWithToken = async <T>(path: string, data: T): Promise<AxiosRespo
       }
     }
   }
-
   return response!;
 };
 
@@ -134,6 +130,5 @@ export const patchFormDataWithToken = async <T>(path: string, data: T): Promise<
       }
     }
   }
-
   return response!;
 };

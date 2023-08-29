@@ -1,7 +1,7 @@
 import Slider from 'react-slick';
 import { PopularKeywordBox, PopularKeywordsContainer } from './styles/KeywordSlidesStyle';
 import { MusicInfo } from '../../api/music';
-import usePlayer from '../../hooks/usePlayer';
+import { useNavigate } from 'react-router-dom';
 
 const settings = {
   className: 'slider',
@@ -13,18 +13,20 @@ const settings = {
 };
 
 function KeywordSlides({ musics }: { musics: MusicInfo[] }) {
-  const { Player, AllOpenerContainingRef, openPlayer } = usePlayer<HTMLDivElement>();
+  const navigate = useNavigate();
 
   return (
     <>
-      <PopularKeywordsContainer ref={AllOpenerContainingRef}>
+      <PopularKeywordsContainer>
         <Slider {...settings}>
           {musics.map(({ title, trackId }, index) => (
-            <PopularKeywordBox key='index' onClick={() => openPlayer(trackId)}>{`${title}`}</PopularKeywordBox>
+            <PopularKeywordBox
+              onClick={() => navigate(`/musics/${trackId}`)}
+              key='index'
+            >{`${title}`}</PopularKeywordBox>
           ))}
         </Slider>
       </PopularKeywordsContainer>
-      <Player />
     </>
   );
 }

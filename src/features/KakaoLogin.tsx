@@ -36,4 +36,5 @@ const KakaoText = styled.span`
 
 const A = styled.a`
   text-decoration: none;
+  font-family: 'Pretendard-Regular', sans-serif;
 `;

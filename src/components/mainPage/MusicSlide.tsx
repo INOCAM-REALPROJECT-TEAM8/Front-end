@@ -1,9 +1,11 @@
 import { CoveredCard, MusicCardContainer, MusicSlideContainer } from './styles/MusicSlideStyle';
 import Slider from 'react-slick';
 import { MusicInfo } from '../../api/music';
-import usePlayer from '../../hooks/usePlayer';
+import { useNavigate } from 'react-router-dom';
 
 function MusicSlide({ playListName, musics }: { playListName: string; musics: MusicInfo[] }) {
+  const navigate = useNavigate();
+
   const settings = {
     className: 'slider',
     variableWidth: true,
@@ -13,15 +15,14 @@ function MusicSlide({ playListName, musics }: { playListName: string; musics: Mu
     arrows: false,
   };
 
-  const { Player, AllOpenerContainingRef, openPlayer } = usePlayer<HTMLDivElement>();
   return (
     <>
-      <MusicSlideContainer ref={AllOpenerContainingRef}>
+      <MusicSlideContainer>
         <h1>{playListName}</h1>
         <Slider {...settings}>
           {musics.length
             ? musics.map(music => (
-                <MusicCard music={music} key={music.trackId} onClick={() => openPlayer(music.trackId)} />
+                <MusicCard music={music} key={music.trackId} onClick={() => navigate(`/musics/${music.trackId}`)} />
               ))
             : Array(10)
                 .fill(1)
@@ -32,7 +33,6 @@ function MusicSlide({ playListName, musics }: { playListName: string; musics: Mu
                 ))}
         </Slider>
       </MusicSlideContainer>
-      <Player />
     </>
   );
 }

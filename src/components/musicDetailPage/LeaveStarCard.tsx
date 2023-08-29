@@ -14,6 +14,7 @@ function LeaveStarCard({ musicId, closeModal }: { musicId: string; closeModal: (
       closeModal();
     },
   });
+
   const handleOnSubmit = () => {
     if (!validate()) {
       alert('코멘트를 작성해주세요');
