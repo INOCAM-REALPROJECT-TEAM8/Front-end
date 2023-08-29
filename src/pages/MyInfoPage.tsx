@@ -6,7 +6,7 @@ import { changeUserNickname, changeUserProfileImg, userLogin } from '../redux/mo
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { updateUserInfo, getUserInfo } from '../api/user';
 import { styled } from 'styled-components';
-import { Button, Input } from '../components/loginPage/styles/Input';
+import { Input } from '../components/loginPage/styles/Input';
 import { ReactComponent as PlusButton } from '../assets/PlusButton.svg';
 import WhiteContainer from '../components/loginPage/styles/WhiteContainer';
 
@@ -91,12 +91,17 @@ function MyInfoPage() {
           value={newNickname}
           onChange={e => setNewNickname(e.target.value)}
         />
-        <Button $bgColor='#7751e1' color='white' onClick={handleNicknameSubmit}>
+        <Button onClick={handleNicknameSubmit} style={{ backgroundColor: newNickname ? '#7751e1' : '#c9c9c9' }}>
           닉네임 변경하기
         </Button>
-        <Button $bgColor='#7751e1' color='white' onClick={() => navigate('/user/:userId')}>
+        <UnderButton
+          onClick={() => navigate('/user/:userId')}
+          style={{
+            backgroundColor: newNickname || selectedImage ? '#7751e1' : '#c9c9c9',
+          }}
+        >
           변경 완료{' '}
-        </Button>
+        </UnderButton>
       </ChangeNickNameContainer>
     </WhiteContainer>
   );
@@ -161,7 +166,7 @@ const ImageChange = styled.div`
 const ChangeNickNameContainer = styled.div`
   height: auto;
   width: 342px;
-  padding-bottom: 30px;
+  padding-top: 42px;
 `;
 
 const ChangeText = styled.div`
@@ -173,16 +178,33 @@ const ChangeText = styled.div`
   margin: 189px 0px 20px 0px;
 `;
 
-// const Button = styled.div`
-//   background-color: #c9c9c9;
-//   display: flex;
-//   color: white;
-//   border: none;
-//   padding: 10px;
-//   border-radius: 16px;
-//   height: 52px;
-//   width: 342px;
-//   cursor: pointer;
-//   align-items: center;
-//   justify-content: center;
-// `;
+const Button = styled.div`
+  background-color: #c9c9c9;
+  display: flex;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px;
+  border-radius: 16px;
+  height: 52px;
+  width: 342px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+`;
+
+const UnderButton = styled.div`
+  background-color: #c9c9c9;
+  display: flex;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px;
+  border-radius: 16px;
+  height: 52px;
+  width: 342px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  margin-top: 67px;
+`;

@@ -11,6 +11,7 @@ import { getUserInfo } from '../api/user';
 import { useQuery } from '@tanstack/react-query';
 import basicProfileImg from '../assets/mascot.png';
 import { getPlaylistP, getRecentHeardsP } from '../api/music';
+import { ReactComponent as Gear } from '../assets/Vector.svg';
 
 function MyPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -70,7 +71,9 @@ function MyPage() {
     <MainContainer>
       <UserImageContainer>
         <UserImage src={userInfo?.imageUrl || basicProfileImg} />
-        <RoundButton onClick={handleRoundButtonClick}>+</RoundButton>
+        <RoundButton onClick={handleRoundButtonClick}>
+          <Gear />
+        </RoundButton>
       </UserImageContainer>
 
       {/* <input type='file' ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} /> */}
@@ -132,15 +135,13 @@ const UserImage = styled.img`
 
 const RoundButton = styled.button`
   position: absolute;
-  bottom: -10px;
-  right: -5px;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background-color: #551a8b;
-  border: none;
-  color: white;
-  font-size: 20px;
+  bottom: -8px;
+  right: -2px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: white;
+  border: 2px solid #7751e1;
   cursor: pointer;
   display: flex;
   justify-content: center;
