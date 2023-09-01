@@ -47,7 +47,7 @@ const AllPage = styled.div<AllPageProps>`
   padding: ${({ paddingTop }) => paddingTop} 0px;
   width: 100vw;
   max-width: 800px;
-  background-color: #7751e1;
+  background-color: #595deb;
   display: flex;
   flex-direction: column;
   overflow: hidden;

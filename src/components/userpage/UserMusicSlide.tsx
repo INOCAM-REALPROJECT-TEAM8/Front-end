@@ -36,21 +36,17 @@ function UserMusicSlide({ playListName, musics }: { playListName: string; musics
       </TitleAndMore>
       <Slider ref={slider => (sliderRef = slider)} {...settings}>
         {musics.map(music => (
-          <MusicCard music={music} key={music.trackId} />
+          <MusicCard music={music} key={music.trackId} onClick={() => navigate(`/musics/${music.trackId}`)} />
         ))}
       </Slider>
     </MusicSlideContainer>
   );
 }
 
-function MusicCard({ music }: { music: MusicInfo }) {
-  const handleMusicClick = () => {
-    //음악 모달창 띄우기
-  };
-
+function MusicCard({ music, onClick }: { music: MusicInfo; onClick: () => void }) {
   return (
-    <MusicCardContainer onClick={handleMusicClick}>
-      <img src={music.image} />
+    <MusicCardContainer onClick={onClick}>
+      <img src={music.image} alt='' />
     </MusicCardContainer>
   );
 }

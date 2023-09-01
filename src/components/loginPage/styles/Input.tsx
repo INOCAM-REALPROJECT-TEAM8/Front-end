@@ -9,10 +9,10 @@ export const Input = styled.input`
   border: none;
   font-weight: bold;
   background-color: #f1eefc;
-  color: #7751e1;
+  color: #595deb;
   padding-left: 15px;
   &::placeholder {
-    color: #7751e1;
+    color: #595deb;
   }
 `;
 
