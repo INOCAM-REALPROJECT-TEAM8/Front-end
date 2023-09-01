@@ -71,12 +71,12 @@ function LoginPage() {
           value={password}
           onChange={handlePwOnChange}
         />
-        <Button onClick={handleLoginClick} $bgColor='#7751e1' color='white'>
+        <Button onClick={handleLoginClick} $bgColor='#595DEB' color='white'>
           로그인
         </Button>
         <UnderlinedTextBox to='/forgetpw'>비밀번호를 잊으셨나요?</UnderlinedTextBox>
         <UnderLine />
-        <Button onClick={() => navigate('/signup')} $bgColor='#efefef' color='#818181'>
+        <Button onClick={() => navigate('/agree')} $bgColor='#efefef' color='#818181'>
           회원가입
         </Button>
         <SocialButton>

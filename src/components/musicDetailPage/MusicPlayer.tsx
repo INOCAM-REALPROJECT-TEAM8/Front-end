@@ -103,7 +103,7 @@ function MusicPlayer({ musicId }: MusicPlayerProps) {
 const ModalContainer = styled.div`
   position: relative;
   border-radius: 16px;
-  background-color: rgba(119, 81, 225, 0.95);
+  background-color: #595deb;
   width: 348px;
   height: 466px;
 `;

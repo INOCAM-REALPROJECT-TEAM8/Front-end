@@ -142,7 +142,7 @@ const RoundButton = styled.button`
   height: 30px;
   border-radius: 15px;
   background-color: white;
-  border: 2px solid #7751e1;
+  border: 2px solid #595deb;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -219,13 +219,13 @@ const PlayList = styled.div`
 const PlayListHeader = styled.div`
   height: 20px;
   width: 100%;
-  background-color: rgba(119, 21, 225, 0.2);
+  background-color: rgba(89, 93, 235, 0.2);
 `;
 
 const ListLine = styled.div`
   height: 4px;
   width: 100%;
-  background-color: rgba(119, 21, 225, 0.2);
+  background-color: rgba(89, 93, 235, 0.2);
 `;
 
 const UnderBarIcon = styled.div`

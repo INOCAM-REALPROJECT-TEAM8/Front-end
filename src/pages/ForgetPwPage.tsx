@@ -54,7 +54,7 @@ function ForgetPwPage() {
         </TextContainer>
         <Input placeholder='이메일' value={email} onChange={handleEmailChange} />
         <ButtonContainer>
-          <Button $bgColor='#7751e1' color='white' onClick={handleButtonClick}>
+          <Button $bgColor='#595DEB' color='white' onClick={handleButtonClick}>
             {isEmailEntered ? '확인' : '전송하기'}
           </Button>
           {isEmailSent && <SentConfirmation onClick={handleButtonClick}>메일이 도착하지 않았나요?</SentConfirmation>}
@@ -73,7 +73,7 @@ const TextContainer = styled.div`
 `;
 
 const PwText = styled.div`
-  color: #7751e1;
+  color: #595deb;
   font-weight: bolder;
   font-size: 24px;
   text-align: left;
