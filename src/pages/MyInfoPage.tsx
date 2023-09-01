@@ -94,13 +94,13 @@ function MyInfoPage() {
           value={newNickname}
           onChange={e => setNewNickname(e.target.value)}
         />
-        <Button onClick={handleNicknameSubmit} style={{ backgroundColor: newNickname ? '#7751e1' : '#c9c9c9' }}>
+        <Button onClick={handleNicknameSubmit} style={{ backgroundColor: newNickname ? '#595DEB' : '#c9c9c9' }}>
           닉네임 변경하기
         </Button>
         <UnderButton
           onClick={() => navigate('/user/:userId')}
           style={{
-            backgroundColor: newNickname || selectedImage ? '#7751e1' : '#c9c9c9',
+            backgroundColor: newNickname || selectedImage ? '#595DEB' : '#c9c9c9',
           }}
         >
           변경 완료{' '}
@@ -114,7 +114,7 @@ export default MyInfoPage;
 const ImageChange = styled.div`
   width: 100%;
   height: 346px;
-  background-color: #7751e1;
+  background-color: #595deb;
   position: absolute;
   top: 0;
   left: 0;
@@ -164,7 +164,7 @@ const ImageChange = styled.div`
   }
 
   button {
-    background-color: #bba8f0;
+    background-color: #e4e4fc;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -185,7 +185,7 @@ const ChangeText = styled.div`
   width: 100%;
   font-size: 22px;
   font-weight: bolder;
-  color: #7751e1;
+  color: #595deb;
   margin: 189px 0px 20px 0px;
 `;
 
