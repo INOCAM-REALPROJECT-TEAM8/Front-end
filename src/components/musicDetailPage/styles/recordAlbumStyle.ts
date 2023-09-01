@@ -8,7 +8,7 @@ export const AlbumCoverContainer = styled.div`
 
 export const VinylRecord = styled.div`
   position: absolute;
-  left: 31px;
+  left: 32px;
   background-image: url(${recode});
   background-size: cover;
   width: 280px;
