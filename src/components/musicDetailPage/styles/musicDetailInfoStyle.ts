@@ -1,40 +1,25 @@
 import { styled } from 'styled-components';
 
 export const MusicInfoContainer = styled.div`
-  padding: 0px 31px 15px;
+  padding: 0px 34px 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 `;
 
-export const GenresContainer = styled.div`
-  display: flex;
-  gap: 9px;
-  padding-bottom: 10px;
-`;
-
-export const GenreBox = styled.div`
-  padding: 3px 7px;
-  border-radius: 16px;
-  background-color: var(--gray);
-  color: var(--white);
-  font-size: 17px;
-  font-weight: 300;
-`;
-
 export const AlbumBox = styled.div`
-  padding-bottom: 20px;
+  padding-bottom: 14px;
   font-weight: 300;
   font-size: 14px;
-  color: var(--gray);
+  color: #7d7d7d;
 `;
 
 export const ArtistBox = styled.div`
-  padding-bottom: 10px;
+  padding-bottom: 4px;
   font-weight: 300;
   font-size: 20px;
-  color: var(--gray);
+  color: #7d7d7d;
 `;
 
 export const TitleBox = styled.div`
@@ -42,6 +27,12 @@ export const TitleBox = styled.div`
   font-weight: 600;
   font-size: 24px;
   color: var(--main-color);
+`;
+
+export const DetailOption = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const RateContainer = styled.div`
@@ -59,14 +50,18 @@ export const RateContainer = styled.div`
 export const PlayButton = styled.button`
   width: 100px;
   height: 50px;
-  /* border: none;
+  border: none;
   background: none;
   padding: 0;
   margin: 0;
+  cursor: pointer;
 
   img {
     width: 32px;
     height: 32px;
-    background-color: var(--main-color);
-  } */
+  }
+`;
+
+export const Options = styled.div`
+  display: flex;
 `;

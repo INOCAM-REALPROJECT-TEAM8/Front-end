@@ -50,7 +50,7 @@ function SignUpPage() {
     <WhiteContainer>
       <TopContainer>
         <SignHead>회원가입</SignHead>
-        <AddSmallLogo />
+        <AddSmallLogo onClick={() => navigate('/')} />
       </TopContainer>
       <TextAdd>로그인 정보 설정</TextAdd>
       <SmallText>이메일, 비밀번호 등 로그인 정보를 설정해주세요.</SmallText>
@@ -79,6 +79,7 @@ const TopContainer = styled.div`
 
 const AddSmallLogo = styled(SmallLogo)`
   margin: 26px;
+  cursor: pointer;
 `;
 
 const TextAdd = styled.div`
@@ -91,7 +92,7 @@ const TextAdd = styled.div`
 const SmallText = styled.div`
   font-size: 16px;
   color: gray;
-  margin-bottom: 80px;
+  padding: 0px 22px 80px 0px;
 `;
 
 const SignInput = styled.input`
@@ -105,6 +106,7 @@ const SignInput = styled.input`
   background-color: white;
   color: gray;
   padding-left: 15px;
+
   &::placeholder {
     color: gray;
   }
@@ -124,10 +126,12 @@ const SignButton = styled.button`
 const SignHead = styled.div`
   width: 100%;
   height: 56px;
+  font-size: 24px;
   border: none;
   color: white;
   font-weight: bold;
   background-color: #7751e1;
-
+  display: flex;
   align-items: center;
+  justify-content: center;
 `;

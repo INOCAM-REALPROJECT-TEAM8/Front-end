@@ -2,11 +2,9 @@
 import { useEffect, useState, useRef } from 'react';
 import { MusicInfo, addToRecentHeards, getMusicModalInfoP } from '../../api/music';
 import recode from '../../assets/recode.svg';
-import lpcartridge from '../../assets/lpCartridge.svg';
 import musicplay from '../../assets/playMusicButton.svg';
 import musicstop from '../../assets/stopMusicButton.svg';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 const dummyMusic: MusicInfo = {
@@ -23,7 +21,6 @@ interface MusicPlayerProps {
 }
 
 function MusicPlayer({ musicId }: MusicPlayerProps) {
-  const navigate = useNavigate();
   const [musicData, setMusicData] = useState<MusicInfo>(dummyMusic);
   const { data, isSuccess } = useQuery([`music/${musicId}`], getMusicModalInfoP(musicId));
 
@@ -83,14 +80,13 @@ function MusicPlayer({ musicId }: MusicPlayerProps) {
         id='spotify-iframe'
         ref={iframeRef}
         src={`https://open.spotify.com/embed/track/${musicId}`}
-        width='300'
-        height='180'
+        width='215'
+        height='350'
       ></iframe>
       <AlbumCover>
         <AlbumImage src={musicData.image} alt='albumCover' />
         <RecodeImage src={recode} alt='recode' />
       </AlbumCover>
-      <LpCartridge src={lpcartridge} alt='lpCartridge' width='100px' height='100px' />
       <MusicArtists>{musicData.artist}</MusicArtists>
       <MusicTitle>{musicData.title}</MusicTitle>
       <PlayButton onClick={musicPlayButtonHandler}>
@@ -129,15 +125,6 @@ const RecodeImage = styled.img`
   width: 280px;
   height: 280px;
   z-index: 1;
-`;
-
-const LpCartridge = styled.img`
-  position: absolute;
-  width: 125px;
-  height: 136px;
-  right: 10px;
-  top: 180px;
-  z-index: 3;
 `;
 
 const MusicArtists = styled.p`
