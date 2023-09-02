@@ -4,6 +4,7 @@ import WhiteContainer from '../components/loginPage/styles/WhiteContainer';
 import { ReactComponent as SmallLogo } from '../icons/SmallHIDE.svg';
 import styled from 'styled-components';
 import { ReactComponent as Check } from '../assets/Check.svg';
+import { ReactComponent as DetailButton } from '../assets/DetailButton.svg';
 import { ReactComponent as BackButton } from '../icons/BackButton.svg';
 
 // 이용약관 타입 정의
@@ -58,14 +59,16 @@ function AgreePage() {
           <BackButton />
         </BackButtonContainer>
         <SignHead>회원가입</SignHead>
-        <AddSmallLogo />
+        <LogoContainer>
+          <AddSmallLogo />
+          <PageNumber>(1/4)</PageNumber>
+        </LogoContainer>
       </TopContainer>
       <TextAdd>약관동의</TextAdd>
       <SmallText>필수항목 및 선택항목 약관에 동의해주세요.</SmallText>
       <AllAgree onClick={handleAllAgreeClick}>
         <CheckButton
           style={{
-            backgroundColor: agreements.every(agreement => agreement.checked) ? '#595DEB' : 'white',
             borderColor: agreements.every(agreement => agreement.checked) ? '#595DEB' : '#c9c9c9',
           }}
         >
@@ -78,7 +81,6 @@ function AgreePage() {
           {/* 이용약관 체크 버튼의 색상을 동적으로 변경 */}
           <CheckButton
             style={{
-              backgroundColor: agreement.checked ? '#595DEB' : 'white',
               borderColor: agreement.checked ? '#595DEB' : '#c9c9c9',
             }}
             onClick={() => handleAgreementClick(agreement.id)}
@@ -87,6 +89,7 @@ function AgreePage() {
           </CheckButton>
           <BoldText>({agreement.required ? '필수' : '선택'})</BoldText>
           {agreement.text}
+          <DetailButton style={{ marginLeft: 'auto' }} />
         </TextAgree>
       ))}
       <SignButton
@@ -114,8 +117,20 @@ const TopContainer = styled.div`
   top: 0;
 `;
 
+const LogoContainer = styled.div`
+  align-items: center;
+  display: flex;
+`;
+
 const AddSmallLogo = styled(SmallLogo)`
   margin: 26px;
+`;
+
+const PageNumber = styled.div`
+  font-size: 16px;
+  color: #595deb;
+  position: absolute;
+  right: 20px;
 `;
 
 const TextAdd = styled.div`
@@ -128,7 +143,7 @@ const TextAdd = styled.div`
 const SmallText = styled.div`
   font-size: 16px;
   color: gray;
-  margin-bottom: 28px;
+  margin-bottom: 80px;
 `;
 
 const SignHead = styled.div`
@@ -164,7 +179,7 @@ const CheckButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 8px;
+  margin-right: 4px;
 `;
 
 const AllAgree = styled.div`
@@ -185,7 +200,7 @@ const AllAgree = styled.div`
 `;
 
 const TextAgree = styled.div`
-  font-size: 17px;
+  font-size: 16px;
   color: grey;
   border: none;
   border-radius: 16px;
@@ -196,15 +211,15 @@ const TextAgree = styled.div`
   margin: 2px;
 
   ${CheckButton} {
-    margin: 12px;
+    margin: 8px;
   }
 `;
 
 const BoldText = styled.div`
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bolder;
   color: gray;
-  padding-right: 4px;
+  padding-right: 2px;
 `;
 const BackButtonContainer = styled.div`
   position: absolute;

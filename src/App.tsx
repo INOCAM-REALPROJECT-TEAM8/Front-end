@@ -21,7 +21,6 @@ import GoogleCodePage from './pages/GoogleCodePage';
 import MusicAddPage from './pages/MusicAddPage';
 import ListeningList from './pages/ListeningList';
 import AgreePage from './pages/AgreePage';
-
 function App() {
   const [token] = useState(localStorage.getItem('refreshToken'));
   const dispatch = useDispatch();
