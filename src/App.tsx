@@ -27,6 +27,7 @@ function App() {
   useEffect(() => {
     if (!token) dispatch(userLogout());
   }, []);
+
   return (
     <>
       <Routes>

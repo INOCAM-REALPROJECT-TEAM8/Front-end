@@ -94,6 +94,7 @@ const LogoContainer = styled.div`
 
 const AddSmallLogo = styled(SmallLogo)`
   margin: 26px;
+  cursor: pointer;
 `;
 
 const PageNumber = styled.div`
@@ -113,7 +114,7 @@ const TextAdd = styled.div`
 const SmallText = styled.div`
   font-size: 16px;
   color: gray;
-  margin-bottom: 80px;
+  padding: 0px 22px 80px 0px;
 `;
 
 const SignInput = styled.input`
@@ -127,6 +128,7 @@ const SignInput = styled.input`
   background-color: white;
   color: gray;
   padding-left: 15px;
+
   &::placeholder {
     color: gray;
   }
@@ -146,6 +148,7 @@ const SignButton = styled.button`
 const SignHead = styled.div`
   width: 100%;
   height: 56px;
+  font-size: 24px;
   border: none;
   color: white;
   font-size: xx-large;
@@ -154,6 +157,7 @@ const SignHead = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  justify-content: center;
 `;
 
 const BackButtonContainer = styled.div`

@@ -6,11 +6,13 @@ import {
   MusicInfoContainer,
   RateContainer,
   TitleBox,
+  DetailOption,
   PlayButton,
+  Options,
 } from './styles/musicDetailInfoStyle';
 import { ReactComponent as Star } from '../../assets/emptyStar.svg';
 import LeaveStars from './LeaveStars';
-import musicplay from '../../assets/playMusicButton.svg';
+import musicplay from '../../assets/pagePlayMusicButton.svg';
 import usePlayer from '../../hooks/usePlayer';
 
 function MusicDetailInfo({ music }: { music: MusicInfo }) {
@@ -23,14 +25,18 @@ function MusicDetailInfo({ music }: { music: MusicInfo }) {
         <AlbumBox>{music.album}</AlbumBox>
         <ArtistBox>{music.artistsStringList}</ArtistBox>
         <TitleBox>{music.title}</TitleBox>
-        <RateContainer>
-          <Star />
-          <div>{music.star}</div>
-        </RateContainer>
-        <LeaveStars musicId={music.trackId || ''} />
-        <PlayButton onClick={() => openPlayer(music.trackId)}>
-          {/* <img src={musicplay} alt='musicplay' /> */}
-        </PlayButton>
+        <Options>
+          <RateContainer>
+            <Star />
+            <div>{music.star}</div>
+          </RateContainer>
+          <LeaveStars musicId={music.trackId || ''} />
+          <DetailOption>
+            <PlayButton onClick={() => openPlayer(music.trackId)}>
+              <img src={musicplay} alt='musicplay' />
+            </PlayButton>
+          </DetailOption>
+        </Options>
       </MusicInfoContainer>
       <Player />
     </>
