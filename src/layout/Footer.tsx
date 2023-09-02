@@ -54,7 +54,7 @@ const FooterContainer = styled.div`
   max-width: 800px;
   height: 56px;
   background-color: white;
-  box-shadow: 0px -5px 10px 0px rgba(119, 81, 225, 0.75);
+  box-shadow: 0px -5px 10px 0px rgba(89, 93, 235, 0.75);
   display: flex;
   align-items: center;
 `;
@@ -71,3 +71,13 @@ const IconButton = styled.img`
   object-fit: contain;
   cursor: pointer;
 `;
+
+// const IconContainer = styled.div`
+//   width: 36px;
+//   height: 36px;
+//   border-radius: 50%;
+//   background-color: var(--main-color);
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// `;

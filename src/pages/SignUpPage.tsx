@@ -62,7 +62,10 @@ function SignUpPage() {
           <BackButton />
         </BackButtonContainer>
         <SignHead>회원가입</SignHead>
-        <AddSmallLogo onClick={() => navigate('/')} />
+        <LogoContainer>
+          <AddSmallLogo />
+          <PageNumber>(2/4)</PageNumber>
+        </LogoContainer>
       </TopContainer>
       <TextAdd>로그인 정보 설정</TextAdd>
       <SmallText>이메일, 비밀번호 등 로그인 정보를 설정해주세요.</SmallText>
@@ -84,9 +87,21 @@ const TopContainer = styled.div`
   top: 0;
 `;
 
+const LogoContainer = styled.div`
+  align-items: center;
+  display: flex;
+`;
+
 const AddSmallLogo = styled(SmallLogo)`
   margin: 26px;
   cursor: pointer;
+`;
+
+const PageNumber = styled.div`
+  font-size: 16px;
+  color: #595deb;
+  position: absolute;
+  right: 20px;
 `;
 
 const TextAdd = styled.div`
