@@ -16,7 +16,7 @@ import { UserPageInfo, getUserInfo } from '../../api/user';
 import { useEffect, useState } from 'react';
 import PlusButton from '../../icons/PlusButton.png';
 import CheckButton from '../../icons/CheckButton.png';
-import WhiteMessageButton from '../../icons/WhiteMessageButton.png';
+import WhiteMessageButton from '../../icons/WhiteMessageButton.svg';
 import { getRoomId } from '../../redux/modules/chatList';
 import basicProfileImg from '../../assets/mascot.png';
 import { followUser } from '../../api/follow';

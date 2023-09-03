@@ -8,9 +8,10 @@ export const Input = styled.input`
   border-radius: 16px;
   border: none;
   font-weight: bold;
-  background-color: #f1eefc;
+  background-color: #e4e4fc;
   color: #595deb;
   padding-left: 15px;
+
   &::placeholder {
     color: #595deb;
   }
@@ -42,5 +43,5 @@ export const LoginBox = styled.div`
 export const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin: 180px 0 180px 0;
+  margin: 100px 0 140px 0;
 `;

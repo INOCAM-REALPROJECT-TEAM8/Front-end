@@ -154,7 +154,7 @@ const SignHead = styled.div`
   font-size: 24px;
   border: none;
   color: white;
-  font-size: xx-large;
+  font-size: x-large;
   font-weight: bold;
   background-color: #595deb;
   display: flex;
