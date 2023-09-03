@@ -14,7 +14,7 @@ import ChatRoomPage from './pages/ChatRoomPage';
 import FollowingPage from './pages/FollowingPage';
 import ChatRoomListPage from './pages/ChatRoomListPage';
 import MyPage from './pages/MyPage';
-import FollowerPage from './pages/FallowerPage';
+import FollowerPage from './pages/FollowerPage';
 import MyInfoPage from './pages/MyInfoPage';
 import KaKaoCodePage from './pages/KaKaoCodePage';
 import GoogleCodePage from './pages/GoogleCodePage';

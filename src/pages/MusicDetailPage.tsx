@@ -5,6 +5,7 @@ import MusicDetailInfo from '../components/musicDetailPage/MusicDetailInfo';
 import { useQuery } from '@tanstack/react-query';
 import CommentList from '../components/musicDetailPage/CommentList';
 import { Comment, getCommentsP } from '../api/comment';
+import { addToPlaylist } from '../api/music';
 
 const dummyMusic: MusicInfo = {
   image:
@@ -46,9 +47,20 @@ function MusicDetailPage() {
     getCommentsP(musicId ?? ''),
   );
 
+  const handleAddToPlaylist = async () => {
+    try {
+      // Call the addToPlaylist function to add the music to the playlist
+      await addToPlaylist({ musicId: music?.trackId ?? '' });
+      alert('음악이 플레이리스트에 추가되었습니다.');
+    } catch (error) {
+      console.error('플레이리스트에 음악을 추가하는 중 오류가 발생했습니다.', error);
+    }
+  };
+
   return (
     <MusicDetailPageLayout>
       <MusicDetailInfo music={isMusicSuccess ? music : dummyMusic} />
+      <button onClick={handleAddToPlaylist}>플레이리스트에 추가</button>
       <CommentList comments={isCommentsSuccess ? comments : dummyComments} />
     </MusicDetailPageLayout>
   );
