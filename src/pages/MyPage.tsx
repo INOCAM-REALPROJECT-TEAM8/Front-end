@@ -39,7 +39,6 @@ function MyPage() {
   //  } = isLoggedIn ? useQuery([`${userId}/musics`], getUserMusics) : { data: [], isSuccess: false, isError: false };
 
   const navigate = useNavigate();
-
   const handleFollowingLabelClick = () => {
     navigate('following');
   };
@@ -64,6 +63,19 @@ function MyPage() {
     navigate('myinfo');
   };
 
+  //팔로워 조회 -> api 쪽이에요
+  // https://github.com/Boram33JO/Frontend/blob/dev/src/api/profile.ts
+
+  // export const getFollowLists = async (
+  //   userId: string,
+  // ): Promise<any> => {
+  //   const response = await instance.get(`/user/${userId}/follow`, {
+  //   });
+  //   return response.data;
+  // };
+  //-----여기 아래는 팔로워 호출하는 컴포넌트...
+
+  //https://github.com/Boram33JO/Frontend/blob/dev/src/components/profiledetail/Pictures.tsx
   const { data: playlistMusics, isSuccess: playlistSuccess } = useQuery(['playList', userId], getPlaylistP(userId));
   const { data: recentMusics, isSuccess: recentSuccess } = useQuery(['recentMusics', userId], getRecentHeardsP(userId));
 

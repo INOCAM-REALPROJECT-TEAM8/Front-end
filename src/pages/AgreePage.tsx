@@ -143,7 +143,7 @@ const TextAdd = styled.div`
 const SmallText = styled.div`
   font-size: 16px;
   color: gray;
-  margin-bottom: 80px;
+  padding: 0px 32px 80px 0px;
 `;
 
 const SignHead = styled.div`
