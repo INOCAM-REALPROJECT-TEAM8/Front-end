@@ -62,13 +62,16 @@ function SignUpPage() {
           <BackButton />
         </BackButtonContainer>
         <SignHead>회원가입</SignHead>
-        <AddSmallLogo onClick={() => navigate('/')} />
+        <LogoContainer>
+          <AddSmallLogo />
+          <PageNumber>(2/4)</PageNumber>
+        </LogoContainer>
       </TopContainer>
       <TextAdd>로그인 정보 설정</TextAdd>
       <SmallText>이메일, 비밀번호 등 로그인 정보를 설정해주세요.</SmallText>
       <SignInput onChange={handleEmailOnChange} value={email} placeholder='이메일' />
-      <SignInput onChange={handlePwOnChange} value={password} placeholder='비밀번호' />
-      <SignInput onChange={handlePw2OnChange} value={password2} placeholder='비밀번호 확인' />
+      <SignInput type='password' onChange={handlePwOnChange} value={password} placeholder='비밀번호' />
+      <SignInput type='password' onChange={handlePw2OnChange} value={password2} placeholder='비밀번호 확인' />
       <SignInput onChange={handleNicknameOnChange} value={nickname} placeholder='닉네임' />
       <SignButton onClick={handleSubmit}>다음</SignButton>
     </WhiteContainer>
@@ -84,9 +87,21 @@ const TopContainer = styled.div`
   top: 0;
 `;
 
+const LogoContainer = styled.div`
+  align-items: center;
+  display: flex;
+`;
+
 const AddSmallLogo = styled(SmallLogo)`
   margin: 26px;
   cursor: pointer;
+`;
+
+const PageNumber = styled.div`
+  font-size: 16px;
+  color: #595deb;
+  position: absolute;
+  right: 20px;
 `;
 
 const TextAdd = styled.div`
@@ -102,7 +117,7 @@ const SmallText = styled.div`
   padding: 0px 22px 80px 0px;
 `;
 
-const SignInput = styled.input`
+const SignInput = styled.input<{ type?: string }>`
   width: 342px;
   height: 52px;
   margin-bottom: 10px;
@@ -117,6 +132,9 @@ const SignInput = styled.input`
   &::placeholder {
     color: gray;
   }
+
+  /* TypeScript로 type 속성을 설정합니다. */
+  ${props => props.type === 'password' && `type: password;`}
 `;
 
 const SignButton = styled.button`

@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { getFollowingList, FollowUser } from '../api/follow';
 import { useParams } from 'react-router-dom';
 
 function FollowingPage() {
   const [followingList, setFollowingList] = useState<FollowUser[]>([]);
+  const { userId: userIdParam } = useParams<{ userId: string }>();
 
-  const userIdParam = useParams<{ userId: string }>().userId;
-  const userId = Number(userIdParam);
-  console.log(userId); // NaN
+  const userId = useMemo(() => {
+    const numericUserId = Number(userIdParam);
+    return isNaN(numericUserId) ? 0 : numericUserId; // NaN이면 기본값 0을 사용
+  }, [userIdParam]);
 
   useEffect(() => {
     // API 호출 및 데이터 가져오기
