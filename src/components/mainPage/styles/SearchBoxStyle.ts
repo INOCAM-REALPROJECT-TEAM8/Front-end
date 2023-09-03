@@ -7,7 +7,7 @@ export const SearchInputContainer = styled.label`
   height: 36px;
   width: 100%;
   padding: 9px 12px 8px;
-  border-radius: 30px;
+
   background-color: var(--white);
   align-items: center;
   z-index: 2;
@@ -24,8 +24,8 @@ export const SearchIcon = styled(OriginalSearchIcon)`
 `;
 
 export const VerticalLine = styled.div`
-  margin: 0px 5.5px 0px 12.5px;
-  height: 16px;
+  margin: 0px 5.5px 0px 10px;
+  height: 18px;
   border: 0.3px solid var(--main-color);
 `;
 

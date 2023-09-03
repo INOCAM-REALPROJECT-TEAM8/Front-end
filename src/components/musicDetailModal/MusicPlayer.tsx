@@ -76,13 +76,14 @@ function MusicPlayer({ musicId }: MusicPlayerProps) {
 
   return (
     <ModalContainer>
-      <iframe
+      <script src='https://open.spotify.com/embed-podcast/iframe-api/v1' async></script>
+      <SpotifyIframe id='embed-iframe'></SpotifyIframe>
+
+      <SpotifyIframe
         id='spotify-iframe'
         ref={iframeRef}
         src={`https://open.spotify.com/embed/track/${musicId}`}
-        width='215'
-        height='350'
-      ></iframe>
+      ></SpotifyIframe>
       <AlbumCover>
         <AlbumImage src={musicData.image} alt='albumCover' />
         <RecodeImage src={recode} alt='recode' />
@@ -102,6 +103,12 @@ const ModalContainer = styled.div`
   background-color: #595deb;
   width: 348px;
   height: 466px;
+`;
+
+const SpotifyIframe = styled.iframe`
+  position: absolute;
+  top: 300px;
+  border-radius: 16px;
 `;
 
 const AlbumCover = styled.div`

@@ -49,6 +49,9 @@ export const MusicCardContainer = styled.div`
     font-weight: 600;
     color: #3d3d3d;
     word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   & > div {
@@ -57,5 +60,8 @@ export const MusicCardContainer = styled.div`
     font-weight: 300;
     color: #7d7d7d;
     word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
