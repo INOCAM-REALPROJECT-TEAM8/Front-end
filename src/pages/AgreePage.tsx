@@ -61,7 +61,7 @@ function AgreePage() {
         <SignHead>회원가입</SignHead>
         <LogoContainer>
           <AddSmallLogo />
-          <PageNumber>(1/4)</PageNumber>
+          <PageNumber>(1/3)</PageNumber>
         </LogoContainer>
       </TopContainer>
       <TextAdd>약관동의</TextAdd>
@@ -143,7 +143,8 @@ const TextAdd = styled.div`
 const SmallText = styled.div`
   font-size: 16px;
   color: gray;
-  padding: 0px 32px 80px 0px;
+  margin-bottom: 28px;
+  padding-right: 26px;
 `;
 
 const SignHead = styled.div`
@@ -151,7 +152,7 @@ const SignHead = styled.div`
   height: 56px;
   border: none;
   color: white;
-  font-size: xx-large;
+  font-size: x-large;
   font-weight: bold;
   background-color: #595deb;
   display: flex;

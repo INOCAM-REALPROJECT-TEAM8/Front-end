@@ -1,14 +1,27 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import HomeButtonIcon from '../icons/HomeButton.png';
-import MessageButtonIcon from '../icons/MessageButton.png';
-import UserButtonIcon from '../icons/UserButton.png';
+import HomeButtonIcon from '../icons/HomeButton.svg';
+import ColorHomeButtonIcon from '../icons/ColorHomeButton.svg';
+import ColorMessageButtonIcon from '../icons/ColorMessageButton.svg';
+import MessageButtonIcon from '../icons/MessageButton.svg';
+import ColorUserButtonIcon from '../icons/ColorUserButton.svg';
+import UserButtonIcon from '../icons/UserButton.svg';
 import { useSelector } from 'react-redux';
 import { SelectState } from '../redux/config/configStore';
+import { useLocation } from 'react-router-dom';
 
 function Footer() {
   const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
+
+  const location = useLocation();
+  const isUserPage =
+    location.pathname === '/user/:userId' ||
+    location.pathname === '/user/:userId/myinfo' ||
+    location.pathname === '/user/:userId/following' ||
+    location.pathname === '/user/:userId/follower';
+  const isMainPage = location.pathname === '/';
+  const isChatPage = location.pathname === '/chats';
 
   const handleUserButtonClick = () => {
     if (isLoggedIn) {
@@ -33,13 +46,13 @@ function Footer() {
   return (
     <FooterContainer>
       <ButtonContainer onClick={handleChatButtonClick}>
-        <IconButton src={MessageButtonIcon} alt='MessageButton Icon' />
+        <IconButton src={isChatPage ? ColorMessageButtonIcon : MessageButtonIcon} alt='MessageButton Icon' />
       </ButtonContainer>
       <ButtonContainer onClick={() => navigate('')}>
-        <IconButton src={HomeButtonIcon} alt='HomeButton Icon' />
+        <IconButton src={isMainPage ? ColorHomeButtonIcon : HomeButtonIcon} alt='HomeButton Icon' />
       </ButtonContainer>
       <ButtonContainer onClick={handleUserButtonClick}>
-        <IconButton src={UserButtonIcon} alt='UserButton Icon' />
+        <IconButton src={isUserPage ? ColorUserButtonIcon : UserButtonIcon} alt='User Button Icon' />
       </ButtonContainer>
     </FooterContainer>
   );
@@ -66,8 +79,6 @@ const ButtonContainer = styled.div`
 `;
 
 const IconButton = styled.img`
-  width: 24px;
-  height: 24px;
   object-fit: contain;
   cursor: pointer;
 `;

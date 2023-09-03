@@ -69,7 +69,7 @@ const SideBarWrap = styled.div`
   z-index: 10;
   padding: 12px;
   border-radius: 15px 0 0 15px;
-  background-color: rgba(42, 18, 111, 0.8);
+  background-color: rgba(19, 22, 155, 0.8);
   height: 100%;
   width: 55%;
   right: -55%;

@@ -52,6 +52,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   z-index: 4;
+  font-family: 'Pretendard-Regular', sans-serif;
 `;
 
 const IconContainer = styled.div`

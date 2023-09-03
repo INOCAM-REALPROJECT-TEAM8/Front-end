@@ -31,6 +31,7 @@ function SignUpPage() {
       if (data.success) {
         alert('회원가입이 완료되었습니다.');
         loginMutation.mutate({ email, password });
+        navigate('/user/:userId/musicadd');
       } else {
         alert(data.msg);
       }
@@ -64,7 +65,7 @@ function SignUpPage() {
         <SignHead>회원가입</SignHead>
         <LogoContainer>
           <AddSmallLogo />
-          <PageNumber>(2/4)</PageNumber>
+          <PageNumber>(2/3)</PageNumber>
         </LogoContainer>
       </TopContainer>
       <TextAdd>로그인 정보 설정</TextAdd>
@@ -133,7 +134,6 @@ const SignInput = styled.input<{ type?: string }>`
     color: gray;
   }
 
-  /* TypeScript로 type 속성을 설정합니다. */
   ${props => props.type === 'password' && `type: password;`}
 `;
 
@@ -154,7 +154,7 @@ const SignHead = styled.div`
   font-size: 24px;
   border: none;
   color: white;
-  font-size: xx-large;
+  font-size: x-large;
   font-weight: bold;
   background-color: #595deb;
   display: flex;

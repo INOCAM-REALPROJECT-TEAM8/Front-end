@@ -69,7 +69,7 @@ export default ForgetPwPage;
 const TextContainer = styled.div`
   height: auto;
   width: 342px;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 `;
 
 const PwText = styled.div`
