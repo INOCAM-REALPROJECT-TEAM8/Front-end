@@ -1,11 +1,14 @@
 import { styled } from 'styled-components';
-import { ReactComponent as Star } from '../../../assets/filledStar.svg';
 
 export const CommentListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
   width: 100%;
+  height: 260px;
+  background-color: var(--main-color);
+  border-radius: 14px;
+  overflow: hidden;
+  overflow: scroll;
 `;
 
 export const CommentContainer = styled.div`
@@ -15,8 +18,7 @@ export const CommentContainer = styled.div`
   gap: 12px;
   width: 100%;
   padding: 15px 16px;
-  border-radius: 0px 16px 16px 16px;
-  background-color: var(--main-color);
+  border-bottom: 1px solid white;
 `;
 
 export const ProfileContainer = styled.div`
@@ -44,16 +46,6 @@ export const StarContainer = styled.div`
   align-items: center;
   padding: 6px 9px;
   border-radius: 0px 16px 16px 16px;
-`;
-
-export const StarBox = styled.div<{ $fillRate: number }>`
-  width: ${({ $fillRate }) => `${$fillRate * 17}px`};
-  overflow: hidden;
-`;
-
-export const FilledStar = styled(Star)`
-  width: 17px;
-  height: 17px;
 `;
 
 export const ContentBox = styled.div`

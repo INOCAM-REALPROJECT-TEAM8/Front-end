@@ -1,11 +1,10 @@
 import React from 'react';
-import { CommentInput, CommentSubmitBtn, LeaveStarCardContainer } from './styles/leaveStarsStyle';
+import { CommentInput, CommentSubmitBtn, LeaveCommentCardContainer } from './styles/leaveCommentsStyle';
 import useValidateInput from '../../hooks/useValidateInput';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { postComment } from '../../api/comment';
-import StarRating from './StarRating';
 
-function LeaveStarCard({ musicId, closeModal }: { musicId: string; closeModal: () => void }) {
+function LeaveCommentCard({ musicId, closeModal }: { musicId: string; closeModal: () => void }) {
   const { input: content, handleInputOnChange, validate } = useValidateInput('', false);
 
   const queryClient = useQueryClient();
@@ -18,19 +17,18 @@ function LeaveStarCard({ musicId, closeModal }: { musicId: string; closeModal: (
 
   const handleOnSubmit = () => {
     if (!validate()) {
-      alert('코멘트를 작성해주세요');
+      alert('감상평을 작성해주세요');
       return;
     }
     mutation.mutate({ content, musicId });
   };
 
   return (
-    <LeaveStarCardContainer>
-      <StarRating />
-      <CommentInput placeholder='코멘트를 남겨보세요' onChange={handleInputOnChange} value={content} />
+    <LeaveCommentCardContainer>
+      <CommentInput placeholder='감상평을 남겨보세요' onChange={handleInputOnChange} value={content} />
       <CommentSubmitBtn onClick={handleOnSubmit}>남기기</CommentSubmitBtn>
-    </LeaveStarCardContainer>
+    </LeaveCommentCardContainer>
   );
 }
 
-export default LeaveStarCard;
+export default LeaveCommentCard;

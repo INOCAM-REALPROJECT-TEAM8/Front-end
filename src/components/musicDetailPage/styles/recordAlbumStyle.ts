@@ -11,13 +11,13 @@ export const VinylRecord = styled.div`
   left: 32px;
   background-image: url(${recode});
   background-size: cover;
-  width: 280px;
-  height: 280px;
+  width: 230px;
+  height: 230px;
 `;
 
 export const AlbumCoverImg = styled.img`
   position: relative;
   border-radius: 4px;
-  width: 280px;
-  height: 280px;
+  width: 230px;
+  height: 230px;
 `;

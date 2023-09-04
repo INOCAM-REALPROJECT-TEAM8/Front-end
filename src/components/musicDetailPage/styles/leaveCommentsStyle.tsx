@@ -1,19 +1,31 @@
 import { styled } from 'styled-components';
 
-export const LeaveStarsBox = styled.div`
+export const LeaveCommentBox = styled.div`
+  position: absolute;
+  right: 10%;
+  bottom: 90px;
+  width: 140px;
+  height: 44px;
+  border: 2px solid white;
+  border-radius: 16px;
+  background-color: var(--white);
   cursor: pointer;
-  padding: 8px 0px 10px;
   font-size: 18px;
   font-weight: 600;
   color: var(--main-color);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-export const LeaveStarCardContainer = styled.div`
+export const LeaveCommentCardContainer = styled.div`
+  position: relative;
   border-radius: 16px;
-  width: 260px;
-  height: 208px;
+  width: 350px;
+  height: 300px;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #595deb;
 `;
 
 export const CommentInput = styled.input`
@@ -25,17 +37,24 @@ export const CommentInput = styled.input`
   height: 200px;
   word-break: break-all;
   padding: 20px;
+  border-radius: 8px;
   background-color: var(--white);
 `;
 
 export const CommentSubmitBtn = styled.button`
-  margin-top: 30px;
+  position: absolute;
   outline: none;
   border: none;
   padding: 10px;
+  width: 120px;
+  color: #595deb;
   background-color: var(--white);
   font-weight: 600;
   font-size: 20px;
-  text-align: center;
+  border-radius: 10px;
+  bottom: 16px;
+  right: 20px;
+  left: auto;
+  justify-content: center;
   vertical-align: middle;
 `;
