@@ -7,29 +7,29 @@ import CommentList from '../components/musicDetailPage/CommentList';
 import { Comment, getCommentsP } from '../api/comment';
 import { addToPlaylist } from '../api/music';
 
-const dummyMusic: MusicInfo = {
-  image:
-    'https://i.namu.wiki/i/3o5_9cQW9UVQzA-M0OyEwdMgtCtv1HUwc5RTMZl_E0knAjndE56r42fCllbD2JHrhZP_ugBhQ3Gi9WXkv8NPGg.webp',
-  title: 'Lemon',
-  artistsStringList: '米津玄師 (요네즈 켄시)',
-  trackId: 'dddd',
-  album: '그레이트 서울 인베이전 Semi Final',
-  genres: ['인디음악', '록/메탈'],
-  star: 3.8,
-};
+// const dummyMusic: MusicInfo = {
+//   image:
+//     'https://i.namu.wiki/i/3o5_9cQW9UVQzA-M0OyEwdMgtCtv1HUwc5RTMZl_E0knAjndE56r42fCllbD2JHrhZP_ugBhQ3Gi9WXkv8NPGg.webp',
+//   title: 'Lemon',
+//   artistsStringList: '米津玄師 (요네즈 켄시)',
+//   trackId: 'dddd',
+//   album: '그레이트 서울 인베이전 Semi Final',
+//   genres: ['인디음악', '록/메탈'],
+//   star: 3.8,
+// };
 
-const dummyComments: Comment[] = [
-  {
-    userId: 10,
-    nickname: 'nickname3333',
-    content: '테스트',
-  },
-  {
-    userId: 10,
-    nickname: 'nickname3333',
-    content: '테스트',
-  },
-];
+// const dummyComments: Comment[] = [
+//   {
+//     userId: 10,
+//     nickname: 'nickname3333',
+//     content: '테스트',
+//   },
+//   {
+//     userId: 10,
+//     nickname: 'nickname3333',
+//     content: '테스트',
+//   },
+// ];
 
 function MusicDetailPage() {
   const navigate = useNavigate();
@@ -60,9 +60,9 @@ function MusicDetailPage() {
 
   return (
     <MusicDetailPageLayout>
-      <MusicDetailInfo music={isMusicSuccess ? music : dummyMusic} />
+      {isMusicSuccess && <MusicDetailInfo music={music} />}
       <button onClick={handleAddToPlaylist}>플레이리스트에 추가</button>
-      <CommentList comments={isCommentsSuccess ? comments : dummyComments} />
+      {isCommentsSuccess && <CommentList comments={comments} />}
     </MusicDetailPageLayout>
   );
 }

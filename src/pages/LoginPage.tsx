@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import KakaoLogin from '../features/KakaoLogin';
 import GoogleLogin from '../features/GoogleLogin';
-import WhiteContainer from '../components/loginPage/styles/WhiteContainer';
+import { WhiteContainer } from '../components/loginPage/styles/WhiteContainer';
 import useValidateInput from '../hooks/useValidateInput';
 import { useMutation } from '@tanstack/react-query';
 import { login } from '../api/user';

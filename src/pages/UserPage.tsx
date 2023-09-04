@@ -24,12 +24,7 @@ function UserPage() {
         <PlaylistContainer>
           <PlayListHeader />
           <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
-          <ListLine />
-          <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
-          <ListLine />
-          <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
-          <ListLine />
-          <UnderBarIcon>
+          <UnderBarIcon onClick={() => navigate('playlist')}>
             <img src={UnderBar} />
           </UnderBarIcon>
         </PlaylistContainer>
@@ -54,7 +49,7 @@ const PlaylistText = styled.div`
 const PlaylistContainer = styled.div`
   background-color: white;
   width: 100%;
-  height: 227px;
+  height: 228px;
   border-radius: 16px;
   margin-top: 20px;
 `;
@@ -67,17 +62,11 @@ const PlayList = styled.div`
 const PlayListHeader = styled.div`
   height: 20px;
   width: 100%;
-  background-color: rgba(119, 21, 225, 0.2);
-`;
-
-const ListLine = styled.div`
-  height: 4px;
-  width: 100%;
-  background-color: rgba(119, 21, 225, 0.2);
+  background-color: rgba(89, 93, 235, 0.3);
 `;
 
 const UnderBarIcon = styled.div`
-  padding-top: 8px;
+  padding-top: 4px;
   justify-content: center;
   display: flex;
   cursor: pointer;

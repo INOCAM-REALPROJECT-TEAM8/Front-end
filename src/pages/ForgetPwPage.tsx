@@ -6,7 +6,7 @@ import { ReactComponent as Logo } from '../assets/hideMaincolor.svg';
 import { Button, Input, LoginBox, LogoContainer } from '../components/loginPage/styles/Input';
 import { styled } from 'styled-components';
 import { useState, ChangeEvent } from 'react';
-import WhiteContainer from '../components/loginPage/styles/WhiteContainer';
+import { WhiteContainer } from '../components/loginPage/styles/WhiteContainer';
 
 function ForgetPwPage() {
   const { input: email, handleInputOnChange: handleEmailOnChange, valid: emailValid } = useValidateInput('email');
