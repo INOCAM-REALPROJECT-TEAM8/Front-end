@@ -85,7 +85,6 @@ function MyInfoPage() {
         </div>
         <button onClick={handleProfileImageSubmit}>프로필 이미지 업데이트</button>
       </ImageChange>
-
       <ChangeNickNameContainer>
         <ChangeText>닉네임 변경</ChangeText>
         <Input
@@ -115,9 +114,9 @@ const ImageChange = styled.div`
   width: 100%;
   height: 346px;
   background-color: #595deb;
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,7 +142,7 @@ const ImageChange = styled.div`
     background-color: white;
     border: 3px solid white;
     width: 210px;
-    height: 210px; // Same as input height
+    height: 210px;
     overflow: hidden; // Hide overflow to ensure the image fits within the container
     border-radius: 105px;
     margin-bottom: 22px;
@@ -165,19 +164,21 @@ const ImageChange = styled.div`
 
   button {
     background-color: #e4e4fc;
-    color: white;
+    color: var(--main-color);
     border: none;
     padding: 10px 20px;
     border-radius: 16px;
     height: 52px;
     width: 342px;
     cursor: pointer;
+    margin-bottom: 24px;
+    font-size: 17px;
+    font-weight: bold;
   }
 `;
 const ChangeNickNameContainer = styled.div`
-  height: auto;
+  height: 100%;
   width: 342px;
-  padding-top: 42px;
 `;
 
 const ChangeText = styled.div`
@@ -186,7 +187,7 @@ const ChangeText = styled.div`
   font-size: 22px;
   font-weight: bolder;
   color: #595deb;
-  margin: 189px 0px 20px 0px;
+  margin: 44px 0px 20px 0px;
 `;
 
 const Button = styled.div`

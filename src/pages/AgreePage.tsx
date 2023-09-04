@@ -61,7 +61,7 @@ function AgreePage() {
         <SignHead>회원가입</SignHead>
         <LogoContainer>
           <AddSmallLogo />
-          <PageNumber>(1/4)</PageNumber>
+          <PageNumber>(1/3)</PageNumber>
         </LogoContainer>
       </TopContainer>
       <TextAdd>약관동의</TextAdd>
