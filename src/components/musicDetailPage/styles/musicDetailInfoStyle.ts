@@ -37,7 +37,6 @@ export const DetailOption = styled.div`
 
 export const RateContainer = styled.div`
   display: flex;
-  gap: 10px;
   align-items: center;
 
   & > div {

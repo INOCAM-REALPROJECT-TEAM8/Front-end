@@ -1,15 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Comment } from '../../api/comment';
-import {
-  CommentContainer,
-  ContentBox,
-  FilledStar,
-  NicknameBox,
-  ProfileContainer,
-  ProfileImg,
-  StarBox,
-  StarContainer,
-} from './styles/commentStyle';
+import { CommentContainer, ContentBox, NicknameBox, ProfileContainer, ProfileImg } from './styles/commentStyle';
 
 function CommentInfo({ userId, nickname, content }: Comment) {
   const navigate = useNavigate();
@@ -21,13 +12,6 @@ function CommentInfo({ userId, nickname, content }: Comment) {
         <ProfileImg />
         <NicknameBox>{nickname}</NicknameBox>
       </ProfileContainer>
-      {/* <StarContainer>
-        {starRates.map(fillRate => (
-          <StarBox $fillRate={fillRate}>
-            <FilledStar />
-          </StarBox>
-        ))}
-      </StarContainer> */}
       <ContentBox>{content}</ContentBox>
     </CommentContainer>
   );

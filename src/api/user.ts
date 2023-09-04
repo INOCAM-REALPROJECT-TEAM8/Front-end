@@ -156,21 +156,38 @@ export const updateUserInfo = async ({ userId, formData }: { userId: number; for
 //useMutation 쓸 경우에는 인자가 하나만 들어갈 수 있으므로 인자가 2개 이상 들어갈 경우 미리 객체로 묶어서 사용합시다.
 
 export const kakaoLogin = async ({ code }: { code: string }) => {
-  const { data }: Response & AxiosResponse = await ourAxios.get(`/api/users/oauth2/kakao?code=${code}`, {
-    withCredentials: true,
-  });
+  const { data, headers }: Response & AxiosResponse = await ourAxios.get(`/api/users/oauth2/kakao?code=${code}`);
 
-  const nickname = data.nickname;
-  const userId = data.userId;
-  const profileImageUrl = data.userProfileImage;
+  console.log('Headers: ', headers);
 
-  store.dispatch(userLogin({ email: '', nickname, userId, profileImageUrl }));
+  const authorization = headers.get('Authorization');
+  console.log('Authorization: ', authorization);
+  if (authorization) {
+    const token = authorization.replace('Bearer ', '');
+    accessToken = token;
 
+    const decoded = jwtDecode<TokenPayload>(token);
+    const nickname = decoded.nickname;
+    const userId = decoded.userId;
+    const profileImageUrl = data.userProfileImage;
+    store.dispatch(userLogin({ email: '', nickname, userId, profileImageUrl }));
+  }
+
+  const refreshToken = headers.get('refresh-token');
+  if (refreshToken) {
+    const secretKey = process.env.REACT_APP_CRYPTO_SECRET_KEY;
+
+    if (secretKey) {
+      const encryptedToken = AES.encrypt(refreshToken, secretKey).toString();
+      console.log(encryptedToken);
+      localStorage.setItem('refreshToken', encryptedToken);
+    }
+  }
   return data;
 };
 
 export const googleLogin = async ({ code }: { code: string }) => {
-  const { data, headers }: Response & AxiosResponse = await ourAxios.post(`/api/users/oauth2/google?code=${code}`);
+  const { data, headers }: Response & AxiosResponse = await ourAxios.get(`/api/users/oauth2/google?code=${code}`);
 
   const authorization = headers.get('Authorization');
   if (authorization) {
