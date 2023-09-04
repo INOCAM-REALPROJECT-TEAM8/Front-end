@@ -8,7 +8,7 @@ import { updateUserInfo, getUserInfo } from '../api/user';
 import { styled } from 'styled-components';
 import { Input } from '../components/loginPage/styles/Input';
 import { ReactComponent as PlusButton } from '../assets/PlusButton.svg';
-import WhiteContainer from '../components/loginPage/styles/WhiteContainer';
+import { WhiteContainer } from '../components/loginPage/styles/WhiteContainer';
 
 function MyInfoPage() {
   const dispatch = useDispatch();

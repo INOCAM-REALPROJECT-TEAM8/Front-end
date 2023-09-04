@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-const WhiteContainer = styled.div`
+export const WhiteContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
@@ -12,4 +12,12 @@ const WhiteContainer = styled.div`
   font-family: 'Pretendard-Regular', sans-serif;
 `;
 
-export default WhiteContainer;
+export const WhiteTopContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Pretendard-Regular', sans-serif;
+`;

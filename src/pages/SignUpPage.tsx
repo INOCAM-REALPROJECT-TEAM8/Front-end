@@ -3,7 +3,7 @@ import { login, signup } from '../api/user';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { ReactComponent as SmallLogo } from '../icons/SmallHIDE.svg';
-import WhiteContainer from '../components/loginPage/styles/WhiteContainer';
+import { WhiteContainer } from '../components/loginPage/styles/WhiteContainer';
 import { styled } from 'styled-components';
 import SignUpInfo from './SignUpInfo';
 import { ReactComponent as BackButton } from '../icons/BackButton.svg';

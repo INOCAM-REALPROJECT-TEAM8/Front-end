@@ -107,12 +107,7 @@ function MyPage() {
         <PlaylistContainer>
           <PlayListHeader />
           <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
-          <ListLine />
-          <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
-          <ListLine />
-          <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
-          <ListLine />
-          <UnderBarIcon>
+          <UnderBarIcon onClick={() => navigate('playlist')}>
             <img src={UnderBar} />
           </UnderBarIcon>
         </PlaylistContainer>
@@ -230,12 +225,6 @@ const PlayList = styled.div`
 
 const PlayListHeader = styled.div`
   height: 20px;
-  width: 100%;
-  background-color: rgba(89, 93, 235, 0.2);
-`;
-
-const ListLine = styled.div`
-  height: 4px;
   width: 100%;
   background-color: rgba(89, 93, 235, 0.2);
 `;

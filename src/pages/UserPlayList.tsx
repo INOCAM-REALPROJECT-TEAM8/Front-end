@@ -10,7 +10,7 @@ import { getPlaylistP, getRecentHeardsP } from '../api/music';
 import { WhiteTopContainer } from '../components/loginPage/styles/WhiteContainer';
 import PlayList from '../components/userpage/PlayList';
 
-function MyPlayList() {
+function UserPlayList() {
   const navigate = useNavigate();
   const userId = Number(useParams().userId);
 
@@ -19,7 +19,7 @@ function MyPlayList() {
   return (
     <WhiteTopContainer>
       <PlayListTop>
-        <PlaylistText>나의 플레이 리스트</PlaylistText>
+        <PlaylistText>{userId}의 플레이 리스트</PlaylistText>
       </PlayListTop>
 
       <PlayList musics={playlistSuccess ? playlistMusics || [] : []} />
@@ -27,7 +27,7 @@ function MyPlayList() {
   );
 }
 
-export default MyPlayList;
+export default UserPlayList;
 const PlaylistText = styled.div`
   display: flex;
   width: 100%;

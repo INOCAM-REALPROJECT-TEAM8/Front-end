@@ -25,16 +25,16 @@ const Label = styled.label<LabelProps>`
         transform: translate(-108px);
       }
       &:nth-of-type(8) {
-        transform: translate(-84px);
+        transform: translate(-52px);
       }
       &:nth-of-type(6) {
-        transform: translate(-60px);
-      }
-      &:nth-of-type(4) {
         transform: translate(-36px);
       }
+      &:nth-of-type(4) {
+        transform: translate(-20px);
+      }
       &:nth-of-type(2) {
-        transform: translate(-12px);
+        transform: translate(-4px);
       }
     `}
 `;

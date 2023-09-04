@@ -9,7 +9,7 @@ import {
 } from '../components/loginPage/styles/InputSearchBoxStyle';
 import SearchResults from '../components/mainPage/SearchResults';
 import { MusicInfo, searchMusics } from '../api/music';
-import WhiteContainer from '../components/loginPage/styles/WhiteContainer';
+import { WhiteContainer } from '../components/loginPage/styles/WhiteContainer';
 import { styled } from 'styled-components';
 import { ReactComponent as BackButton } from '../icons/BackButton.svg';
 import { ReactComponent as SmallLogo } from '../icons/SmallHIDE.svg';
