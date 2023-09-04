@@ -51,6 +51,7 @@ function MusicDetailPage() {
     try {
       // Call the addToPlaylist function to add the music to the playlist
       await addToPlaylist({ musicId: music?.trackId ?? '' });
+      // Optionally, you can provide some feedback to the user after adding to the playlist
       alert('음악이 플레이리스트에 추가되었습니다.');
     } catch (error) {
       console.error('플레이리스트에 음악을 추가하는 중 오류가 발생했습니다.', error);
