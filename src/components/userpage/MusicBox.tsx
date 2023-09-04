@@ -6,34 +6,46 @@ import styled from 'styled-components';
 import { MusicInfo } from '../../api/music';
 
 function MusicBox({ musics }: { musics: MusicInfo[] }) {
+  let sliderRef: Slider | null = null;
   const settings = {
-    vertical: true,
+    className: 'slider',
+    vertical: true, // 슬라이드 방향을 수직으로 변경
+    variableWidth: true,
     swipeToSlide: true,
     slidesToShow: 1,
     infinite: false,
     arrows: false,
+    beforeChange: (currentSlide: number, nextSlide: number) => {
+      // 10번째 카드가 아래로 도달하면 슬라이딩을 막음
+      if (nextSlide === 10 && currentSlide === 9) {
+        sliderRef?.slickPause(); // 슬라이딩 일시정지
+      }
+    },
   };
 
+  const navigate = useNavigate();
   return (
     <ListContainer>
-      <MusicSlideContainer>
-        <Slider {...settings}>
+      <ListMusicCard>
+        <Slider ref={slider => (sliderRef = slider)} {...settings}>
           {musics.map(music => (
-            <MusicCard music={music} key={music.trackId} />
+            <MusicCard music={music} key={music.trackId} onClick={() => navigate(`/musics/${music.trackId}`)} />
           ))}
         </Slider>
-      </MusicSlideContainer>
+      </ListMusicCard>
     </ListContainer>
   );
 }
 
-function MusicCard({ music }: { music: MusicInfo }) {
-  const handleMusicClick = () => {
-    // 음악 모달창 띄우기
-  };
+function MusicCard({ music, onClick }: { music: MusicInfo; onClick: () => void }) {
+  // return (
+  //   <MusicCardContainer onClick={onClick}>
+  //     <img src={music.image} alt='' />
+  //   </MusicCardContainer>
+  // );
 
   return (
-    <ListMusicCard onClick={handleMusicClick}>
+    <ListMusicCard onClick={onClick}>
       <img src={music.image} alt={`Album cover for ${music.title}`} />
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <p style={{ paddingBottom: '5px' }}>{music.artist}</p>

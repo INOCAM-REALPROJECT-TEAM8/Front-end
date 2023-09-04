@@ -23,11 +23,11 @@ function UserPage() {
         <PlaylistText>내 플레이 리스트</PlaylistText>
         <PlaylistContainer>
           <PlayListHeader />
-          <MusicBox musics={playlistSuccess ? playlistMusics.slice(0, 3) || [] : []} />
+          <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
           <ListLine />
-          <MusicBox musics={playlistSuccess ? playlistMusics.slice(3, 6) || [] : []} />
+          <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
           <ListLine />
-          <MusicBox musics={playlistSuccess ? playlistMusics.slice(6, 9) || [] : []} />
+          <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
           <ListLine />
           <UnderBarIcon>
             <img src={UnderBar} />
