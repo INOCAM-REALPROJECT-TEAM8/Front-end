@@ -19,7 +19,8 @@ function Footer() {
     location.pathname === '/user/:userId' ||
     location.pathname === '/user/:userId/myinfo' ||
     location.pathname === '/user/:userId/following' ||
-    location.pathname === '/user/:userId/follower';
+    location.pathname === '/user/:userId/follower' ||
+    location.pathname === 'user/:userId/playlist';
   const isMainPage = location.pathname === '/';
   const isChatPage = location.pathname === '/chats';
 

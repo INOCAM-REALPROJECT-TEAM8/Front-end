@@ -16,7 +16,6 @@ import { ReactComponent as Gear } from '../assets/Vector.svg';
 function MyPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
-  // const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [buttonType, setButtonType] = useState<'plus' | 'check'>('plus');
 
@@ -27,17 +26,6 @@ function MyPage() {
   const followerCount = userInfo?.follower ?? 0;
   const followingCount = userInfo?.following ?? 0;
 
-  // const handleImageClick = () => {
-  //   if (fileInputRef.current) {
-  //     fileInputRef.current.click();
-  //   }
-  // };
-  //  const {
-  //    data: userMusics,
-  //    isSuccess: isSuccessUserMusics,
-  //    isError: isErrorUserMusics,
-  //  } = isLoggedIn ? useQuery([`${userId}/musics`], getUserMusics) : { data: [], isSuccess: false, isError: false };
-
   const navigate = useNavigate();
   const handleFollowingLabelClick = () => {
     navigate('following');
@@ -47,35 +35,10 @@ function MyPage() {
     navigate('follower');
   };
 
-  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   // 파일 선택 시 처리하는 로직
-  //   const selectedFile = event.target.files?.[0];
-  //   if (selectedFile) {
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       // 선택된 파일을 상태로 관리하여 컨테이너 안에 바로 보여줌
-  //       setSelectedImage(reader.result as string);
-  //     };
-  //     reader.readAsDataURL(selectedFile);
-  //   }
-  // };
   const handleRoundButtonClick = () => {
     navigate('myinfo');
   };
 
-  //팔로워 조회 -> api 쪽이에요
-  // https://github.com/Boram33JO/Frontend/blob/dev/src/api/profile.ts
-
-  // export const getFollowLists = async (
-  //   userId: string,
-  // ): Promise<any> => {
-  //   const response = await instance.get(`/user/${userId}/follow`, {
-  //   });
-  //   return response.data;
-  // };
-  //-----여기 아래는 팔로워 호출하는 컴포넌트...
-
-  //https://github.com/Boram33JO/Frontend/blob/dev/src/components/profiledetail/Pictures.tsx
   const { data: playlistMusics, isSuccess: playlistSuccess } = useQuery(['playList', userId], getPlaylistP(userId));
   const { data: recentMusics, isSuccess: recentSuccess } = useQuery(['recentMusics', userId], getRecentHeardsP(userId));
 
@@ -211,12 +174,9 @@ const PlaylistText = styled.div`
 const PlaylistContainer = styled.div`
   background-color: white;
   width: 100%;
-  height: 227px;
+  height: 228px;
   border-radius: 16px;
   margin-top: 20px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 const PlayList = styled.div`
@@ -236,13 +196,3 @@ const UnderBarIcon = styled.div`
   display: flex;
   cursor: pointer;
 `;
-
-// const MoreButton = styled.button`
-//   width: 100%;
-//   background-color: transparent;
-//   border: none;
-//   color: white;
-//   cursor: pointer;
-//   text-align: center;
-//   margin-top: 10px;
-// `;

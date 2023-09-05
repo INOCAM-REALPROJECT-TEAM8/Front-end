@@ -1,17 +1,17 @@
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
-import { ListMusicCard } from './styles/MusicBoxStyle';
+import { PlayListMusicCard } from './styles/MusicBoxStyle';
 import styled from 'styled-components';
 import { MusicInfo } from '../../api/music';
 
-function MusicBox({ musics }: { musics: MusicInfo[] }) {
+function UserListening({ musics }: { musics: MusicInfo[] }) {
   let sliderRef: Slider | null = null;
   const settings = {
     className: 'slider',
     vertical: true, // 슬라이드 방향을 수직으로 변경
     variableWidth: false,
     swipeToSlide: true,
-    slidesToShow: 3,
+    slidesToShow: 50,
     infinite: false,
     arrows: false,
   };
@@ -19,43 +19,38 @@ function MusicBox({ musics }: { musics: MusicInfo[] }) {
   const navigate = useNavigate();
   return (
     <ListContainer>
-      <ListMusicCard>
+      <PlayListMusicCard>
         <Slider ref={slider => (sliderRef = slider)} {...settings}>
           {musics.map(music => (
             <MusicCard music={music} key={music.trackId} onClick={() => navigate(`/musics/${music.trackId}`)} />
           ))}
         </Slider>
-      </ListMusicCard>
+      </PlayListMusicCard>
     </ListContainer>
   );
 }
 
 function MusicCard({ music, onClick }: { music: MusicInfo; onClick: () => void }) {
-  // return (
-  //   <MusicCardContainer onClick={onClick}>
-  //     <img src={music.image} alt='' />
-  //   </MusicCardContainer>
-  // );
-
   return (
     <>
-      <ListMusicCard onClick={onClick}>
+      <PlayListMusicCard onClick={onClick}>
         <img src={music.image} alt={`Album cover for ${music.title}`} />
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <p style={{ paddingBottom: '5px' }}>{music.artist}</p>
           <h5>{music.artistsStringList}</h5>
-          <h2>{music.title}</h2>
+          <h1>{music.title}</h1>
         </div>
-      </ListMusicCard>
+      </PlayListMusicCard>
       <ListLine />
     </>
   );
 }
 
-export default MusicBox;
+export default UserListening;
 
 const ListContainer = styled.div`
   height: 184px;
+  padding: 12px;
 `;
 
 const ListLine = styled.div`
