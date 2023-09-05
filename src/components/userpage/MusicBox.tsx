@@ -56,6 +56,7 @@ export default MusicBox;
 
 const ListContainer = styled.div`
   height: 184px;
+  overflow: hidden;
 `;
 
 const ListLine = styled.div`

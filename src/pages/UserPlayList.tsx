@@ -15,8 +15,9 @@ function UserPlayList() {
       <PlayListTop>
         <PlaylistText>{userId}의 플레이리스트</PlaylistText>
       </PlayListTop>
-
-      <PlayList musics={playlistSuccess ? playlistMusics || [] : []} />
+      <ListeningListContainer>
+        <PlayList musics={playlistSuccess ? playlistMusics || [] : []} />
+      </ListeningListContainer>
     </WhiteTopContainer>
   );
 }
@@ -34,4 +35,9 @@ const PlaylistText = styled.div`
 const PlayListTop = styled.div`
   width: 100%;
   height: 80px;
+`;
+
+const ListeningListContainer = styled.div`
+  overflow-y: auto; /* 세로 스크롤을 표시하고, 내용이 넘칠 때 스크롤 가능하도록 설정 */
+  max-height: 800px;
 `;

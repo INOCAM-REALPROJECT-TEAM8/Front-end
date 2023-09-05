@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import MainContainer from '../components/loginPage/styles/MainContainer';
 import UserMusicSlide from '../components/userpage/UserMusicSlide';
 import MusicBox from '../components/userpage/MusicBox';
@@ -50,8 +50,6 @@ function MyPage() {
           <Gear />
         </RoundButton>
       </UserImageContainer>
-
-      {/* <input type='file' ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} /> */}
       <UserName>{nickname}</UserName>
       <SeparatorLine />
       <FollowStatsContainer>
@@ -65,7 +63,7 @@ function MyPage() {
         </FollowStats>
       </FollowStatsContainer>
       <PlayList>
-        <PlaylistText>내 플레이리스트</PlaylistText>
+        <PlaylistText>내 플레이 리스트</PlaylistText>
         <PlaylistContainer>
           <PlayListHeader />
           <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
@@ -93,7 +91,7 @@ const UserImageContainer = styled.div`
   justify-content: center;
   align-items: center;
   border: 3px solid white;
-  margin: 10px auto 24px;
+  margin: 30px auto;
 `;
 
 const UserImage = styled.img`
@@ -119,11 +117,8 @@ const RoundButton = styled.button`
   z-index: 1;
 `;
 
-const Placeholder = styled.div`
-  color: gray;
-`;
-
 const UserName = styled.div`
+  margin-top: 10px;
   font-size: 24px;
   color: white;
   font-weight: bolder;
@@ -191,7 +186,7 @@ const PlayListHeader = styled.div`
 `;
 
 const UnderBarIcon = styled.div`
-  padding-top: 6px;
+  padding-top: 8px;
   justify-content: center;
   display: flex;
   cursor: pointer;
