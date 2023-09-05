@@ -14,8 +14,8 @@ import {
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { UserPageInfo, getUserInfo } from '../../api/user';
 import { useEffect, useState } from 'react';
-import PlusButton from '../../icons/PlusButton.png';
-import CheckButton from '../../icons/CheckButton.png';
+import PlusButton from '../../icons/PlusButton.svg';
+import CheckButton from '../../icons/CheckButton.svg';
 import WhiteMessageButton from '../../icons/WhiteMessageButton.svg';
 import { getRoomId } from '../../redux/modules/chatList';
 import basicProfileImg from '../../assets/mascot.svg';
@@ -63,13 +63,13 @@ function UserInformation() {
       <UserImageContainer>
         <UserImage src={userInfo.imageUrl ?? basicProfileImg} />
       </UserImageContainer>
+      <UserName>{userInfo.nickname}</UserName>
       <ButtonsContainer>
         {userInfo.isFollowing ? (
           <ButtonImg src={CheckButton} onClick={handleFollowButtonClick} />
         ) : (
           <ButtonImg src={PlusButton} onClick={handleFollowButtonClick} />
         )}
-        <UserName>{userInfo.nickname}</UserName>
         <ButtonImg src={WhiteMessageButton} onClick={() => navigate(`/chat-room/${getRoomId(userId)}`)} />
       </ButtonsContainer>
       <SeparatorLine />

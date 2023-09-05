@@ -2,47 +2,16 @@ import { styled } from 'styled-components';
 import { useState } from 'react';
 import StarInput from './StarInput';
 
-const Base = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-`;
+interface StarRatingProps {
+  onValueChanged(value: number): void; // 새로운 props
+}
 
-const Name = styled.span`
-  font-size: 16px;
-  line-height: 100%;
-  color: var(--main-color);
-`;
-
-const RatingValue = styled.span`
-  font-size: 40px;
-  color: #595deb;
-  line-height: 100%;
-`;
-
-const RatingField = styled.fieldset`
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
-  border: none;
-  transform: translateY(2px);
-
-  input:checked ~ label,
-  labeL:hover,
-  labeL:hover ~ label {
-    transition: 0.2s;
-    color: var(--main-color);
-  }
-`;
-
-const StarRating: React.FC = () => {
+const StarRating: React.FC<StarRatingProps> = ({ onValueChanged }) => {
   const [rating, setRating] = useState<number>(0);
 
   const handleClickRating = (value: number) => {
     setRating(value);
+    onValueChanged(value); // 선택한 별점 상위 컴포넌트에 전달
   };
 
   return (
@@ -66,3 +35,40 @@ const StarRating: React.FC = () => {
 };
 
 export default StarRating;
+
+const Base = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+`;
+
+const Name = styled.span`
+  font-size: 16px;
+  line-height: 100%;
+  color: var(--main-color);
+  padding-top: 10px;
+`;
+
+const RatingValue = styled.span`
+  font-size: 40px;
+  color: #595deb;
+  line-height: 100%;
+`;
+
+const RatingField = styled.fieldset`
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  border: none;
+  transform: translateY(2px);
+
+  input:checked ~ label,
+  labeL:hover,
+  labeL:hover ~ label {
+    transition: 0.2s;
+    color: var(--main-color);
+  }
+`;
