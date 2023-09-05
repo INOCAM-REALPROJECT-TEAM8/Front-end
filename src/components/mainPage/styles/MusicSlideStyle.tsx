@@ -25,21 +25,21 @@ export const CoveredCard = styled.div`
 
   div {
     border-radius: 8px;
-    height: 107px;
-    width: 107px;
+    height: 106px;
+    width: 106px;
     background-color: #a5a5a5;
   }
 `;
 
 export const MusicCardContainer = styled.div`
   cursor: pointer;
-  width: 107px;
-  margin-right: 11px;
+  width: 106px;
+  margin-right: 12px;
 
   & > img {
     border-radius: 8px;
-    width: 107px;
-    height: 107px;
+    width: 106px;
+    height: 106px;
   }
 
   & > h2 {
