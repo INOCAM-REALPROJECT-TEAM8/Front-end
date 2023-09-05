@@ -16,18 +16,18 @@ const dummyMusic: MusicInfo = {
   star: 3.8,
 };
 
-const dummyComments: Comment[] = [
-  {
-    userId: 10,
-    nickname: 'nickname3333',
-    content: '테스트',
-  },
-  {
-    userId: 10,
-    nickname: 'nickname3333',
-    content: '테스트',
-  },
-];
+// const dummyComments: Comment[] = [
+//   {
+//     userId: 10,
+//     nickname: 'nickname3333',
+//     content: '테스트',
+//   },
+//   {
+//     userId: 10,
+//     nickname: 'nickname3333',
+//     content: '테스트',
+//   },
+// ];
 
 function MusicDetailPage() {
   const navigate = useNavigate();

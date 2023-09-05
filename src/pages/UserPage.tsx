@@ -23,13 +23,8 @@ function UserPage() {
         <PlaylistText>내 플레이 리스트</PlaylistText>
         <PlaylistContainer>
           <PlayListHeader />
-          <MusicBox musics={playlistSuccess ? playlistMusics.slice(0, 3) || [] : []} />
-          <ListLine />
-          <MusicBox musics={playlistSuccess ? playlistMusics.slice(3, 6) || [] : []} />
-          <ListLine />
-          <MusicBox musics={playlistSuccess ? playlistMusics.slice(6, 9) || [] : []} />
-          <ListLine />
-          <UnderBarIcon>
+          <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
+          <UnderBarIcon onClick={() => navigate('playlist')}>
             <img src={UnderBar} />
           </UnderBarIcon>
         </PlaylistContainer>
@@ -54,7 +49,7 @@ const PlaylistText = styled.div`
 const PlaylistContainer = styled.div`
   background-color: white;
   width: 100%;
-  height: 227px;
+  height: 228px;
   border-radius: 16px;
   margin-top: 20px;
 `;
@@ -77,7 +72,7 @@ const ListLine = styled.div`
 `;
 
 const UnderBarIcon = styled.div`
-  padding-top: 8px;
+  padding-top: 4px;
   justify-content: center;
   display: flex;
   cursor: pointer;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import WhiteContainer from '../components/loginPage/styles/WhiteContainer';
+import { WhiteContainer } from '../components/loginPage/styles/WhiteContainer';
 import { ReactComponent as SmallLogo } from '../icons/SmallHIDE.svg';
 import styled from 'styled-components';
 import { ReactComponent as Check } from '../assets/Check.svg';

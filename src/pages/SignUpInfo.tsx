@@ -2,7 +2,7 @@ import useValidateInput from '../hooks/useValidateInput';
 import { useNavigate } from 'react-router-dom';
 import { login, signup } from '../api/user';
 import { useMutation } from '@tanstack/react-query';
-import WhiteContainer from '../components/loginPage/styles/WhiteContainer';
+import { WhiteContainer } from '../components/loginPage/styles/WhiteContainer';
 
 function SignUpInfo() {
   const navigate = useNavigate();
