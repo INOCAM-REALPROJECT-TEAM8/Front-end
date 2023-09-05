@@ -13,6 +13,7 @@ import { WhiteContainer } from '../components/loginPage/styles/WhiteContainer';
 import { styled } from 'styled-components';
 import { ReactComponent as BackButton } from '../icons/BackButton.svg';
 import { ReactComponent as SmallLogo } from '../icons/SmallHIDE.svg';
+import InputSearchResults from '../components/loginPage/InputSearchResults';
 
 function MusicAddPage() {
   const navigate = useNavigate();
@@ -73,12 +74,12 @@ function MusicAddPage() {
                 onChange={handleInputChange}
               />
             </InputSearchInputContainer>
-            {input && resultMusics.length ? <SearchResults results={resultMusics} /> : <></>}
+            {input && resultMusics.length ? <InputSearchResults results={resultMusics} /> : <></>}
           </InputSearchContainer>
         </TextContainer>
       </TopContainer>
 
-      <SignButton>다음</SignButton>
+      <SignButton>완료</SignButton>
     </WhiteContainer>
   );
 }

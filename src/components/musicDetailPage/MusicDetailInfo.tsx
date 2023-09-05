@@ -1,5 +1,6 @@
 import { MusicInfo } from '../../api/music';
 import { styled } from 'styled-components';
+import { useEffect, useRef } from 'react';
 import RecordCover from './RecordCover';
 import {
   AlbumBox,

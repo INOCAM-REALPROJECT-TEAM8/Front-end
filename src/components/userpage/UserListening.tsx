@@ -49,7 +49,7 @@ function MusicCard({ music, onClick }: { music: MusicInfo; onClick: () => void }
 export default UserListening;
 
 const ListContainer = styled.div`
-  height: 184px;
+  max-height: 800px;
   padding: 12px;
 `;
 

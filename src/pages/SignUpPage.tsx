@@ -20,7 +20,7 @@ function SignUpPage() {
     onSuccess: data => {
       if (data.success) {
         alert('로그인 되었습니다.');
-        navigate('/');
+        // navigate('/');
       } else {
         navigate('/login');
       }
