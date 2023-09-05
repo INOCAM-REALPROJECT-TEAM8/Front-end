@@ -6,17 +6,19 @@ const Base = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   width: 100%;
 `;
 
 const Name = styled.span`
-  font-size: 1.4rem;
+  font-size: 16px;
   line-height: 100%;
+  color: var(--main-color);
 `;
 
 const RatingValue = styled.span`
-  font-size: 1.2rem;
+  font-size: 40px;
+  color: #595deb;
   line-height: 100%;
 `;
 
@@ -56,8 +58,9 @@ const StarRating: React.FC = () => {
         <StarInput onClickRating={handleClickRating} value={2} isHalf={false} />
         <StarInput onClickRating={handleClickRating} value={1.5} isHalf={true} />
         <StarInput onClickRating={handleClickRating} value={1} isHalf={false} />
+        <StarInput onClickRating={handleClickRating} value={0.5} isHalf={true} />
       </RatingField>
-      <Name>별점</Name>
+      <Name>좌우로 드래그하여 별점을 주세요</Name>
     </Base>
   );
 };

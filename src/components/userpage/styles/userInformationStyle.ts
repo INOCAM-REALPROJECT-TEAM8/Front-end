@@ -33,7 +33,7 @@ export const UserName = styled.div`
 
 export const StatsNumber = styled.div`
   font-size: 16px;
-  color: #cabcf2;
+  color: #b6b8f6;
   margin-top: 10px;
 `;
 

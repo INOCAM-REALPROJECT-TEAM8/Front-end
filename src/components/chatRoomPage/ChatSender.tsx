@@ -3,6 +3,7 @@ import { ChatState } from '../../redux/modules/chatList';
 import { useSelector } from 'react-redux';
 import { SelectState } from '../../redux/config/configStore';
 import useStomp from '../../hooks/useStomp';
+import { VerticalLine } from '../mainPage/styles/SearchBoxStyle';
 import { ChatSenderInput, ChatSenderLable } from './styles/ChatSenderStyle';
 import { ReactComponent as SendButton } from '../../assets/sendButton.svg';
 
@@ -49,7 +50,8 @@ function ChatSender({ chats, setChats, opId }: ChatSenderProps) {
 
   return (
     <ChatSenderLable>
-      <ChatSenderInput value={msg} onChange={handleMsgChange} onKeyPress={handleKeyPress} placeholder='| 메세지 쓰기' />
+      <VerticalLine />
+      <ChatSenderInput value={msg} onChange={handleMsgChange} onKeyPress={handleKeyPress} placeholder='메세지 쓰기' />
       <SendButton onClick={handleSendClick}>보내기</SendButton>
     </ChatSenderLable>
   );

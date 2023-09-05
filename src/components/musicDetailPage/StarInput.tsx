@@ -11,30 +11,33 @@ interface LabelProps {
 
 const Label = styled.label<LabelProps>`
   cursor: pointer;
-  font-size: 1.5rem;
   color: lightgray;
+
+  svg {
+    font-size: 41px;
+  }
 
   ${({ isHalf }) =>
     isHalf &&
     css`
       position: absolute;
-      width: 12px;
+      width: 21px;
       overflow: hidden;
 
       &:nth-of-type(10) {
-        transform: translate(-108px);
+        transform: translate(-184px);
       }
       &:nth-of-type(8) {
-        transform: translate(-84px);
+        transform: translate(-143px);
       }
       &:nth-of-type(6) {
-        transform: translate(-60px);
+        transform: translate(-102px);
       }
       &:nth-of-type(4) {
-        transform: translate(-36px);
+        transform: translate(-61px);
       }
       &:nth-of-type(2) {
-        transform: translate(-12px);
+        transform: translate(-20px);
       }
     `}
 `;

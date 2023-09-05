@@ -8,7 +8,7 @@ import { connectSocket, disconnectSocket } from '../redux/modules/socket';
 import useStomp from '../hooks/useStomp';
 import { useQueryClient } from '@tanstack/react-query';
 import { ChatAlarmContainer, ChatAlarmLayout } from './styles/chatAlarmStyle';
-import basicProfileImg from '../assets/mascot.png';
+import basicProfileImg from '../assets/mascot.svg';
 import {
   ChatInfoContainer,
   ChatRoomInfoContainer,

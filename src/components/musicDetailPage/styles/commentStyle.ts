@@ -6,7 +6,7 @@ export const CommentListContainer = styled.div`
   width: 100%;
   height: 260px;
   background-color: var(--main-color);
-  border-radius: 14px;
+  border-radius: 10px;
   overflow: hidden;
   overflow: scroll;
 `;
@@ -37,15 +37,6 @@ export const NicknameBox = styled.div`
   font-size: 20px;
   font-weight: 700;
   color: var(--white);
-`;
-
-export const StarContainer = styled.div`
-  background-color: #ffffff50;
-  display: inline-flex;
-  gap: 4px;
-  align-items: center;
-  padding: 6px 9px;
-  border-radius: 0px 16px 16px 16px;
 `;
 
 export const ContentBox = styled.div`

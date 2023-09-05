@@ -5,7 +5,6 @@ import MusicDetailInfo from '../components/musicDetailPage/MusicDetailInfo';
 import { useQuery } from '@tanstack/react-query';
 import CommentList from '../components/musicDetailPage/CommentList';
 import { Comment, getCommentsP } from '../api/comment';
-import { addToPlaylist } from '../api/music';
 
 const dummyMusic: MusicInfo = {
   image:
@@ -14,7 +13,6 @@ const dummyMusic: MusicInfo = {
   artistsStringList: '米津玄師 (요네즈 켄시)',
   trackId: 'dddd',
   album: '그레이트 서울 인베이전 Semi Final',
-  genres: ['인디음악', '록/메탈'],
   star: 3.8,
 };
 
@@ -47,20 +45,9 @@ function MusicDetailPage() {
     getCommentsP(musicId ?? ''),
   );
 
-  const handleAddToPlaylist = async () => {
-    try {
-      // Call the addToPlaylist function to add the music to the playlist
-      await addToPlaylist({ musicId: music?.trackId ?? '' });
-      alert('음악이 플레이리스트에 추가되었습니다.');
-    } catch (error) {
-      console.error('플레이리스트에 음악을 추가하는 중 오류가 발생했습니다.', error);
-    }
-  };
-
   return (
     <MusicDetailPageLayout>
       <MusicDetailInfo music={isMusicSuccess ? music : dummyMusic} />
-      <button onClick={handleAddToPlaylist}>플레이리스트에 추가</button>
       <CommentList comments={isCommentsSuccess ? comments : dummyComments} />
     </MusicDetailPageLayout>
   );

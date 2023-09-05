@@ -7,7 +7,7 @@ import {
   OpNicknameBox,
   ProfileImageBox,
 } from './styles/chatRoomInfoStyle';
-import basicProfileImg from '../../assets/mascot.png';
+import basicProfileImg from '../../assets/mascot.svg';
 
 export interface ChatRoomInfo {
   roomName: string;

@@ -104,7 +104,6 @@ export const login = async ({ email, password }: UserInfo) => {
       localStorage.setItem('refreshToken', encryptedToken);
     }
   }
-
   return data;
 };
 
