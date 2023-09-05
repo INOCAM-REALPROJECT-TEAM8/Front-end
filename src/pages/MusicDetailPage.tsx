@@ -48,7 +48,7 @@ function MusicDetailPage() {
   return (
     <MusicDetailPageLayout>
       <MusicDetailInfo music={isMusicSuccess ? music : dummyMusic} />
-      <CommentList comments={isCommentsSuccess ? comments : dummyComments} />
+      <CommentList comments={isCommentsSuccess ? comments : []} />
     </MusicDetailPageLayout>
   );
 }
