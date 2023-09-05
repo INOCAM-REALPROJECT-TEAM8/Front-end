@@ -9,7 +9,8 @@ import {
   TitleBox,
   DetailOption,
   PlayButton,
-  Options,
+  Stars,
+  Playlists,
 } from './styles/musicDetailInfoStyle';
 import Star from '../../icons/Star.svg';
 import ColorStar from '../../icons/ColorStar.svg';
@@ -17,6 +18,7 @@ import LeaveStars from './LeaveStars';
 import LeaveComments from './LeaveComments';
 import musicplay from '../../assets/pagePlayMusicButton.svg';
 import usePlayer from '../../hooks/usePlayer';
+import AddPlaylist from './AddPlaylist';
 
 function MusicDetailInfo({ music }: { music: MusicInfo }) {
   const { Player, AllOpenerContainingRef, openPlayer } = usePlayer<HTMLDivElement>();
@@ -28,7 +30,7 @@ function MusicDetailInfo({ music }: { music: MusicInfo }) {
         <AlbumBox>{music.album}</AlbumBox>
         <ArtistBox>{music.artistsStringList}</ArtistBox>
         <TitleBox>{music.title}</TitleBox>
-        <Options>
+        <DetailOption>
           <Stars>
             <RateContainer>
               <img src={Star} alt='Star Icon' />
@@ -36,12 +38,13 @@ function MusicDetailInfo({ music }: { music: MusicInfo }) {
             </RateContainer>
             <LeaveStars musicId={music.trackId || ''} />
           </Stars>
-          <DetailOption>
-            <PlayButton onClick={() => openPlayer(music.trackId)}>
-              <img src={musicplay} alt='musicplay' />
-            </PlayButton>
-          </DetailOption>
-        </Options>
+          <PlayButton onClick={() => openPlayer(music.trackId)}>
+            <img src={musicplay} alt='musicplay' />
+          </PlayButton>
+          <Playlists>
+            <AddPlaylist />
+          </Playlists>
+        </DetailOption>
       </MusicInfoContainer>
       <LeaveComments musicId={music.trackId || ''} />
       <Player />
@@ -50,7 +53,3 @@ function MusicDetailInfo({ music }: { music: MusicInfo }) {
 }
 
 export default MusicDetailInfo;
-
-const Stars = styled.div`
-  flex-direction: column;
-`;

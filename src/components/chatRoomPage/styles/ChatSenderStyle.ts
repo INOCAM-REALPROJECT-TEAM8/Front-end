@@ -9,8 +9,9 @@ export const ChatSenderLable = styled.label`
   background-color: white;
   padding: 16px 24px 17px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  gap: 4px;
 `;
 
 export const ChatSenderInput = styled.input`

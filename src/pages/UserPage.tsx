@@ -3,7 +3,7 @@ import { useId, useRef, useState } from 'react';
 import MainContainer from '../components/loginPage/styles/MainContainer';
 import UserMusicSlide from '../components/userpage/UserMusicSlide';
 import MusicBox from '../components/userpage/MusicBox';
-import UnderBar from '../icons/underbarbutton.png';
+import UnderBar from '../icons/UnderbarButton.svg';
 import { useNavigate, useParams } from 'react-router-dom';
 import UserInformation from '../components/userpage/UserInformation';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
@@ -62,7 +62,13 @@ const PlayList = styled.div`
 const PlayListHeader = styled.div`
   height: 20px;
   width: 100%;
-  background-color: rgba(89, 93, 235, 0.3);
+  background-color: rgba(89, 93, 235, 0.2);
+`;
+
+const ListLine = styled.div`
+  height: 4px;
+  width: 100%;
+  background-color: rgba(89, 93, 235, 0.2);
 `;
 
 const UnderBarIcon = styled.div`

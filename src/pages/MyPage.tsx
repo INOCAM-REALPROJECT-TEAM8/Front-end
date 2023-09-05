@@ -3,13 +3,13 @@ import React, { useRef, useState } from 'react';
 import MainContainer from '../components/loginPage/styles/MainContainer';
 import UserMusicSlide from '../components/userpage/UserMusicSlide';
 import MusicBox from '../components/userpage/MusicBox';
-import UnderBar from '../icons/underbarbutton.png';
+import UnderBar from '../icons/UnderbarButton.svg';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { SelectState } from '../redux/config/configStore';
 import { getUserInfo } from '../api/user';
 import { useQuery } from '@tanstack/react-query';
-import basicProfileImg from '../assets/mascot.png';
+import basicProfileImg from '../assets/mascot.svg';
 import { getPlaylistP, getRecentHeardsP } from '../api/music';
 import { ReactComponent as Gear } from '../assets/Vector.svg';
 
@@ -170,7 +170,7 @@ const UserName = styled.div`
 
 const StatsNumber = styled.div`
   font-size: 16px;
-  color: #cabcf2;
+  color: #b6b8f6;
   margin-top: 10px;
 `;
 
@@ -216,6 +216,9 @@ const PlaylistContainer = styled.div`
   height: 227px;
   border-radius: 16px;
   margin-top: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const PlayList = styled.div`

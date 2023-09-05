@@ -9,14 +9,17 @@ export const MusicInfoContainer = styled.div`
 `;
 
 export const AlbumBox = styled.div`
-  padding-bottom: 14px;
+  padding-bottom: 12px;
   font-weight: 300;
   font-size: 14px;
   color: #7d7d7d;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const ArtistBox = styled.div`
-  padding-bottom: 4px;
+  padding-bottom: 6px;
   font-weight: 300;
   font-size: 20px;
   color: #7d7d7d;
@@ -38,11 +41,28 @@ export const DetailOption = styled.div`
 export const RateContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 10px;
 
-  & > div {
+  & div {
     font-weight: 600;
     font-size: 18px;
     color: var(--main-color);
+  }
+`;
+
+export const Stars = styled.div`
+  flex-direction: column;
+`;
+
+export const Playlists = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  & img {
+    width: 17px;
   }
 `;
 
@@ -59,8 +79,4 @@ export const PlayButton = styled.button`
     width: 32px;
     height: 32px;
   }
-`;
-
-export const Options = styled.div`
-  display: flex;
 `;
