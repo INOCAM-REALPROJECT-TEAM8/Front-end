@@ -25,7 +25,7 @@ function UserMusicSlide({ playListName, musics }: { playListName: string; musics
   const navigate = useNavigate();
 
   const handleMoreButtonClick = () => {
-    navigate(`user/:userId/listen`);
+    navigate(`listen`);
   };
 
   return (

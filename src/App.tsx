@@ -44,7 +44,7 @@ function App() {
           <Route path='user/:userId/following' element={<FollowingPage />} />
           <Route path='user/:userId/follower' element={<FollowerPage />} />
           <Route path='chats' element={<ChatRoomListPage />} />
-          <Route path='user/:userId/listen' element={<ListeningList />} />
+          <Route path='users/:userId/listen' element={<ListeningList />} />
         </Route>
         <Route path='/' element={<PageLayout headerFooterExist={false} />}>
           <Route path='login' element={<LoginPage />} />
