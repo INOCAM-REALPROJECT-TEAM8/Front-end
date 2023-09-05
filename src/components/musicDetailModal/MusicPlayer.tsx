@@ -7,21 +7,12 @@ import { MusicInfo, addToRecentHeards, getMusicModalInfoP } from '../../api/musi
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { styled } from 'styled-components';
 
-const dummyMusic: MusicInfo = {
-  image:
-    'https://i.namu.wiki/i/3o5_9cQW9UVQzA-M0OyEwdMgtCtv1HUwc5RTMZl_E0knAjndE56r42fCllbD2JHrhZP_ugBhQ3Gi9WXkv8NPGg.webp',
-  title: 'Lemon',
-  artistsStringList: '米津玄師 (요네즈 켄시)',
-  album: '그레이트 서울 인베이전 Semi Final',
-  yurl: 'https://www.youtube.com/watch?v=SX_ViT4Ra7k',
-};
-
 interface MusicPlayerProps {
   musicId: string;
 }
 
 function MusicPlayer({ musicId }: MusicPlayerProps) {
-  const [musicData, setMusicData] = useState<MusicInfo>(dummyMusic);
+  const [musicData, setMusicData] = useState<MusicInfo>();
   const { data, isSuccess } = useQuery([`music/${musicId}`], getMusicModalInfoP(musicId));
 
   useEffect(() => {

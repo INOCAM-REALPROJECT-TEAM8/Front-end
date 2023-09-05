@@ -9,7 +9,7 @@ export const UserImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 30px auto;
+  margin: 10px auto 24px;
   border: 3px solid white;
 `;
 
@@ -25,10 +25,13 @@ export const Placeholder = styled.div`
 `;
 
 export const UserName = styled.div`
-  margin-top: 10px;
+  padding-bottom: 14px;
   font-size: 24px;
   color: white;
   font-weight: bolder;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const StatsNumber = styled.div`
@@ -72,5 +75,5 @@ export const ButtonsContainer = styled.div`
 
 export const ButtonImg = styled.img`
   cursor: pointer;
-  margin: 10px 70px 0px 70px;
+  margin: 10px 30px 0px 30px;
 `;

@@ -20,7 +20,7 @@ function UserPage() {
     <MainContainer>
       <UserInformation />
       <PlayList>
-        <PlaylistText>내 플레이 리스트</PlaylistText>
+        <PlaylistText>내 플레이리스트</PlaylistText>
         <PlaylistContainer>
           <PlayListHeader />
           <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />

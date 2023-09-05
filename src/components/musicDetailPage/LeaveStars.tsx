@@ -10,6 +10,7 @@ function LeaveStars({ musicId }: { musicId: string }) {
     coverExist: true,
     exitByOuterClick: true,
   });
+
   const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state: SelectState) => state.userInfo);
 

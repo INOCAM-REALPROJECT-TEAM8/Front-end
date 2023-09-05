@@ -172,9 +172,9 @@ const SignButton = styled.button`
 `;
 
 const CheckButton = styled.button`
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 18px;
   border: 2px solid #c9c9c9;
   background-color: white;
   display: flex;

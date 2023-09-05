@@ -19,7 +19,7 @@ function MyPlayList() {
   return (
     <WhiteTopContainer>
       <PlayListTop>
-        <PlaylistText>나의 플레이 리스트</PlaylistText>
+        <PlaylistText>나의 플레이리스트</PlaylistText>
       </PlayListTop>
 
       <PlayList musics={playlistSuccess ? playlistMusics || [] : []} />

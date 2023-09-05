@@ -19,7 +19,7 @@ function UserPlayList() {
   return (
     <WhiteTopContainer>
       <PlayListTop>
-        <PlaylistText>{userId}의 플레이 리스트</PlaylistText>
+        <PlaylistText>{userId}의 플레이리스트</PlaylistText>
       </PlayListTop>
 
       <PlayList musics={playlistSuccess ? playlistMusics || [] : []} />

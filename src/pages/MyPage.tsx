@@ -102,8 +102,7 @@ function MyPage() {
         </FollowStats>
       </FollowStatsContainer>
       <PlayList>
-        <PlaylistText>내 플레이 리스트</PlaylistText>
-
+        <PlaylistText>내 플레이리스트</PlaylistText>
         <PlaylistContainer>
           <PlayListHeader />
           <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
@@ -131,7 +130,7 @@ const UserImageContainer = styled.div`
   justify-content: center;
   align-items: center;
   border: 3px solid white;
-  margin: 30px auto;
+  margin: 10px auto 24px;
 `;
 
 const UserImage = styled.img`
@@ -162,7 +161,6 @@ const Placeholder = styled.div`
 `;
 
 const UserName = styled.div`
-  margin-top: 10px;
   font-size: 24px;
   color: white;
   font-weight: bolder;
@@ -233,7 +231,7 @@ const PlayListHeader = styled.div`
 `;
 
 const UnderBarIcon = styled.div`
-  padding-top: 8px;
+  padding-top: 6px;
   justify-content: center;
   display: flex;
   cursor: pointer;
