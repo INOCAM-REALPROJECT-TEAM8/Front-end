@@ -31,6 +31,7 @@ export const ProfileImg = styled.img`
   width: 62px;
   height: 62px;
   border-radius: 16px;
+  background-color: white;
 `;
 
 export const NicknameBox = styled.div`

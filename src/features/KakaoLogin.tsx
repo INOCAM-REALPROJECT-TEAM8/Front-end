@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import KakaoButton from '../icons/KakaoButton.png';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function KakaoLogin() {
+  // const navigate = useNavigate();
+  // // 홈 화면으로 이동하기
+  // navigate('/');
+
   return (
     <A href={`${process.env.REACT_APP_SERVER_URL}/login/oauth2/kakao`}>
       <KakaoButtonContainer>

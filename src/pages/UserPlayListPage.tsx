@@ -1,17 +1,11 @@
-import Slider from 'react-slick';
-import { ListMusicCard } from '../components/userpage/styles/MusicBoxStyle';
 import styled from 'styled-components';
-import { MusicInfo } from '../api/music';
-import UnderBar from '../icons/underbarbutton.png';
-import MusicBox from '../components/userpage/MusicBox';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getPlaylistP, getRecentHeardsP } from '../api/music';
 import { WhiteTopContainer } from '../components/loginPage/styles/WhiteContainer';
 import PlayList from '../components/userpage/PlayList';
 
-function MyPlayList() {
-  const navigate = useNavigate();
+function UserPlayList() {
   const userId = Number(useParams().userId);
 
   const { data: playlistMusics, isSuccess: playlistSuccess } = useQuery(['playList', userId], getPlaylistP(userId));
@@ -19,7 +13,7 @@ function MyPlayList() {
   return (
     <WhiteTopContainer>
       <PlayListTop>
-        <PlaylistText>나의 플레이리스트</PlaylistText>
+        <PlaylistText>{userId}의 플레이리스트</PlaylistText>
       </PlayListTop>
 
       <PlayList musics={playlistSuccess ? playlistMusics || [] : []} />
@@ -27,7 +21,7 @@ function MyPlayList() {
   );
 }
 
-export default MyPlayList;
+export default UserPlayList;
 const PlaylistText = styled.div`
   display: flex;
   width: 100%;

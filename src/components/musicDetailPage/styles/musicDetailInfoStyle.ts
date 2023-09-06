@@ -1,11 +1,10 @@
 import { styled } from 'styled-components';
 
 export const MusicInfoContainer = styled.div`
-  padding: 0px 34px 15px;
+  padding: 0px 0px 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
 `;
 
 export const AlbumBox = styled.div`
@@ -26,7 +25,8 @@ export const ArtistBox = styled.div`
 `;
 
 export const TitleBox = styled.div`
-  padding-bottom: 24px;
+  width: 100%;
+  padding: 0px 20px 24px;
   font-weight: 600;
   font-size: 24px;
   color: var(--main-color);
