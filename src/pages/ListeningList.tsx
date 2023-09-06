@@ -18,7 +18,9 @@ function ListeningList() {
       <PlayListTop>
         <PlaylistText>최근 들은 곡</PlaylistText>
       </PlayListTop>
-      <UserListening musics={recentSuccess ? recentMusics || [] : []} />
+      <ListeningListContainer>
+        <UserListening musics={recentSuccess ? recentMusics || [] : []} />
+      </ListeningListContainer>
     </WhiteTopContainer>
   );
 }
@@ -36,4 +38,9 @@ const PlaylistText = styled.div`
 const PlayListTop = styled.div`
   width: 100%;
   height: 80px;
+`;
+
+const ListeningListContainer = styled.div`
+  overflow-y: auto; /* 세로 스크롤을 표시하고, 내용이 넘칠 때 스크롤 가능하도록 설정 */
+  max-height: 800px;
 `;

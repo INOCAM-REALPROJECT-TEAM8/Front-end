@@ -30,11 +30,22 @@ export const TitleBox = styled.div`
   font-weight: 600;
   font-size: 24px;
   color: var(--main-color);
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap; /* 텍스트 줄 바꿈 금지 */
+  overflow: hidden; /* 오버플로우 숨김 */
+  text-overflow: ellipsis; /* 텍스트가 오버플로우 되면 생략 부호 (...) 표시 */
+  max-width: 100%; /* 최대 너비 지정 */
 `;
+
+// export const TitleBox = styled.div`
+//   padding-bottom: 24px;
+//   font-weight: 600;
+//   font-size: 24px;
+//   color: var(--main-color);
+//   white-space: nowrap;
+//   overflow: hidden;
+//   max-width: 100%;
+//   position: relative; /* 상대 위치 설정 */
+// `;
 
 export const DetailOption = styled.div`
   display: flex;

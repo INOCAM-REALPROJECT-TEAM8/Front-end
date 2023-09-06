@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getPlaylistP, getRecentHeardsP } from '../api/music';
 import { WhiteTopContainer } from '../components/loginPage/styles/WhiteContainer';
-import UserPlayList from '../components/userpage/UserPlayList';
+import PlayList from '../components/userpage/PlayList';
 
-function UserPlayListPage() {
+function UserPlayList() {
   const userId = Number(useParams().userId);
 
   const { data: playlistMusics, isSuccess: playlistSuccess } = useQuery(['playList', userId], getPlaylistP(userId));
@@ -15,13 +15,13 @@ function UserPlayListPage() {
       <PlayListTop>
         <PlaylistText>{userId}의 플레이리스트</PlaylistText>
       </PlayListTop>
-      <UserPlayList musics={playlistSuccess ? playlistMusics || [] : []} />
+
+      <PlayList musics={playlistSuccess ? playlistMusics || [] : []} />
     </WhiteTopContainer>
   );
 }
 
-export default UserPlayListPage;
-
+export default UserPlayList;
 const PlaylistText = styled.div`
   display: flex;
   width: 100%;
@@ -33,5 +33,5 @@ const PlaylistText = styled.div`
 
 const PlayListTop = styled.div`
   width: 100%;
-  height: 40px;
+  height: 80px;
 `;
