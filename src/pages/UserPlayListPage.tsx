@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getPlaylistP, getRecentHeardsP } from '../api/music';
 import { WhiteTopContainer } from '../components/loginPage/styles/WhiteContainer';
-import PlayList from '../components/userpage/PlayList';
+import UserPlayList from '../components/userpage/UserPlayList';
 
-function UserPlayList() {
+function UserPlayListPage() {
   const userId = Number(useParams().userId);
 
   const { data: playlistMusics, isSuccess: playlistSuccess } = useQuery(['playList', userId], getPlaylistP(userId));
@@ -15,13 +15,12 @@ function UserPlayList() {
       <PlayListTop>
         <PlaylistText>{userId}의 플레이리스트</PlaylistText>
       </PlayListTop>
-
-      <PlayList musics={playlistSuccess ? playlistMusics || [] : []} />
+      <UserPlayList musics={playlistSuccess ? playlistMusics || [] : []} />
     </WhiteTopContainer>
   );
 }
 
-export default UserPlayList;
+export default UserPlayListPage;
 const PlaylistText = styled.div`
   display: flex;
   width: 100%;
