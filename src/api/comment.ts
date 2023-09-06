@@ -6,6 +6,7 @@ export interface Comment {
   userId: number;
   nickname: string;
   content: string;
+  imageUrl: string;
 }
 
 export const getCommentsP = (musicId: string) => async () => {

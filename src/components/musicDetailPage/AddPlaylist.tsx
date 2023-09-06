@@ -46,11 +46,14 @@ function AddPlaylist() {
     if (isLoggedIn) {
       try {
         if (isAdded) {
+          // isAdded 값 확인
           await deleteFromPlaylist({ playlistId: music?.trackId ?? '' });
+          console.log('Delete request sent'); // 삭제 요청이 전송되었음을 확인
           setIsAdded(false);
           alert('음악이 플레이리스트에서 삭제되었습니다.');
         } else {
           await addToPlaylist({ musicId: music?.trackId ?? '' });
+          console.log('Add request sent'); // 추가 요청이 전송되었음을 확인
           setIsAdded(true);
           alert('음악이 플레이리스트에 추가되었습니다.');
         }

@@ -4,7 +4,7 @@ import { PlayListMusicCard } from './styles/MusicBoxStyle';
 import styled from 'styled-components';
 import { MusicInfo } from '../../api/music';
 
-function PlayList({ musics }: { musics: MusicInfo[] }) {
+function MyPlayList({ musics }: { musics: MusicInfo[] }) {
   let sliderRef: Slider | null = null;
   const settings = {
     className: 'slider',
@@ -46,7 +46,7 @@ function MusicCard({ music, onClick }: { music: MusicInfo; onClick: () => void }
   );
 }
 
-export default PlayList;
+export default MyPlayList;
 
 const ListContainer = styled.div`
   height: 184px;
