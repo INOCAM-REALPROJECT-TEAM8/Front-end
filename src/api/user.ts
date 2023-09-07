@@ -155,12 +155,12 @@ export const updateUserInfo = async ({ userId, formData }: { userId: number; for
 //useMutation 쓸 경우에는 인자가 하나만 들어갈 수 있으므로 인자가 2개 이상 들어갈 경우 미리 객체로 묶어서 사용합시다.
 
 export const kakaoLogin = async ({ code }: { code: string }) => {
+  console.log('code', code);
   const { data, headers }: Response & AxiosResponse = await ourAxios.get(`/api/users/oauth2/kakao?code=${code}`);
-
-  console.log('Headers: ', headers);
 
   const authorization = headers.get('Authorization');
   console.log('Authorization: ', authorization);
+
   if (authorization) {
     const token = authorization.replace('Bearer ', '');
     accessToken = token;

@@ -1,17 +1,11 @@
-import Slider from 'react-slick';
-import { ListMusicCard } from '../components/userpage/styles/MusicBoxStyle';
 import styled from 'styled-components';
-import { MusicInfo } from '../api/music';
-import UnderBar from '../icons/underbarbutton.png';
-import MusicBox from '../components/userpage/MusicBox';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getPlaylistP, getRecentHeardsP } from '../api/music';
 import { WhiteTopContainer } from '../components/loginPage/styles/WhiteContainer';
-import PlayList from '../components/userpage/PlayList';
+import UserPlayList from '../components/userpage/UserPlayList';
 
-function UserPlayList() {
-  const navigate = useNavigate();
+function UserPlayListPage() {
   const userId = Number(useParams().userId);
 
   const { data: playlistMusics, isSuccess: playlistSuccess } = useQuery(['playList', userId], getPlaylistP(userId));
@@ -19,15 +13,14 @@ function UserPlayList() {
   return (
     <WhiteTopContainer>
       <PlayListTop>
-        <PlaylistText>{userId}의 플레이 리스트</PlaylistText>
+        <PlaylistText>{userId}의 플레이리스트</PlaylistText>
       </PlayListTop>
-
-      <PlayList musics={playlistSuccess ? playlistMusics || [] : []} />
+      <UserPlayList musics={playlistSuccess ? playlistMusics || [] : []} />
     </WhiteTopContainer>
   );
 }
 
-export default UserPlayList;
+export default UserPlayListPage;
 const PlaylistText = styled.div`
   display: flex;
   width: 100%;

@@ -7,27 +7,13 @@ import CommentList from '../components/musicDetailPage/CommentList';
 import { Comment, getCommentsP } from '../api/comment';
 
 const dummyMusic: MusicInfo = {
-  image:
-    'https://i.namu.wiki/i/3o5_9cQW9UVQzA-M0OyEwdMgtCtv1HUwc5RTMZl_E0knAjndE56r42fCllbD2JHrhZP_ugBhQ3Gi9WXkv8NPGg.webp',
-  title: 'Lemon',
-  artistsStringList: '米津玄師 (요네즈 켄시)',
-  trackId: 'dddd',
-  album: '그레이트 서울 인베이전 Semi Final',
-  star: 3.8,
+  image: '',
+  title: '',
+  artistsStringList: '',
+  trackId: '',
+  album: '',
+  star: undefined,
 };
-
-// const dummyComments: Comment[] = [
-//   {
-//     userId: 10,
-//     nickname: 'nickname3333',
-//     content: '테스트',
-//   },
-//   {
-//     userId: 10,
-//     nickname: 'nickname3333',
-//     content: '테스트',
-//   },
-// ];
 
 function MusicDetailPage() {
   const navigate = useNavigate();
@@ -48,7 +34,7 @@ function MusicDetailPage() {
   return (
     <MusicDetailPageLayout>
       <MusicDetailInfo music={isMusicSuccess ? music : dummyMusic} />
-      <CommentList comments={isCommentsSuccess ? comments : []} />
+      {isCommentsSuccess && <CommentList comments={comments} />}
     </MusicDetailPageLayout>
   );
 }

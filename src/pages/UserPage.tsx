@@ -20,7 +20,7 @@ function UserPage() {
     <MainContainer>
       <UserInformation />
       <PlayList>
-        <PlaylistText>내 플레이 리스트</PlaylistText>
+        <PlaylistText>내 플레이리스트</PlaylistText>
         <PlaylistContainer>
           <PlayListHeader />
           <MusicBox musics={playlistSuccess ? playlistMusics || [] : []} />
@@ -48,7 +48,7 @@ const PlaylistText = styled.div`
 
 const PlaylistContainer = styled.div`
   background-color: white;
-  width: 100%;
+  /* width: 100%; */
   height: 228px;
   border-radius: 16px;
   margin-top: 20px;
@@ -61,12 +61,6 @@ const PlayList = styled.div`
 
 const PlayListHeader = styled.div`
   height: 20px;
-  width: 100%;
-  background-color: rgba(89, 93, 235, 0.2);
-`;
-
-const ListLine = styled.div`
-  height: 4px;
   width: 100%;
   background-color: rgba(89, 93, 235, 0.2);
 `;

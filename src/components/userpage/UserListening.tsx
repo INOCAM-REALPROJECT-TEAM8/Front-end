@@ -4,14 +4,14 @@ import { PlayListMusicCard } from './styles/MusicBoxStyle';
 import styled from 'styled-components';
 import { MusicInfo } from '../../api/music';
 
-function PlayList({ musics }: { musics: MusicInfo[] }) {
+function UserListening({ musics }: { musics: MusicInfo[] }) {
   let sliderRef: Slider | null = null;
   const settings = {
     className: 'slider',
     vertical: true, // 슬라이드 방향을 수직으로 변경
     variableWidth: false,
     swipeToSlide: true,
-    slidesToShow: 50, // 각 슬라이드를 3개만 보이도록 설정
+    slidesToShow: 50,
     infinite: false,
     arrows: false,
   };
@@ -46,10 +46,10 @@ function MusicCard({ music, onClick }: { music: MusicInfo; onClick: () => void }
   );
 }
 
-export default PlayList;
+export default UserListening;
 
 const ListContainer = styled.div`
-  height: 184px;
+  max-height: 800px;
   padding: 12px;
 `;
 

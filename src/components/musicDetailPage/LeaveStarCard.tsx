@@ -1,36 +1,53 @@
 import React from 'react';
-import { CommentInput, CommentSubmitBtn, LeaveStarCardContainer } from './styles/leaveStarsStyle';
-import useValidateInput from '../../hooks/useValidateInput';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postComment } from '../../api/comment';
+import { BtnContainer, StarSubmitBtn, CloseModalBtn, LeaveStarCardContainer } from './styles/leaveStarsStyle';
 import StarRating from './StarRating';
+import { putMusicReview } from '../../api/star';
+import { MusicInfo } from '../../api/music';
+import { useState } from 'react';
 
 function LeaveStarCard({ musicId, closeModal }: { musicId: string; closeModal: () => void }) {
-  const { input: content, handleInputOnChange, validate } = useValidateInput('', false);
+  const [starValue, setStarValue] = useState(0); // 추가된 state
 
-  const queryClient = useQueryClient();
-  const mutation = useMutation(postComment, {
-    onSuccess: () => {
-      queryClient.invalidateQueries([`comments/${musicId}`]);
+  const handleOnSubmit = async () => {
+    try {
+      await putMusicReview(musicId)(starValue); // "남기기" 버튼 클릭 시 서버에 별점 정보 전송
       closeModal();
-    },
-  });
-
-  const handleOnSubmit = () => {
-    if (!validate()) {
-      alert('코멘트를 작성해주세요');
-      return;
+    } catch (error) {
+      console.error(error); // 에러 처리
     }
-    mutation.mutate({ content, musicId });
+  };
+
+  const handleOnStarChange = (value: number) => {
+    setStarValue(value);
   };
 
   return (
     <LeaveStarCardContainer>
-      <StarRating />
-      <CommentInput placeholder='코멘트를 남겨보세요' onChange={handleInputOnChange} value={content} />
-      <CommentSubmitBtn onClick={handleOnSubmit}>남기기</CommentSubmitBtn>
+      <StarRating onValueChanged={handleOnStarChange} />
+      <BtnContainer>
+        <CloseModalBtn onClick={closeModal}>취소</CloseModalBtn>
+        <StarSubmitBtn onClick={handleOnSubmit}>확인</StarSubmitBtn>
+      </BtnContainer>
     </LeaveStarCardContainer>
   );
 }
 
 export default LeaveStarCard;
+
+// const { input: content, handleInputOnChange, validate } = useValidateInput('', false);
+
+// const queryClient = useQueryClient();
+// const mutation = useMutation(postComment, {
+//   onSuccess: () => {
+//     queryClient.invalidateQueries([`comments/${musicId}`]);
+//     closeModal();
+//   },
+// });
+
+// const handleOnSubmit = () => {
+//   if (!validate()) {
+//     alert('코멘트를 작성해주세요');
+//     return;
+//   }
+//   mutation.mutate({ content, musicId });
+// };

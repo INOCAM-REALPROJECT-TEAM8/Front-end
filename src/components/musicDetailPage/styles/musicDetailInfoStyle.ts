@@ -1,11 +1,10 @@
 import { styled } from 'styled-components';
 
 export const MusicInfoContainer = styled.div`
-  padding: 0px 34px 15px;
+  padding: 0px 0px 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
 `;
 
 export const AlbumBox = styled.div`
@@ -26,16 +25,33 @@ export const ArtistBox = styled.div`
 `;
 
 export const TitleBox = styled.div`
-  padding-bottom: 24px;
+  width: 100%;
+  padding: 0px 20px 24px;
   font-weight: 600;
   font-size: 24px;
   color: var(--main-color);
+  white-space: nowrap; /* 텍스트 줄 바꿈 금지 */
+  overflow: hidden; /* 오버플로우 숨김 */
+  text-overflow: ellipsis; /* 텍스트가 오버플로우 되면 생략 부호 (...) 표시 */
+  max-width: 100%; /* 최대 너비 지정 */
 `;
+
+// export const TitleBox = styled.div`
+//   padding-bottom: 24px;
+//   font-weight: 600;
+//   font-size: 24px;
+//   color: var(--main-color);
+//   white-space: nowrap;
+//   overflow: hidden;
+//   max-width: 100%;
+//   position: relative; /* 상대 위치 설정 */
+// `;
 
 export const DetailOption = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
 `;
 
 export const RateContainer = styled.div`

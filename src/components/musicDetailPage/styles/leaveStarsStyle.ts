@@ -9,33 +9,44 @@ export const LeaveStarsBox = styled.div`
 `;
 
 export const LeaveStarCardContainer = styled.div`
+  position: relative;
   border-radius: 16px;
   width: 260px;
-  height: 208px;
+  height: 210px;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
 `;
 
-export const CommentInput = styled.input`
-  text-align: left;
-  vertical-align: text-top;
-  outline: none;
-  border: none;
+export const BtnContainer = styled.div`
+  position: absolute;
+  display: flex;
   width: 100%;
-  height: 200px;
-  word-break: break-all;
-  padding: 20px;
-  background-color: var(--white);
+  bottom: 0;
+  right: 0;
+  align-items: center;
+  justify-content: space-between;
 `;
 
-export const CommentSubmitBtn = styled.button`
-  margin-top: 30px;
+export const CloseModalBtn = styled.button`
+  width: 130px;
+  height: 41px;
   outline: none;
   border: none;
-  padding: 10px;
-  background-color: var(--white);
+  color: #7d7d7d;
+  background-color: rgba(150, 150, 150, 0.3);
   font-weight: 600;
-  font-size: 20px;
-  text-align: center;
-  vertical-align: middle;
+  font-size: 17px;
+  border-bottom-left-radius: 16px;
+`;
+
+export const StarSubmitBtn = styled.button`
+  width: 130px;
+  height: 41px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: #595deb;
+  font-weight: 600;
+  font-size: 17px;
+  border-bottom-right-radius: 16px;
 `;

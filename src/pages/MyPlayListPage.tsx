@@ -8,9 +8,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getPlaylistP, getRecentHeardsP } from '../api/music';
 import { WhiteTopContainer } from '../components/loginPage/styles/WhiteContainer';
-import PlayList from '../components/userpage/PlayList';
+import MyPlayList from '../components/userpage/MyPlayList';
 
-function MyPlayList() {
+function MyPlayListPage() {
   const navigate = useNavigate();
   const userId = Number(useParams().userId);
 
@@ -19,15 +19,15 @@ function MyPlayList() {
   return (
     <WhiteTopContainer>
       <PlayListTop>
-        <PlaylistText>나의 플레이 리스트</PlaylistText>
+        <PlaylistText>나의 플레이리스트</PlaylistText>
       </PlayListTop>
-
-      <PlayList musics={playlistSuccess ? playlistMusics || [] : []} />
+      <MyPlayList musics={playlistSuccess ? playlistMusics || [] : []} />
     </WhiteTopContainer>
   );
 }
 
-export default MyPlayList;
+export default MyPlayListPage;
+
 const PlaylistText = styled.div`
   display: flex;
   width: 100%;

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { MusicCardContainer, MusicSlideContainer } from './styles/UserMusicSlideStyle';
+import { UserMusicCardContainer, UserMusicSlideContainer } from './styles/UserMusicSlideStyle';
 import Slider from 'react-slick';
 import { MusicInfo } from '../../api/music';
 import styled from 'styled-components';
@@ -25,11 +25,11 @@ function UserMusicSlide({ playListName, musics }: { playListName: string; musics
   const navigate = useNavigate();
 
   const handleMoreButtonClick = () => {
-    navigate(`user/:userId/listen`);
+    navigate(`listen`);
   };
 
   return (
-    <MusicSlideContainer>
+    <UserMusicSlideContainer>
       <TitleAndMore>
         <ListName>{playListName}</ListName>
         <MoreButton onClick={handleMoreButtonClick}>더보기</MoreButton>
@@ -39,15 +39,17 @@ function UserMusicSlide({ playListName, musics }: { playListName: string; musics
           <MusicCard music={music} key={music.trackId} onClick={() => navigate(`/musics/${music.trackId}`)} />
         ))}
       </Slider>
-    </MusicSlideContainer>
+    </UserMusicSlideContainer>
   );
 }
 
 function MusicCard({ music, onClick }: { music: MusicInfo; onClick: () => void }) {
   return (
-    <MusicCardContainer onClick={onClick}>
+    <UserMusicCardContainer onClick={onClick}>
       <img src={music.image} alt='' />
-    </MusicCardContainer>
+      <h2>{music.title}</h2>
+      <div>{music.artistsStringList}</div>
+    </UserMusicCardContainer>
   );
 }
 

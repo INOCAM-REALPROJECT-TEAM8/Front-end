@@ -1,6 +1,27 @@
 import { styled, css } from 'styled-components';
 import { FaStar, FaStarHalf } from 'react-icons/fa';
 
+interface StarInputProps {
+  onClickRating(value: number): void;
+  value: number;
+  isHalf?: boolean;
+}
+
+const StarInput: React.FC<StarInputProps> = ({ onClickRating, value, isHalf }) => {
+  const handleClickRatingInput = (value: number) => onClickRating(value);
+
+  return (
+    <>
+      <Input type='radio' name='rating' id={`star${value}`} value={value} />
+      <Label onClick={() => handleClickRatingInput(value)} isHalf={isHalf} htmlFor={`star${value}`}>
+        {isHalf ? <FaStarHalf /> : <FaStar />}
+      </Label>
+    </>
+  );
+};
+
+export default StarInput;
+
 const Input = styled.input`
   display: none;
 `;
@@ -41,24 +62,3 @@ const Label = styled.label<LabelProps>`
       }
     `}
 `;
-
-interface StarInputProps {
-  onClickRating(value: number): void;
-  value: number;
-  isHalf?: boolean;
-}
-
-const StarInput: React.FC<StarInputProps> = ({ onClickRating, value, isHalf }) => {
-  const handleClickRatingInput = (value: number) => onClickRating(value);
-
-  return (
-    <>
-      <Input type='radio' name='rating' id={`star${value}`} value={value} />
-      <Label onClick={() => handleClickRatingInput(value)} isHalf={isHalf} htmlFor={`star${value}`}>
-        {isHalf ? <FaStarHalf /> : <FaStar />}
-      </Label>
-    </>
-  );
-};
-
-export default StarInput;

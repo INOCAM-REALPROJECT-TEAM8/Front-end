@@ -13,7 +13,9 @@ function KaKaoCodePage() {
     },
   });
 
-  mutation.mutate({ code: code ?? '' });
+  if (code) {
+    mutation.mutate({ code });
+  }
 
   return <div>KaKaoCodePage</div>;
 }
