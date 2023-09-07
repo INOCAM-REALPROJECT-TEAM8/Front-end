@@ -7,7 +7,7 @@ export interface Star {
 }
 
 export const getMusicReview = (trackId: string) => async () => {
-  const { data }: AxiosResponse<[]> = await ourAxios.get(`/api/tracks/${trackId}/star`);
+  const { data }: AxiosResponse<[]> = await ourAxios.get(`/api/tracks/${trackId}/starList`);
   return data;
 };
 
@@ -17,7 +17,7 @@ export const getMusicReview = (trackId: string) => async () => {
 // };
 
 export const putMusicReview = (trackId: string) => async (star: number) => {
-  const { data }: AxiosResponse<[]> = await putWithToken(`/api/tracks/${trackId}/star`, { star });
+  const { data }: AxiosResponse<[]> = await putWithToken(`/api/tracks/${trackId}/star`, JSON.stringify({ star }));
   return data;
 };
 

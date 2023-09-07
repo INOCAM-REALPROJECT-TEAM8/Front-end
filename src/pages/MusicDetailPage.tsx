@@ -14,7 +14,6 @@ const dummyMusic: MusicInfo = {
   album: '',
   star: undefined,
 };
-const dummyComments: Comment[] = [];
 
 function MusicDetailPage() {
   const navigate = useNavigate();

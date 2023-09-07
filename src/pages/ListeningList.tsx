@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getPlaylistP, getRecentHeardsP } from '../api/music';
 import { WhiteTopContainer } from '../components/loginPage/styles/WhiteContainer';
-import PlayList from '../components/userpage/PlayList';
+import PlayList from '../components/userpage/UserPlayList';
 import UserMusicSlide from '../components/userpage/UserMusicSlide';
 import UserListening from '../components/userpage/UserListening';
 

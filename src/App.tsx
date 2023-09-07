@@ -21,8 +21,8 @@ import GoogleCodePage from './pages/GoogleCodePage';
 import MusicAddPage from './pages/MusicAddPage';
 import ListeningList from './pages/ListeningList';
 import AgreePage from './pages/AgreePage';
-import MyPlayList from './pages/MyPlayList';
-import UserPlayList from './pages/UserPlayList';
+import MyPlayListPage from './pages/MyPlayListPage';
+import UserPlayListPage from './pages/UserPlayListPage';
 function App() {
   const [token] = useState(localStorage.getItem('refreshToken'));
   const dispatch = useDispatch();
@@ -38,8 +38,8 @@ function App() {
           <Route path='musics/:musicId' element={<MusicDetailPage />} />
           <Route path='users/:userId' element={<UserPage />} />
           <Route path='user/:userId' element={<MyPage />} />
-          <Route path='users/:userId/playlist' element={<UserPlayList />} />
-          <Route path='user/:userId/playlist' element={<MyPlayList />} />
+          <Route path='users/:userId/playlist' element={<UserPlayListPage />} />
+          <Route path='user/:userId/playlist' element={<MyPlayListPage />} />
           <Route path='user/:userId/myinfo' element={<MyInfoPage />} />
           <Route path='user/:userId/following' element={<FollowingPage />} />
           <Route path='user/:userId/follower' element={<FollowerPage />} />
