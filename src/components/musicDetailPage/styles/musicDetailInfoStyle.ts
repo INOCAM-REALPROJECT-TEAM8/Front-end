@@ -25,7 +25,8 @@ export const ArtistBox = styled.div`
 `;
 
 export const TitleBox = styled.div`
-  width: 100%;
+  /* width: 100%; */
+
   padding: 0px 20px 24px;
   font-weight: 600;
   font-size: 24px;
@@ -33,7 +34,7 @@ export const TitleBox = styled.div`
   white-space: nowrap; /* 텍스트 줄 바꿈 금지 */
   overflow: hidden; /* 오버플로우 숨김 */
   text-overflow: ellipsis; /* 텍스트가 오버플로우 되면 생략 부호 (...) 표시 */
-  max-width: 100%; /* 최대 너비 지정 */
+  max-width: 100%;
 `;
 
 // export const TitleBox = styled.div`
