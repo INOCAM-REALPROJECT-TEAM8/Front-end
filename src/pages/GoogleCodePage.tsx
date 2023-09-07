@@ -13,6 +13,11 @@ function GoogleCodePage() {
       alert('로그인 되었습니다.');
       navigate('/');
     },
+    onError: () => {
+      if (code) {
+        mutation.mutate({ code });
+      }
+    },
   });
 
   useEffect(() => {
@@ -20,9 +25,11 @@ function GoogleCodePage() {
     setCode(code ?? '');
   }, [searchParams]);
 
-  if (code) {
-    mutation.mutate({ code });
-  }
+  useEffect(() => {
+    if (code) {
+      mutation.mutate({ code });
+    }
+  }, [code]);
 
   return <div>GoogleCodePage</div>;
 }
