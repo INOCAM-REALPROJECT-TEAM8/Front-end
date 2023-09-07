@@ -1,9 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { kakaoLogin } from '../api/user';
 
 function KaKaoCodePage() {
-  const { code } = useParams();
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get('code');
   const navigate = useNavigate();
   const mutation = useMutation(kakaoLogin, {
     onSuccess: () => {
