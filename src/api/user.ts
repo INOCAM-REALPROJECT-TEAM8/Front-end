@@ -14,10 +14,10 @@ interface UserInfo {
 }
 
 export interface UserPageInfo extends Omit<UserInfo, 'email' | 'password'> {
-  imageUrl: string | null;
-  following: number;
-  follower: number;
-  isFollowing: boolean;
+  imageUrl?: string | null;
+  following?: number;
+  follower?: number;
+  isFollowing?: boolean;
 }
 
 interface TokenPayload {

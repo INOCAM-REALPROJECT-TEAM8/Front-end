@@ -18,7 +18,7 @@ import FollowerPage from './pages/FollowerPage';
 import MyInfoPage from './pages/MyInfoPage';
 import KaKaoCodePage from './pages/KaKaoCodePage';
 import GoogleCodePage from './pages/GoogleCodePage';
-import MusicAddPage from './pages/MusicAddPage';
+// import MusicAddPage from './pages/MusicAddPage';
 import ListeningList from './pages/ListeningList';
 import AgreePage from './pages/AgreePage';
 import MyPlayListPage from './pages/MyPlayListPage';
@@ -55,7 +55,7 @@ function App() {
           <Route path='changepw' element={<ChangePwPage />} />
           <Route path='chat-room/:roomId' element={<ChatRoomPage />} />
           <Route path='agree' element={<AgreePage />} />
-          <Route path='user/:userId/musicadd' element={<MusicAddPage />} />
+          {/* <Route path='user/:userId/musicadd' element={<MusicAddPage />} /> */}
         </Route>
       </Routes>
     </>
