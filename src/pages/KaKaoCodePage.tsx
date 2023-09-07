@@ -1,26 +1,35 @@
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { kakaoLogin } from '../api/user';
-
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
+import { useEffect, useState } from 'react';
 
 function KaKaoCodePage() {
-  const query = useQuery();
-  const code = query.get('code');
-  console.log(code);
+  const [searchParams] = useSearchParams();
+  const [code, setCode] = useState<string>('');
+
   const navigate = useNavigate();
   const mutation = useMutation(kakaoLogin, {
     onSuccess: () => {
       alert('로그인 되었습니다.');
       navigate('/');
     },
+    onError: () => {
+      if (code) {
+        mutation.mutate({ code });
+      }
+    },
   });
 
-  if (code) {
-    mutation.mutate({ code });
-  }
+  useEffect(() => {
+    const code = searchParams.get('code');
+    setCode(code ?? '');
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (code) {
+      mutation.mutate({ code });
+    }
+  }, [code]);
 
   return <div>KaKaoCodePage</div>;
 }

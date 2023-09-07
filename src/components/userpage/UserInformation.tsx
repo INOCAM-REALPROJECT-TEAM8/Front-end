@@ -75,7 +75,7 @@ function UserInformation() {
       <SeparatorLine />
       <FollowStatsContainer>
         <FollowStats>
-          <StatsLabel onClick={handleFollowingLabelClick}>팔로잉</StatsLabel>
+          <StatsLabel>팔로잉</StatsLabel>
           <StatsNumber>{userInfo.following}</StatsNumber>
         </FollowStats>
         <FollowStats>

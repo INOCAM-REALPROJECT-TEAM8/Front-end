@@ -27,13 +27,13 @@ function MyPage() {
   const followingCount = userInfo?.following ?? 0;
 
   const navigate = useNavigate();
-  const handleFollowingLabelClick = () => {
-    navigate('following');
-  };
+  // const handleFollowingLabelClick = () => {
+  //   navigate('following');
+  // };
 
-  const handleFollowerLabelClick = () => {
-    navigate('follower');
-  };
+  // const handleFollowerLabelClick = () => {
+  //   navigate('follower');
+  // };
 
   const handleRoundButtonClick = () => {
     navigate('myinfo');
@@ -54,11 +54,11 @@ function MyPage() {
       <SeparatorLine />
       <FollowStatsContainer>
         <FollowStats>
-          <StatsLabel onClick={handleFollowingLabelClick}>팔로잉</StatsLabel>
+          <StatsLabel>팔로잉</StatsLabel>
           <StatsNumber>{followingCount}</StatsNumber>
         </FollowStats>
         <FollowStats>
-          <StatsLabel onClick={handleFollowerLabelClick}>팔로워</StatsLabel>
+          <StatsLabel>팔로워</StatsLabel>
           <StatsNumber>{followerCount}</StatsNumber>
         </FollowStats>
       </FollowStatsContainer>
