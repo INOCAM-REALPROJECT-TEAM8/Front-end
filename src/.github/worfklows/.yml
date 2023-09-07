@@ -1,0 +1,20 @@
+name: Sync with Upstream Every 5 Minutes
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Sync with Upstream
+        run: |
+          git remote add upstream https://github.com/INOCAM-REALPROJECT-TEAM8/Front-end.git
+          git fetch upstream
+          git checkout develop 
+          git merge upstream/develop
