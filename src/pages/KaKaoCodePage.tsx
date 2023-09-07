@@ -1,10 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { kakaoLogin } from '../api/user';
+import { useEffect, useState } from 'react';
 
 function KaKaoCodePage() {
   const [searchParams] = useSearchParams();
-  const code = searchParams.get('code');
+  const [code, setCode] = useState<string>('');
+
   const navigate = useNavigate();
   const mutation = useMutation(kakaoLogin, {
     onSuccess: () => {
@@ -12,6 +14,11 @@ function KaKaoCodePage() {
       navigate('/');
     },
   });
+
+  useEffect(() => {
+    const code = searchParams.get('code');
+    setCode(code ?? '');
+  }, [searchParams]);
 
   if (code) {
     mutation.mutate({ code });
