@@ -1,6 +1,6 @@
-import { MusicInfo } from '../../api/music';
+import { MusicInfo, getMusicDetailP } from '../../api/music';
 import { styled } from 'styled-components';
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import RecordCover from './RecordCover';
 import {
   AlbumBox,
@@ -23,6 +23,14 @@ import AddPlaylist from './AddPlaylist';
 
 function MusicDetailInfo({ music }: { music: MusicInfo }) {
   const { Player, AllOpenerContainingRef, openPlayer } = usePlayer<HTMLDivElement>();
+  console.log(music);
+  console.log(music.averageStar);
+
+  const [averageStar, setAverageStar] = useState(music.averageStar);
+
+  useEffect(() => {
+    setAverageStar(music.averageStar);
+  }, [music.averageStar]);
 
   return (
     <>
@@ -35,7 +43,7 @@ function MusicDetailInfo({ music }: { music: MusicInfo }) {
           <Stars>
             <RateContainer>
               <img src={Star} alt='Star Icon' />
-              <div>{music.star}</div>
+              <div>{averageStar}</div>
             </RateContainer>
             <LeaveStars musicId={music.trackId || ''} />
           </Stars>

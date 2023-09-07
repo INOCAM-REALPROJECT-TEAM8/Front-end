@@ -9,9 +9,7 @@ export interface MusicInfo {
   title: string;
   artistsStringList: string;
   image: string;
-  genres?: string[];
-  star?: number;
-  yurl?: string;
+  averageStar?: number;
   artist?: string;
 }
 
