@@ -25,7 +25,6 @@ export const ArtistBox = styled.div`
 `;
 
 export const TitleBox = styled.div`
-  width: 100%;
   padding: 0px 20px 24px;
   font-weight: 600;
   font-size: 24px;

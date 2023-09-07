@@ -12,7 +12,7 @@ const dummyMusic: MusicInfo = {
   artistsStringList: '',
   trackId: '',
   album: '',
-  star: undefined,
+  averageStar: undefined,
 };
 
 function MusicDetailPage() {
