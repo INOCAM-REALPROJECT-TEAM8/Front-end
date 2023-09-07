@@ -1,14 +1,16 @@
 import { Comment } from '../../api/comment';
 import CommentInfo from './CommentInfo';
-import { CommentListContainer } from './styles/commentStyle';
+import { AllCommentContainer, CommentListContainer } from './styles/commentStyle';
 
 function CommentList({ comments }: { comments: Comment[] }) {
   return (
-    <CommentListContainer>
-      {comments.map(comment => (
-        <CommentInfo {...comment} />
-      ))}
-    </CommentListContainer>
+    <AllCommentContainer>
+      <CommentListContainer>
+        {comments.map(comment => (
+          <CommentInfo {...comment} />
+        ))}
+      </CommentListContainer>
+    </AllCommentContainer>
   );
 }
 

@@ -1,14 +1,28 @@
-import { styled } from 'styled-components';
+import { styled, css } from 'styled-components';
+
+export const AllCommentContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 export const CommentListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 260px;
+  width: 90%;
+  height: 270px;
+  margin-bottom: 10px;
   background-color: var(--main-color);
   border-radius: 10px;
-  overflow: hidden;
   overflow: scroll;
+  position: absolute;
+  bottom: 60px;
+
+  //스크롤바 숨기기
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
 `;
 
 export const CommentContainer = styled.div`

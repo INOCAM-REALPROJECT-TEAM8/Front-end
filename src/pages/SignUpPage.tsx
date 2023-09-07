@@ -1,5 +1,5 @@
 import useValidateInput from '../hooks/useValidateInput';
-import { login, signup } from '../api/user';
+import { UserPageInfo, login, signup } from '../api/user';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { ReactComponent as SmallLogo } from '../icons/SmallHIDE.svg';
@@ -8,7 +8,7 @@ import { styled } from 'styled-components';
 import SignUpInfo from './SignUpInfo';
 import { ReactComponent as BackButton } from '../icons/BackButton.svg';
 
-function SignUpPage() {
+function SignUpPage({ userId }: UserPageInfo) {
   const navigate = useNavigate();
 
   const { input: email, handleInputOnChange: handleEmailOnChange, valid: emailValid } = useValidateInput('email');
@@ -20,7 +20,7 @@ function SignUpPage() {
     onSuccess: data => {
       if (data.success) {
         alert('로그인 되었습니다.');
-        // navigate('/');
+        navigate('/');
       } else {
         navigate('/login');
       }
@@ -31,7 +31,6 @@ function SignUpPage() {
       if (data.success) {
         alert('회원가입이 완료되었습니다.');
         loginMutation.mutate({ email, password });
-        navigate('/user/:userId/musicadd');
       } else {
         alert(data.msg);
       }
@@ -39,6 +38,8 @@ function SignUpPage() {
   });
 
   const handleSubmit = () => {
+    console.log(userId);
+
     if (!emailValid) {
       alert('이메일 형식을 지켜주세요');
     } else if (!passwordValid) {
@@ -49,6 +50,7 @@ function SignUpPage() {
       alert('닉네임을 입력해주세요');
     } else {
       signupMutation.mutate({ email, password, nickname });
+      navigate(`/`);
     }
   };
 
@@ -65,7 +67,7 @@ function SignUpPage() {
         <SignHead>회원가입</SignHead>
         <LogoContainer>
           <AddSmallLogo />
-          <PageNumber>(2/3)</PageNumber>
+          <PageNumber>(2/2)</PageNumber>
         </LogoContainer>
       </TopContainer>
       <TextAdd>로그인 정보 설정</TextAdd>
@@ -74,7 +76,7 @@ function SignUpPage() {
       <SignInput type='password' onChange={handlePwOnChange} value={password} placeholder='비밀번호' />
       <SignInput type='password' onChange={handlePw2OnChange} value={password2} placeholder='비밀번호 확인' />
       <SignInput onChange={handleNicknameOnChange} value={nickname} placeholder='닉네임' />
-      <SignButton onClick={handleSubmit}>다음</SignButton>
+      <SignButton onClick={handleSubmit}>완료</SignButton>
     </WhiteContainer>
   );
 }

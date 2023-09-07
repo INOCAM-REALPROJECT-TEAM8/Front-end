@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   InputSearchContainer,
   InputSearchIcon,
@@ -8,12 +8,14 @@ import {
   InputVerticalLine,
 } from '../components/loginPage/styles/InputSearchBoxStyle';
 import SearchResults from '../components/mainPage/SearchResults';
-import { MusicInfo, searchMusics } from '../api/music';
+import { MusicInfo, getPlaylistP, searchMusics } from '../api/music';
 import { WhiteContainer } from '../components/loginPage/styles/WhiteContainer';
 import { styled } from 'styled-components';
 import { ReactComponent as BackButton } from '../icons/BackButton.svg';
 import { ReactComponent as SmallLogo } from '../icons/SmallHIDE.svg';
 import InputSearchResults from '../components/loginPage/InputSearchResults';
+import { useQuery } from '@tanstack/react-query';
+import PlayList from '../components/userpage/PlayList';
 
 function MusicAddPage() {
   const navigate = useNavigate();
@@ -21,6 +23,10 @@ function MusicAddPage() {
   const [input, setInput] = useState<string>('');
   const [timer, setTimer] = useState<NodeJS.Timeout>();
   const [resultMusics, setResultMusics] = useState<MusicInfo[]>([]);
+
+  const userId = Number(useParams().userId);
+
+  const { data: playlistMusics, isSuccess: playlistSuccess } = useQuery(['playList', userId], getPlaylistP(userId));
 
   useEffect(() => {
     return () => {
@@ -78,7 +84,7 @@ function MusicAddPage() {
           </InputSearchContainer>
         </TextContainer>
       </TopContainer>
-
+      <PlayList musics={playlistSuccess ? playlistMusics || [] : []} />
       <SignButton>완료</SignButton>
     </WhiteContainer>
   );
