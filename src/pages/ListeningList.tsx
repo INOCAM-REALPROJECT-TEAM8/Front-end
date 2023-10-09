@@ -1,16 +1,13 @@
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { getPlaylistP, getRecentHeardsP } from '../api/music';
+import { getRecentHeardsP } from '../api/music';
 import { WhiteTopContainer } from '../components/loginPage/styles/WhiteContainer';
-import PlayList from '../components/userpage/UserPlayList';
-import UserMusicSlide from '../components/userpage/UserMusicSlide';
 import UserListening from '../components/userpage/UserListening';
 
 function ListeningList() {
   const userId = Number(useParams().userId);
 
-  const { data: playlistMusics, isSuccess: playlistSuccess } = useQuery(['playList', userId], getPlaylistP(userId));
   const { data: recentMusics, isSuccess: recentSuccess } = useQuery(['recentMusics', userId], getRecentHeardsP(userId));
 
   return (
