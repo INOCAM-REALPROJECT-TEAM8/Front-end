@@ -83,13 +83,3 @@ const IconButton = styled.img`
   object-fit: contain;
   cursor: pointer;
 `;
-
-// const IconContainer = styled.div`
-//   width: 36px;
-//   height: 36px;
-//   border-radius: 50%;
-//   background-color: var(--main-color);
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// `;

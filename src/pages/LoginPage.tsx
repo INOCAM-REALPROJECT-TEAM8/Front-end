@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { SelectState } from '../redux/config/configStore';
 import { ReactComponent as Logo } from '../assets/hideMaincolor.svg';
-import { Button, Input, LoginBox, LogoContainer } from '../components/loginPage/styles/Input';
+import { Button, Input, LoginBox, LogoContainer, SocialButton } from '../components/loginPage/styles/Input';
 import { AxiosError } from 'axios';
 import React from 'react';
 
@@ -89,18 +89,6 @@ function LoginPage() {
 }
 
 export default LoginPage;
-
-const SocialButton = styled.div`
-  width: 342px;
-  height: 40px;
-  border: none;
-  border-radius: 16px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 10px;
-`;
 
 const UnderlinedTextBox = styled(Link)`
   text-decoration: underline;

@@ -45,3 +45,15 @@ export const LogoContainer = styled.div`
   justify-content: center;
   margin: 100px 0 140px 0;
 `;
+
+export const SocialButton = styled.div`
+  width: 342px;
+  height: 40px;
+  border: none;
+  border-radius: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+`;
